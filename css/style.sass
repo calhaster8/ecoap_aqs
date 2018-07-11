@@ -1,0 +1,555 @@
+@font-face
+    font-family: Amelia-Basic
+    src: url('../fonts/Amelia/Amelia-Basic.otf') 
+@font-face
+    font-family: Amelia-Basic-Light
+    font-weight: lighter
+    src: url('../fonts/Amelia/Amelia-Basic-Light.otf') 
+@font-face
+    font-family: Amelia-Basic-Bold
+    font-weight: bold
+    src: url('../fonts/Amelia/Amelia-Basic-Bold.otf')
+
+$big: 1024px
+$medium: 768px
+$small: 515px
+
+    
+*
+    margin: 0
+    padding: 0
+
+html
+    height: 100%
+
+body
+    font-family: 'Amelia-Basic', sans-serif
+    background-image: url(../img/fundo/peixes.png), url('../img/fundo.png')
+    background-position: 80% 200px, center
+    background-size: 550px 550px, cover
+    //background-image: url('../img/fundo.png')
+    background-repeat: no-repeat
+    width: 100%
+    height: 100vh
+    min-height: 100vh
+
+    @media screen and (max-width: $big)
+        background-image: url(../img/fundo/peixes.png), url('../img/fundo.png')
+        background-position: 80% 200px, center
+        background-size: 550px 550px, cover
+        background-repeat: no-repeat
+
+    @media screen and (max-width: $medium)
+        background-image: url('../img/fundo.png')
+        background-position: center
+        background-size: cover
+        background-repeat: repeat
+
+    @media screen and (max-width: $small)
+        background-image: url('../img/fundo.png')
+        background-position: center
+        background-size: cover
+        background-repeat: repeat
+
+.header
+    display: flex
+    justify-content: flex-end
+    align-items: center
+
+    padding: 50px 100px
+
+    @media screen and (max-width: $medium)
+        padding: 50px 100px
+
+    @media screen and (max-width: $small)
+        padding: 50px
+
+    .header-title
+        color: #0099cc
+        font-size: 1.6em
+        font-family: 'Amelia-Basic-Light', sans-serif
+        text-transform: uppercase
+        padding: 0 20px
+
+
+.main
+    margin: 0 50px 50px 50px
+    padding: 0 25px
+    //text-align: center
+
+    @media screen and (max-width: $medium)
+        margin: 0
+        padding: 0 100px
+
+    @media screen and (max-width: $small)
+        margin: 0
+        padding: 0 25px
+
+
+    .main-content
+
+        .dados-titulo
+            text-align: left
+            text-transform: uppercase
+            font-size: 1.3em
+            margin-bottom: 20px
+            color: #0099cc
+            font-family: 'Amelia-Basic-Bold', sans-serif
+            
+        .dados-child
+            display: flex
+            flex-direction: column
+
+            .dado
+                margin: 20px 0
+
+                display: flex
+                flex-direction: column
+
+                font-size: 1.2em
+                //text-align: center
+                width: 60%
+
+                @media screen and (max-width: $medium)
+                    width: 100%
+
+                @media screen and (max-width: $small)
+                    width: 100%
+
+                label
+                    margin-bottom: 5px
+                    color: #0099cc
+                    font-weight: 400
+
+                input
+                    width: 52%
+                    padding: 5px 20px
+                    font-size: .8em
+                    //text-align: center
+                    border: none
+                    border: 1px solid #0099cc
+                    border-radius: 100px
+                    color: #0099cc
+                    font-weight: 300
+                    font-family: 'Amelia-Basic-Light', sans-serif
+
+                    @media screen and (max-width: $medium)
+                        width: 100%
+
+                    @media screen and (max-width: $small)
+                        width: 100%
+
+                input[type=number].custo-ilum
+                    background-color: rgba(0,0,0,.04)
+
+
+                input[type=number]::-webkit-inner-spin-button
+                    -webkit-appearance: none
+
+                input:focus
+                    outline: none
+
+                .sel
+                    width: 52%
+                    -webkit-appearance: none
+                    -moz-appearance: none
+                    background: url('../img/seta.png') no-repeat 95% center
+                    appearance: none
+                    padding: 5px 20px
+                    font-size: .8em
+                    color: #808080
+                    font-family: 'Amelia-Basic-Light', sans-serif
+                    overflow: hidden
+                    border: none
+                    border: 1px solid #0099cc
+                    border-radius: 100px
+                    background-color: #ffffff
+
+                    @media screen and (max-width: $medium)
+                        width: 100%
+
+                    @media screen and (max-width: $small)
+                        width: 100%
+
+                .sel:focus
+                    outline: none
+
+
+                .sel::-ms-expand
+                    display: none
+
+                .sel-disable
+                    background-color: #0099cc
+                    background-image: none
+                    color: #fff
+
+            .tabela-diaria
+                table
+                    background-color: rgba(242, 242, 242,0)
+                    //width: 50%
+
+                    tbody
+                        .titulo_row
+                            background-color: rgba(242, 242, 242,.9)
+
+                        tr,
+                        .textTR
+                            color: #0099cc
+                            text-align: center
+
+                            .tituloTH
+                                text-align: center
+                                vertical-align: middle
+                                color: #0099cc
+
+                            td,
+                            td.in
+                                height: 40px
+                                padding: 0
+                                text-align: center
+                                vertical-align: middle
+                                margin: 0
+                                background-color: rgba(255,255,255,.9)
+                                
+
+                                input.xInput
+                                    border: none
+                                    border-radius: 0
+                                    text-align: center
+                                    margin: 0
+                                    padding: 0
+                                    height: 40px
+                                    background-color: rgba(255,255,255,.7)
+
+                                input[type=number]::-webkit-inner-spin-button
+                                    -webkit-appearance: none
+
+                                /*.form-control
+                                    width: 100px*/
+
+                                input.xInput::-webkit-input-placeholder /* Chrome/Opera/Safari */
+                                    color: #DCDCDC
+                                    
+                                input.xInput::-moz-placeholder /* Firefox 19+ */
+                                    color: #DCDCDC
+                                
+                                input.xInput:-ms-input-placeholder /* IE 10+ */
+                                    color: #DCDCDC
+                                
+                                input.xInput:-moz-placeholder /* Firefox 18- */
+                                    color: #DCDCDC
+
+                            td.select-cell
+                                padding: 0
+                                vertical-align: middle
+                                //width: 50%
+
+                                select
+                                    width: 100%
+                                    //height: 80px
+                                    border: none
+                                    background-color: rgba(0,0,0,0)
+                                    text-align-last: center
+
+                                    &:focus
+                                        outline: none
+
+                                    .op
+                                        text-align-last: center
+
+
+
+            .tabelas,
+            .tabela-diaria
+                table
+                    //background-color: #f2f2f2
+                    background-color: rgba(242, 242, 242,0)
+                    //width: 50%
+
+                    tbody
+                        .titulo_row
+                            background-color: rgba(242, 242, 242,.9)
+
+                        //.total-anual,
+                        //.total-mensal
+                        //    display: none
+
+                        tr,
+                        .textTR
+                            color: #0099cc
+                            text-align: center
+
+                            .tituloTH
+                                text-align: center
+                                vertical-align: middle
+                                color: #0099cc
+
+                            //td.dis
+                            //    background-color: rgba(242, 242, 242,.9)
+
+                            td,
+                            td.in
+                                height: 40px
+                                padding: 0
+                                text-align: center
+                                vertical-align: middle
+                                margin: 0
+                                background-color: rgba(255,255,255,.9)
+                                
+
+                                input.xInput
+                                    border: none
+                                    border-radius: 0
+                                    text-align: center
+                                    margin: 0
+                                    padding: 0
+                                    height: 40px
+                                    background-color: rgba(255,255,255,.7)
+
+                                input[type=number]::-webkit-inner-spin-button
+                                    -webkit-appearance: none
+
+                                /*.form-control
+                                    width: 100px*/
+
+                                input.xInput::-webkit-input-placeholder /* Chrome/Opera/Safari */
+                                    color: #DCDCDC
+                                    
+                                input.xInput::-moz-placeholder /* Firefox 19+ */
+                                    color: #DCDCDC
+                                
+                                input.xInput:-ms-input-placeholder /* IE 10+ */
+                                    color: #DCDCDC
+                                
+                                input.xInput:-moz-placeholder /* Firefox 18- */
+                                    color: #DCDCDC
+
+                                .but-dados
+                                    width: 100%
+                                    height: 34px
+                                    border: none
+                                    background-color: rgba(255,255,255,.9)
+                                    
+
+                                    &:hover
+                                        text-decoration: underline
+                                    
+                                    &:focus
+                                        outline: none
+
+
+                            td.input-table
+                                height: 30px
+                                padding: 0
+                                text-align: center
+                                vertical-align: middle
+                                margin: 0
+                                background-color: rgba(255,255,255,.9)
+
+                                input.xInput
+                                    border: none
+                                    border-radius: 0
+                                    text-align: center
+                                    margin: 0
+                                    padding: 0
+                                    background-color: rgba(255,255,255,.7)
+                                    //height: 40px
+
+                                input[type=number]::-webkit-inner-spin-button
+                                    -webkit-appearance: none
+
+                                /*.form-control
+                                    width: 100px*/
+
+                                input.xInput::-webkit-input-placeholder /* Chrome/Opera/Safari */
+                                    color: #DCDCDC
+                                    
+                                input.xInput::-moz-placeholder /* Firefox 19+ */
+                                    color: #DCDCDC
+                                
+                                input.xInput:-ms-input-placeholder /* IE 10+ */
+                                    color: #DCDCDC
+                                
+                                input.xInput:-moz-placeholder /* Firefox 18- */
+                                    color: #DCDCDC 
+
+                            td.select-cell
+                                padding: 0
+                                vertical-align: middle
+                                //width: 50%
+
+                                select
+                                    width: 100%
+                                    //height: 80px
+                                    border: none
+                                    background-color: rgba(0,0,0,0)
+                                    text-align-last: center
+
+                                    &:focus
+                                        outline: none
+
+                                    .op
+                                        text-align-last: center
+
+
+        #resumo
+            table
+                background-color: #f2f2f2
+                width: 50%
+
+                @media screen and (max-width: $medium)
+                    width: 100%
+
+                @media screen and (max-width: $small)
+                    width: 100%
+
+                tbody
+                    tr,
+                    .textTR
+                        color: #0099cc
+                        text-align: left
+
+                        .tituloTH
+                            text-align: center
+                            vertical-align: middle
+                            color: #0099cc
+
+                        td,
+                        td.in
+                            padding: 5px 10px
+                            text-align: left
+                            vertical-align: middle
+                            margin: 0
+                            background-color: #fff
+
+
+                        td.center
+                            text-align: center
+                            color: #696969
+                            width: 20%
+
+                            .xInput
+                                border: none
+                                border-radius: 0
+                                text-align: center
+                                margin: 0
+
+                            /*.form-control
+                                width: 100px*/
+
+                            .xInput::-webkit-input-placeholder /* Chrome/Opera/Safari */
+                                color: #DCDCDC
+
+                            .xInput::-moz-placeholder /* Firefox 19+ */
+                                color: #DCDCDC
+
+                            .xInput:-ms-input-placeholder /* IE 10+ */
+                                color: #DCDCDC
+
+                            .xInput:-moz-placeholder /* Firefox 18- */
+                                color: #DCDCDC
+
+        .step
+            display: none
+
+ 
+.but-2,
+.end-step,
+.perfil-consumo
+    padding: 20px 0
+    //margin: 30px 0
+    display: flex
+    justify-content: space-between
+
+    .but
+
+        font-size: 1.1em
+        padding: 8px 25px
+        background-color: #0099cc
+        border: none
+        border-radius: 100px
+        color: #fff
+        //font-weight: 300
+        font-family: 'Amelia-Basic-Light', sans-serif
+        transition: all .2s
+
+        &:focus
+            outline: none
+
+
+        &:hover
+            //background-color: rgba(#0099cc, 0.5)
+            background-color: #67C8FF
+
+    button#analise-but,
+    button.seguinte
+        float: right
+
+    .anterior
+        display: none
+
+.step-but
+    display: none                               
+
+
+footer
+    height: 200px
+    background-color: #fff
+    border-top: 1px solid rgba(#0099cc, .7)
+    margin-top: 100px
+
+    display: flex
+    justify-content: center
+    align-items: center
+
+    .partners
+        padding: 20px 0
+        text-align: center
+
+        .partners-img
+            width: 20%
+            margin: 10px
+
+        .rep-port
+            width: 9%
+
+        .port-energia
+            width: 9%
+
+        .dgeg
+            width: 12%
+
+        .lnec
+            width: 10%
+
+        .ee
+            width: 4%
+
+        .adene
+            width: 9%
+
+        .posteur
+            width: 9%
+
+        .port-2020
+            width: 9%
+
+        .ue
+            width: 11%
+
+        .conf-text
+            display: inline-block
+
+        .partner-link
+            margin: 0 10px
+    
+    .policy
+        padding: 10px
+        text-align: center
+
+        .policy-link
+            margin-right: 20px
+            text-decoration: none
+            color: #0083c4
+            
+

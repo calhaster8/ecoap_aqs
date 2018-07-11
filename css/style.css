@@ -1,0 +1,566 @@
+@font-face {
+  font-family: Amelia-Basic;
+  src: url("../fonts/Amelia/Amelia-Basic.otf"); }
+
+@font-face {
+  font-family: Amelia-Basic-Light;
+  font-weight: lighter;
+  src: url("../fonts/Amelia/Amelia-Basic-Light.otf"); }
+
+@font-face {
+  font-family: Amelia-Basic-Bold;
+  font-weight: bold;
+  src: url("../fonts/Amelia/Amelia-Basic-Bold.otf"); }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+html {
+  height: 100%; }
+
+body {
+  font-family: 'Amelia-Basic', sans-serif;
+  background-image: url(../img/fundo/peixes.png), url("../img/fundo.png");
+  background-position: 80% 200px, center;
+  background-size: 550px 550px, cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh; }
+  @media screen and (max-width: 1024px) {
+    body {
+      background-image: url(../img/fundo/peixes.png), url("../img/fundo.png");
+      background-position: 80% 200px, center;
+      background-size: 550px 550px, cover;
+      background-repeat: no-repeat; } }
+  @media screen and (max-width: 768px) {
+    body {
+      background-image: url("../img/fundo.png");
+      background-position: center;
+      background-size: cover;
+      background-repeat: repeat; } }
+  @media screen and (max-width: 515px) {
+    body {
+      background-image: url("../img/fundo.png");
+      background-position: center;
+      background-size: cover;
+      background-repeat: repeat; } }
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 50px 100px; }
+  @media screen and (max-width: 768px) {
+    .header {
+      padding: 50px 100px; } }
+  @media screen and (max-width: 515px) {
+    .header {
+      padding: 50px; } }
+  .header .header-title {
+    color: #0099cc;
+    font-size: 1.6em;
+    font-family: 'Amelia-Basic-Light', sans-serif;
+    text-transform: uppercase;
+    padding: 0 20px; }
+
+.main {
+  margin: 0 50px 50px 50px;
+  padding: 0 25px; }
+  @media screen and (max-width: 768px) {
+    .main {
+      margin: 0;
+      padding: 0 100px; } }
+  @media screen and (max-width: 515px) {
+    .main {
+      margin: 0;
+      padding: 0 25px; } }
+  .main .main-content .dados-titulo {
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    color: #0099cc;
+    font-family: 'Amelia-Basic-Bold', sans-serif; }
+  .main .main-content .dados-child {
+    display: flex;
+    flex-direction: column; }
+    .main .main-content .dados-child .dado {
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      font-size: 1.2em;
+      width: 60%; }
+      @media screen and (max-width: 768px) {
+        .main .main-content .dados-child .dado {
+          width: 100%; } }
+      @media screen and (max-width: 515px) {
+        .main .main-content .dados-child .dado {
+          width: 100%; } }
+      .main .main-content .dados-child .dado label {
+        margin-bottom: 5px;
+        color: #0099cc;
+        font-weight: 400; }
+      .main .main-content .dados-child .dado input {
+        width: 52%;
+        padding: 5px 20px;
+        font-size: .8em;
+        border: none;
+        border: 1px solid #0099cc;
+        border-radius: 100px;
+        color: #0099cc;
+        font-weight: 300;
+        font-family: 'Amelia-Basic-Light', sans-serif; }
+        @media screen and (max-width: 768px) {
+          .main .main-content .dados-child .dado input {
+            width: 100%; } }
+        @media screen and (max-width: 515px) {
+          .main .main-content .dados-child .dado input {
+            width: 100%; } }
+      .main .main-content .dados-child .dado input[type=number].custo-ilum {
+        background-color: rgba(0, 0, 0, 0.04); }
+      .main .main-content .dados-child .dado input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none; }
+      .main .main-content .dados-child .dado input:focus {
+        outline: none; }
+      .main .main-content .dados-child .dado .sel {
+        width: 52%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: url("../img/seta.png") no-repeat 95% center;
+        appearance: none;
+        padding: 5px 20px;
+        font-size: .8em;
+        color: #808080;
+        font-family: 'Amelia-Basic-Light', sans-serif;
+        overflow: hidden;
+        border: none;
+        border: 1px solid #0099cc;
+        border-radius: 100px;
+        background-color: #ffffff; }
+        @media screen and (max-width: 768px) {
+          .main .main-content .dados-child .dado .sel {
+            width: 100%; } }
+        @media screen and (max-width: 515px) {
+          .main .main-content .dados-child .dado .sel {
+            width: 100%; } }
+      .main .main-content .dados-child .dado .sel:focus {
+        outline: none; }
+      .main .main-content .dados-child .dado .sel::-ms-expand {
+        display: none; }
+      .main .main-content .dados-child .dado .sel-disable {
+        background-color: #0099cc;
+        background-image: none;
+        color: #fff; }
+    .main .main-content .dados-child .tabela-diaria table {
+      background-color: rgba(242, 242, 242, 0); }
+      .main .main-content .dados-child .tabela-diaria table tbody .titulo_row {
+        background-color: rgba(242, 242, 242, 0.9); }
+      .main .main-content .dados-child .tabela-diaria table tbody tr,
+      .main .main-content .dados-child .tabela-diaria table tbody .textTR {
+        color: #0099cc;
+        text-align: center; }
+        .main .main-content .dados-child .tabela-diaria table tbody tr .tituloTH,
+        .main .main-content .dados-child .tabela-diaria table tbody .textTR .tituloTH {
+          text-align: center;
+          vertical-align: middle;
+          color: #0099cc; }
+        .main .main-content .dados-child .tabela-diaria table tbody tr td,
+        .main .main-content .dados-child .tabela-diaria table tbody tr td.in,
+        .main .main-content .dados-child .tabela-diaria table tbody .textTR td,
+        .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in {
+          height: 40px;
+          padding: 0;
+          text-align: center;
+          vertical-align: middle;
+          margin: 0;
+          background-color: rgba(255, 255, 255, 0.9);
+          /*.form-control
+                                    width: 100px*/ }
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input.xInput,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input.xInput,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input.xInput,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input.xInput {
+            border: none;
+            border-radius: 0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.7); }
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none; }
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input.xInput::-webkit-input-placeholder {
+            color: #DCDCDC; }
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input.xInput::-moz-placeholder {
+            color: #DCDCDC; }
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input.xInput:-ms-input-placeholder {
+            color: #DCDCDC; }
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input.xInput:-moz-placeholder {
+            color: #DCDCDC; }
+        .main .main-content .dados-child .tabela-diaria table tbody tr td.select-cell,
+        .main .main-content .dados-child .tabela-diaria table tbody .textTR td.select-cell {
+          padding: 0;
+          vertical-align: middle; }
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.select-cell select,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.select-cell select {
+            width: 100%;
+            border: none;
+            background-color: transparent;
+            text-align-last: center; }
+            .main .main-content .dados-child .tabela-diaria table tbody tr td.select-cell select:focus,
+            .main .main-content .dados-child .tabela-diaria table tbody .textTR td.select-cell select:focus {
+              outline: none; }
+            .main .main-content .dados-child .tabela-diaria table tbody tr td.select-cell select .op,
+            .main .main-content .dados-child .tabela-diaria table tbody .textTR td.select-cell select .op {
+              text-align-last: center; }
+    .main .main-content .dados-child .tabelas table,
+    .main .main-content .dados-child .tabela-diaria table {
+      background-color: rgba(242, 242, 242, 0); }
+      .main .main-content .dados-child .tabelas table tbody .titulo_row,
+      .main .main-content .dados-child .tabela-diaria table tbody .titulo_row {
+        background-color: rgba(242, 242, 242, 0.9); }
+      .main .main-content .dados-child .tabelas table tbody tr,
+      .main .main-content .dados-child .tabelas table tbody .textTR,
+      .main .main-content .dados-child .tabela-diaria table tbody tr,
+      .main .main-content .dados-child .tabela-diaria table tbody .textTR {
+        color: #0099cc;
+        text-align: center; }
+        .main .main-content .dados-child .tabelas table tbody tr .tituloTH,
+        .main .main-content .dados-child .tabelas table tbody .textTR .tituloTH,
+        .main .main-content .dados-child .tabela-diaria table tbody tr .tituloTH,
+        .main .main-content .dados-child .tabela-diaria table tbody .textTR .tituloTH {
+          text-align: center;
+          vertical-align: middle;
+          color: #0099cc; }
+        .main .main-content .dados-child .tabelas table tbody tr td,
+        .main .main-content .dados-child .tabelas table tbody tr td.in,
+        .main .main-content .dados-child .tabelas table tbody .textTR td,
+        .main .main-content .dados-child .tabelas table tbody .textTR td.in,
+        .main .main-content .dados-child .tabela-diaria table tbody tr td,
+        .main .main-content .dados-child .tabela-diaria table tbody tr td.in,
+        .main .main-content .dados-child .tabela-diaria table tbody .textTR td,
+        .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in {
+          height: 40px;
+          padding: 0;
+          text-align: center;
+          vertical-align: middle;
+          margin: 0;
+          background-color: rgba(255, 255, 255, 0.9);
+          /*.form-control
+                                    width: 100px*/ }
+          .main .main-content .dados-child .tabelas table tbody tr td input.xInput,
+          .main .main-content .dados-child .tabelas table tbody tr td.in input.xInput,
+          .main .main-content .dados-child .tabelas table tbody .textTR td input.xInput,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.in input.xInput,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input.xInput,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input.xInput,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input.xInput,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input.xInput {
+            border: none;
+            border-radius: 0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.7); }
+          .main .main-content .dados-child .tabelas table tbody tr td input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabelas table tbody tr td.in input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabelas table tbody .textTR td input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.in input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none; }
+          .main .main-content .dados-child .tabelas table tbody tr td input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabelas table tbody tr td.in input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.in input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input.xInput::-webkit-input-placeholder {
+            color: #DCDCDC; }
+          .main .main-content .dados-child .tabelas table tbody tr td input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabelas table tbody tr td.in input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.in input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input.xInput::-moz-placeholder {
+            color: #DCDCDC; }
+          .main .main-content .dados-child .tabelas table tbody tr td input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabelas table tbody tr td.in input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.in input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input.xInput:-ms-input-placeholder {
+            color: #DCDCDC; }
+          .main .main-content .dados-child .tabelas table tbody tr td input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabelas table tbody tr td.in input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.in input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in input.xInput:-moz-placeholder {
+            color: #DCDCDC; }
+          .main .main-content .dados-child .tabelas table tbody tr td .but-dados,
+          .main .main-content .dados-child .tabelas table tbody tr td.in .but-dados,
+          .main .main-content .dados-child .tabelas table tbody .textTR td .but-dados,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.in .but-dados,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td .but-dados,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.in .but-dados,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td .but-dados,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in .but-dados {
+            width: 100%;
+            height: 34px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.9); }
+            .main .main-content .dados-child .tabelas table tbody tr td .but-dados:hover,
+            .main .main-content .dados-child .tabelas table tbody tr td.in .but-dados:hover,
+            .main .main-content .dados-child .tabelas table tbody .textTR td .but-dados:hover,
+            .main .main-content .dados-child .tabelas table tbody .textTR td.in .but-dados:hover,
+            .main .main-content .dados-child .tabela-diaria table tbody tr td .but-dados:hover,
+            .main .main-content .dados-child .tabela-diaria table tbody tr td.in .but-dados:hover,
+            .main .main-content .dados-child .tabela-diaria table tbody .textTR td .but-dados:hover,
+            .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in .but-dados:hover {
+              text-decoration: underline; }
+            .main .main-content .dados-child .tabelas table tbody tr td .but-dados:focus,
+            .main .main-content .dados-child .tabelas table tbody tr td.in .but-dados:focus,
+            .main .main-content .dados-child .tabelas table tbody .textTR td .but-dados:focus,
+            .main .main-content .dados-child .tabelas table tbody .textTR td.in .but-dados:focus,
+            .main .main-content .dados-child .tabela-diaria table tbody tr td .but-dados:focus,
+            .main .main-content .dados-child .tabela-diaria table tbody tr td.in .but-dados:focus,
+            .main .main-content .dados-child .tabela-diaria table tbody .textTR td .but-dados:focus,
+            .main .main-content .dados-child .tabela-diaria table tbody .textTR td.in .but-dados:focus {
+              outline: none; }
+        .main .main-content .dados-child .tabelas table tbody tr td.input-table,
+        .main .main-content .dados-child .tabelas table tbody .textTR td.input-table,
+        .main .main-content .dados-child .tabela-diaria table tbody tr td.input-table,
+        .main .main-content .dados-child .tabela-diaria table tbody .textTR td.input-table {
+          height: 30px;
+          padding: 0;
+          text-align: center;
+          vertical-align: middle;
+          margin: 0;
+          background-color: rgba(255, 255, 255, 0.9);
+          /*.form-control
+                                    width: 100px*/ }
+          .main .main-content .dados-child .tabelas table tbody tr td.input-table input.xInput,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.input-table input.xInput,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.input-table input.xInput,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.input-table input.xInput {
+            border: none;
+            border-radius: 0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(255, 255, 255, 0.7); }
+          .main .main-content .dados-child .tabelas table tbody tr td.input-table input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.input-table input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.input-table input[type=number]::-webkit-inner-spin-button,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.input-table input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none; }
+          .main .main-content .dados-child .tabelas table tbody tr td.input-table input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.input-table input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.input-table input.xInput::-webkit-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.input-table input.xInput::-webkit-input-placeholder {
+            color: #DCDCDC; }
+          .main .main-content .dados-child .tabelas table tbody tr td.input-table input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.input-table input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.input-table input.xInput::-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.input-table input.xInput::-moz-placeholder {
+            color: #DCDCDC; }
+          .main .main-content .dados-child .tabelas table tbody tr td.input-table input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.input-table input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.input-table input.xInput:-ms-input-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.input-table input.xInput:-ms-input-placeholder {
+            color: #DCDCDC; }
+          .main .main-content .dados-child .tabelas table tbody tr td.input-table input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.input-table input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.input-table input.xInput:-moz-placeholder,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.input-table input.xInput:-moz-placeholder {
+            color: #DCDCDC; }
+        .main .main-content .dados-child .tabelas table tbody tr td.select-cell,
+        .main .main-content .dados-child .tabelas table tbody .textTR td.select-cell,
+        .main .main-content .dados-child .tabela-diaria table tbody tr td.select-cell,
+        .main .main-content .dados-child .tabela-diaria table tbody .textTR td.select-cell {
+          padding: 0;
+          vertical-align: middle; }
+          .main .main-content .dados-child .tabelas table tbody tr td.select-cell select,
+          .main .main-content .dados-child .tabelas table tbody .textTR td.select-cell select,
+          .main .main-content .dados-child .tabela-diaria table tbody tr td.select-cell select,
+          .main .main-content .dados-child .tabela-diaria table tbody .textTR td.select-cell select {
+            width: 100%;
+            border: none;
+            background-color: transparent;
+            text-align-last: center; }
+            .main .main-content .dados-child .tabelas table tbody tr td.select-cell select:focus,
+            .main .main-content .dados-child .tabelas table tbody .textTR td.select-cell select:focus,
+            .main .main-content .dados-child .tabela-diaria table tbody tr td.select-cell select:focus,
+            .main .main-content .dados-child .tabela-diaria table tbody .textTR td.select-cell select:focus {
+              outline: none; }
+            .main .main-content .dados-child .tabelas table tbody tr td.select-cell select .op,
+            .main .main-content .dados-child .tabelas table tbody .textTR td.select-cell select .op,
+            .main .main-content .dados-child .tabela-diaria table tbody tr td.select-cell select .op,
+            .main .main-content .dados-child .tabela-diaria table tbody .textTR td.select-cell select .op {
+              text-align-last: center; }
+  .main .main-content #resumo table {
+    background-color: #f2f2f2;
+    width: 50%; }
+    @media screen and (max-width: 768px) {
+      .main .main-content #resumo table {
+        width: 100%; } }
+    @media screen and (max-width: 515px) {
+      .main .main-content #resumo table {
+        width: 100%; } }
+    .main .main-content #resumo table tbody tr,
+    .main .main-content #resumo table tbody .textTR {
+      color: #0099cc;
+      text-align: left; }
+      .main .main-content #resumo table tbody tr .tituloTH,
+      .main .main-content #resumo table tbody .textTR .tituloTH {
+        text-align: center;
+        vertical-align: middle;
+        color: #0099cc; }
+      .main .main-content #resumo table tbody tr td,
+      .main .main-content #resumo table tbody tr td.in,
+      .main .main-content #resumo table tbody .textTR td,
+      .main .main-content #resumo table tbody .textTR td.in {
+        padding: 5px 10px;
+        text-align: left;
+        vertical-align: middle;
+        margin: 0;
+        background-color: #fff; }
+      .main .main-content #resumo table tbody tr td.center,
+      .main .main-content #resumo table tbody .textTR td.center {
+        text-align: center;
+        color: #696969;
+        width: 20%;
+        /*.form-control
+                                width: 100px*/ }
+        .main .main-content #resumo table tbody tr td.center .xInput,
+        .main .main-content #resumo table tbody .textTR td.center .xInput {
+          border: none;
+          border-radius: 0;
+          text-align: center;
+          margin: 0; }
+        .main .main-content #resumo table tbody tr td.center .xInput::-webkit-input-placeholder,
+        .main .main-content #resumo table tbody .textTR td.center .xInput::-webkit-input-placeholder {
+          color: #DCDCDC; }
+        .main .main-content #resumo table tbody tr td.center .xInput::-moz-placeholder,
+        .main .main-content #resumo table tbody .textTR td.center .xInput::-moz-placeholder {
+          color: #DCDCDC; }
+        .main .main-content #resumo table tbody tr td.center .xInput:-ms-input-placeholder,
+        .main .main-content #resumo table tbody .textTR td.center .xInput:-ms-input-placeholder {
+          color: #DCDCDC; }
+        .main .main-content #resumo table tbody tr td.center .xInput:-moz-placeholder,
+        .main .main-content #resumo table tbody .textTR td.center .xInput:-moz-placeholder {
+          color: #DCDCDC; }
+  .main .main-content .step {
+    display: none; }
+
+.but-2,
+.end-step,
+.perfil-consumo {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between; }
+  .but-2 .but,
+  .end-step .but,
+  .perfil-consumo .but {
+    font-size: 1.1em;
+    padding: 8px 25px;
+    background-color: #0099cc;
+    border: none;
+    border-radius: 100px;
+    color: #fff;
+    font-family: 'Amelia-Basic-Light', sans-serif;
+    transition: all .2s; }
+    .but-2 .but:focus,
+    .end-step .but:focus,
+    .perfil-consumo .but:focus {
+      outline: none; }
+    .but-2 .but:hover,
+    .end-step .but:hover,
+    .perfil-consumo .but:hover {
+      background-color: #67C8FF; }
+  .but-2 button#analise-but,
+  .but-2 button.seguinte,
+  .end-step button#analise-but,
+  .end-step button.seguinte,
+  .perfil-consumo button#analise-but,
+  .perfil-consumo button.seguinte {
+    float: right; }
+  .but-2 .anterior,
+  .end-step .anterior,
+  .perfil-consumo .anterior {
+    display: none; }
+
+.step-but {
+  display: none; }
+
+footer {
+  height: 200px;
+  background-color: #fff;
+  border-top: 1px solid rgba(0, 153, 204, 0.7);
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  footer .partners {
+    padding: 20px 0;
+    text-align: center; }
+    footer .partners .partners-img {
+      width: 20%;
+      margin: 10px; }
+    footer .partners .rep-port {
+      width: 9%; }
+    footer .partners .port-energia {
+      width: 9%; }
+    footer .partners .dgeg {
+      width: 12%; }
+    footer .partners .lnec {
+      width: 10%; }
+    footer .partners .ee {
+      width: 4%; }
+    footer .partners .adene {
+      width: 9%; }
+    footer .partners .posteur {
+      width: 9%; }
+    footer .partners .port-2020 {
+      width: 9%; }
+    footer .partners .ue {
+      width: 11%; }
+    footer .partners .conf-text {
+      display: inline-block; }
+    footer .partners .partner-link {
+      margin: 0 10px; }
+  footer .policy {
+    padding: 10px;
+    text-align: center; }
+    footer .policy .policy-link {
+      margin-right: 20px;
+      text-decoration: none;
+      color: #0083c4; }
