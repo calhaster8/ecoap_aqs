@@ -21,43 +21,36 @@ html {
 
 body {
   font-family: 'Amelia-Basic', sans-serif;
-  background-image: url(../img/fundo/peixes.png), url("../img/fundo.png");
-  background-position: 80% 200px, center;
-  background-size: 550px 550px, cover;
+  background-image: url("../img/fundo.png");
   background-repeat: no-repeat;
   width: 100%;
   height: 100vh;
   min-height: 100vh; }
-  @media screen and (max-width: 1024px) {
-    body {
-      background-image: url(../img/fundo/peixes.png), url("../img/fundo.png");
-      background-position: 80% 200px, center;
-      background-size: 550px 550px, cover;
-      background-repeat: no-repeat; } }
-  @media screen and (max-width: 768px) {
-    body {
-      background-image: url("../img/fundo.png");
-      background-position: center;
-      background-size: cover;
-      background-repeat: repeat; } }
-  @media screen and (max-width: 515px) {
-    body {
-      background-image: url("../img/fundo.png");
-      background-position: center;
-      background-size: cover;
-      background-repeat: repeat; } }
+  body::after {
+    content: '';
+    width: 100%;
+    height: 100vh;
+    background-image: url(../img/fundo/peixes.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .2;
+    z-index: -1; }
 
 .header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
-  padding: 50px 100px; }
+  padding: 50px; }
   @media screen and (max-width: 768px) {
     .header {
-      padding: 50px 100px; } }
+      padding: 50px 70px; } }
   @media screen and (max-width: 515px) {
     .header {
-      padding: 50px; } }
+      padding: 50px 0; } }
   .header .header-title {
     color: #0099cc;
     font-size: 1.6em;
