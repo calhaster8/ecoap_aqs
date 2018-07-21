@@ -12,7 +12,7 @@
         <!--CUSTOM CSS-->
         <link rel="stylesheet" href="css/style.css"/>
         <!--BOOTSTRAP + JQUERY CDN-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!--CUSTOM JS-->
         <script src="js/main.js"></script>
@@ -52,13 +52,14 @@
                                     </select>
                                 </div>
                                 <div class="dado rendimento">
-                                    <label for="rend">Rendimento (%) / COP</label>
+                                    <label  id="labelRendimento" for="rend"></label>
                                     <select id="rend" name="rend" class="sel">
                                         <option value="">Seleccionar opção</option>
                                         <option value="0">Não conhece</option>
                                         <option value="2">Inserir rendimento</option>                    
                                     </select>
-                                    <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento</label><input id="iRendMan" name="iRendMan" placeholder="" style="display:none;">
+                                    <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento</label>
+                                    <input id="iRendMan" name="iRendMan" placeholder="" style="display:none;">
                                 </div>
                                 <div class="dado age">
                                     <label for="age">Idade (aprox.)</label>
@@ -67,12 +68,13 @@
                                     </select>
                                 </div>
                                 <div class="dado custo-unit">
-                                    <label for="custo-unit">Custo energético unitário(€)</label>
-                                    <input id="custo-unit-input" type="number" placeholder="0€" class="form-control xInput"/>
+                                    <label id="custo-unit-label" for="custo-unit">Custo energético unitário(€)</label>
+                                    <input id="custo-unit-input" type="number" placeholder="0€" min="0" step="0.01" class="form-control xInput"/>
                                 </div>
                                 <div class="dado temp-requerida">
-                                    <label for="temp-req">Temperatura requerida (ºC)</label>
-                                    <input id="temp-req" type="text" placeholder="0°C" class="form-control xInput"/>
+                                    <label for="temp-req">Temperatura (ºC) *</label>
+                                    <input id="temp-req" type="number" placeholder="0°C" class="form-control xInput"/>
+                                    <label style="font-size: 14px;padding-top:5px;">* Temperatura de acumulação/distribuição (sistema de produção) e não a temperatura à saída do ponto de consumo</label> 
                                 </div>
                                 <div class="dado conhecimento-consumo">
                                     <label for="conhece-consumo">Conhece os consumos anuais de energia para AQS?</label>
@@ -81,6 +83,7 @@
                                     </select>
                                 </div>
                             </div>
+                            
                         </div>
                         <div id="perfil-aqs" data-id="2" class="step">
                             <div class="dados-titulo"><span>Perfil AQS</span></div>
@@ -140,40 +143,40 @@
                                             </tr>
                                             <tr class="textTR">
                                                 <td class="input-table">
-                                                    <input id="perfil-mensal-input1" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input1" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-mensal-input2" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input2" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-mensal-input3" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input3" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-mensal-input4" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input4" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-mensal-input5" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input5" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-mensal-input6" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input6" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-mensal-input7" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input7" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-mensal-input8" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input8" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-mensal-input9" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input9" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-mensal-input10" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input10" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-mensal-input11" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input11" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-mensal-input12" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-mensal-input12" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -199,25 +202,25 @@
                                             </tr>
                                             <tr class="textTR">
                                                 <td class="in">
-                                                    <input id="perfil-semanal-input1" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-semanal-input1" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-semanal-input2" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-semanal-input2" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-semanal-input3" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-semanal-input3" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-semanal-input4" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-semanal-input4" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-semanal-input5" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-semanal-input5" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-semanal-input6" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-semanal-input6" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                                 <td class="in">
-                                                    <input id="perfil-semanal-input7" type="text" placeholder="0%" class="form-control xInput"/>
+                                                    <input id="perfil-semanal-input7" type="number" placeholder="0%" class="form-control xInput"/>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -260,7 +263,7 @@
                                     <input id="rendimento-medidas" type="number" placeholder="0%" class="form-control xInput"/>
                                 </div>
                                 <div class="dado custo-unit-medidas">
-                                    <label for="custo-unit-medidas">Custo energético unitário</label>
+                                    <label id="custo-unit-medidas-label" for="custo-unit-medidas">Custo energético unitário</label>
                                     <input id="custo-unit-medidas" type="number" placeholder="0€" class="form-control xInput"/>
                                 </div>
                                 <div class="dado acoplar-solar">
@@ -297,6 +300,7 @@
                         <div id="resumo" data-id="5" class="step">
                             <div class="dados-titulo"><span>Resumo</span></div>
                             <div class="dados-child">
+                                <p id="errorAQS" style="color: red;"></p>
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr class="textTR">
@@ -366,7 +370,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="dado corrige-coletores" style="display:none;">
+                                <div class="dado corrige-coletores">
                                     <label for="corrige-coletores">Corrigir n° de coletores</label>
                                     <input  disabled="disabled" id="corrige-coletores" type="number" placeholder="0" class="form-control xInput"/>
                                 </div>
@@ -392,19 +396,5 @@
                 </div>
             </div>
         </main>
-        <!--<footer>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="partners"><a href="http://www.sg.min-economia.pt/" class="partner-link"><img src="img/footer/rep-port.png" alt="Républica Portuguesa" class="partners-img rep-port"/></a><a href="http://www.portugal.gov.pt/pt/ministerios/meco.aspx" class="partner-link"><img src="img/footer/portugal-energia-direct.png" alt="Portugal Energia" class="partners-img port-energia"/></a><a href="http://www.dgeg.pt/" class="partner-link"><img src="img/footer/dgeg.png" alt="Direcção Geral de Energia e Geologia" class="partners-img dgeg"/></a><a href="http://ecoap.pnaee.pt/" class="partner-link"><img src="img/footer/Ee.png" alt="EE" class="partners-img ee"/></a><a href="https://www.adene.pt/" class="partner-link prom"><img src="img/footer/base-adene.png" alt="Adene" class="partners-img adene"/></a>
-                            a(href="#")<span class="conf">
-                                .conf-text Confinaciado por:<img src="img/footer/posteur.png" alt="Posteur" class="partners-img posteur"/></span>
-                            a(href="#")<img src="img/footer/2020.png" alt="2020" class="partners-img port-2020"/><a href="https://europa.eu/european-union/index_pt" class="partner-link"><img src="img/footer/UE.png" alt="UE" class="partners-img ue"/></a>
-                        </div>
-                        <div class="policy"><span href="#" class="policy-link">© 2015 Eco.AP</span><a href="http://ecoap.pnaee.pt/ficha-tecnica/" class="policy-link">Ficha técnica</a><a href="https://www.adene.pt/privacidade/" class="policy-link">Política de Privacidade</a></div>
-                    </div>
-                </div>
-            </div>
-        </footer>-->
     </body>
 </html>

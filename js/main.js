@@ -10,6 +10,7 @@ $(document).ready(function() {
     buildOrientacaoSolar();
     buildPerfilMensal();
     buildPerfilSemanal();
+    getSistemasProdAQSValues();
     
     $('#temp-req').val(temperatura_utilizacao);
     $('#distrito').change(getDistrictValues);
@@ -88,28 +89,74 @@ function buildSistemaProdAQS() {
 
 function getSistemasProdAQSValues() {
     var id = $("#sis-prod").val();
+    
+    if (id !="" && id != undefined && id == 0) {
+        $("#labelRendimento").html("COP");
+        $("#rend").val("");
+        $("#labelIRendman").html("Insira o COP");
+        $("#rend").val("");
+        $("#labelIRendman").hide();
+        $("#iRendMan").hide();
+        $("#iRendMan").val("");
+        $("#iRendMan").removeAttr("disabled");
+        $('#rend').find("option[value='2']").html("Inserir COP");
+    } else if (id != "" && id != undefined && id > 0) {
+        $("#labelRendimento").html("Rendimento (%)");
+        $("#rend").val("");
+        $("#age").val("");
+        $("#labelIRendman").hide();
+        $("#iRendMan").hide();
+        $("#iRendMan").val("");
+        $("#iRendMan").removeAttr("disabled");
+        $('#rend').find("option[value='2']").html("Inserir rendimento");
+    } else {
+        $("#labelRendimento").html("Rendimento (%) / COP");
+        $("#rend").val("");
+        $("#age").val("");
+        $("#age").hide();
+        $("#labelIRendman").hide();
+        $("#iRendMan").hide();
+        $("#iRendMan").val("");
+        $("#iRendMan").removeAttr("disabled");
+        $('#rend').find("option[value='2']").html("Inserir rendimento");
+    }
 
     if (id!="" && id!= undefined && id >= 0) {
         $("#custo-unit-input").attr("value", tecnologia_atual[id].custo_unit);
+        var begin = $("#custo-unit-label")[0].textContent.indexOf("(");
+        var text = $("#custo-unit-label")[0].textContent.substring(0,begin) + " (€/" + tecnologia_atual[id].unidade + ")";
+        
+        $("#custo-unit-label")[0].textContent = text;
     } 
+    getCopRendValues();
 }
 
 function getCopRendValues() {
     
+    var idLocal = $('#sis-prod').val();
     var selectedRend = $('#rend').val();
-    if(selectedRend == 2){
+    if (selectedRend!="" && selectedRend!=undefined && selectedRend == 2 && idLocal==0 && idLocal!="" && idLocal!=undefined) {
+        $('#rend').find("option[value='2']").html("Inserir COP");
         $('#iRendMan').show();
-         $('#labelIRendman').show();
-        
-    }else{
+        $('#labelIRendman').hide();
+        $('.age').hide();
+        $('#age').val("");
+    } else if(selectedRend!="" && selectedRend!=undefined && selectedRend == 2 && idLocal>0 && idLocal!="" && idLocal!=undefined){
+        $('#rend').find("option[value='2']").html("Inserir rendimento");
+        $('#iRendMan').show();
+        $('#labelIRendman').hide();
+        $('.age').hide();
+        $('#age').val("");
+    }else if(selectedRend!="" && selectedRend!=undefined && selectedRend == 0) {
         $('#iRendMan').val("");
+        $('.age').show();
+        $('#age').show();
+        $('#age').val("");
+        $('#iRendMan').hide();
+        $('#labelIRendman').hide();        
+    }else{
         $('#iRendMan').hide();
         $('#labelIRendman').hide();
-    }
-    
-    if (selectedRend == 0 && selectedRend != "" && selectedRend != undefined) {
-        $('.age').show();
-    } else {
         $('.age').hide();
         $('#age').val("");
     }
@@ -229,10 +276,14 @@ function buildOrientacaoSolar(){
 function setNovaFonteData(){
     var newFont = $("#nova-fonte").val();
     if(newFont!="" && newFont!=undefined && newFont>=0){
-        $("#rendimento-medidas").val(new Number((tecnologia_futura[newFont].rendimento * 100).toFixed(0)));
+        
+        $("#rendimento-medidas").val(new Number((tecnologia_futura[newFont].rendimento * (newFont==0 ? 1 : 100 )).toFixed(2)));
         $("#custo-unit-medidas").val(tecnologia_futura[newFont].custo_unit);
+        
+        var begin = $("#custo-unit-medidas-label")[0].textContent.indexOf("(");
+        var text = $("#custo-unit-medidas-label")[0].textContent.substring(0,begin) + " (€/" + tecnologia_futura[newFont].unidade + ")";
+        $("#custo-unit-medidas-label")[0].textContent = text;
     }
-    
 }
 
 function buildPerfilMensal(){
@@ -325,6 +376,7 @@ function prevStep() {
             $('[data-id="' + prevId + '"]').show();
 
             $('.perfil-consumo').hide();
+            $('#analise-but').show();
             $('.end-step').show();
             $('.but-2').hide();
         } else if (prevId == 3) {
