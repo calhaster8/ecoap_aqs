@@ -471,6 +471,13 @@ body {
         .main .main-content #resumo table tbody tr td.center .xInput:-moz-placeholder,
         .main .main-content #resumo table tbody .textTR td.center .xInput:-moz-placeholder {
           color: #DCDCDC; }
+      .main .main-content #resumo table tbody tr td.sub,
+      .main .main-content #resumo table tbody .textTR td.sub {
+        background-color: #eeeeff;
+        padding-left: 30px; }
+      .main .main-content #resumo table tbody tr td.sub-val,
+      .main .main-content #resumo table tbody .textTR td.sub-val {
+        background-color: #eeeeff; }
   .main .main-content .step {
     display: none; }
 
@@ -500,10 +507,13 @@ body {
     .perfil-consumo .but:hover {
       background-color: #67C8FF; }
   .but-2 button#analise-but,
+  .but-2 button#reanalise-but,
   .but-2 button.seguinte,
   .end-step button#analise-but,
+  .end-step button#reanalise-but,
   .end-step button.seguinte,
   .perfil-consumo button#analise-but,
+  .perfil-consumo button#reanalise-but,
   .perfil-consumo button.seguinte {
     float: right; }
   .but-2 .anterior,
@@ -513,52 +523,3 @@ body {
 
 .step-but {
   display: none; }
-
-footer {
-  height: 200px;
-  background-color: #fff;
-  border-top: 1px solid rgba(0, 153, 204, 0.7);
-  margin-top: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-  footer .partners {
-    padding: 20px 0;
-    text-align: center; }
-    footer .partners .partners-img {
-      width: 20%;
-      margin: 10px; }
-    footer .partners .rep-port {
-      width: 9%; }
-    footer .partners .port-energia {
-      width: 9%; }
-    footer .partners .dgeg {
-      width: 12%; }
-    footer .partners .lnec {
-      width: 10%; }
-    footer .partners .ee {
-      width: 4%; }
-    footer .partners .adene {
-      width: 9%; }
-    footer .partners .posteur {
-      width: 9%; }
-    footer .partners .port-2020 {
-      width: 9%; }
-    footer .partners .ue {
-      width: 11%; }
-    footer .partners .conf-text {
-      display: inline-block; }
-    footer .partners .partner-link {
-      margin: 0 10px; }
-  footer .policy {
-    padding: 10px;
-    text-align: center; }
-    footer .policy .policy-link {
-      margin-right: 20px;
-      text-decoration: none;
-      color: #0083c4; }
-
-.main .main-content #resumo table tbody .textTR.sub td {
-    background-color: #eeeeff;
-    padding-left: 35px;
-}
