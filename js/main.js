@@ -6,7 +6,7 @@ $(document).ready(function() {
     buildConheceConsumo();
     buildConsumoEnergia();
     buildTipoConsumo();
-    buildNovaFonte()
+    buildNovaFonte();
     buildOrientacaoSolar();
     buildPerfilMensal();
     buildPerfilSemanal();
@@ -66,7 +66,13 @@ $(document).ready(function() {
         }
     });
     
+    $("#reanalise-but").click(function(){
+        totalNecessidadesEnergiaFunction();
+    });
     
+    $('#reload-but').click(function(){
+        location.reload();
+    });
 });
 
 
@@ -122,7 +128,8 @@ function getSistemasProdAQSValues() {
     }
 
     if (id!="" && id!= undefined && id >= 0) {
-        $("#custo-unit-input").attr("value", tecnologia_atual[id].custo_unit);
+        $('#custo-unit-input').val((tecnologia_atual[id].custo_unit*tecnologia_atual[id].fator_conversao).toFixed(2));
+       // $("#custo-unit-input").attr("value", tecnologia_atual[id].custo_unit);
         var begin = $("#custo-unit-label")[0].textContent.indexOf("(");
         var text = $("#custo-unit-label")[0].textContent.substring(0,begin) + " (€/" + tecnologia_atual[id].unidade + ")";
         
@@ -276,9 +283,13 @@ function buildOrientacaoSolar(){
 function setNovaFonteData(){
     var newFont = $("#nova-fonte").val();
     if(newFont!="" && newFont!=undefined && newFont>=0){
-        
+        if(newFont==0){
+            $("#rendimento-medidas-label")[0].textContent = "COP";
+        }else{
+            $("#rendimento-medidas-label")[0].textContent = "Rendimento (%)";
+        }
         $("#rendimento-medidas").val(new Number((tecnologia_futura[newFont].rendimento * (newFont==0 ? 1 : 100 )).toFixed(2)));
-        $("#custo-unit-medidas").val(tecnologia_futura[newFont].custo_unit);
+        $("#custo-unit-medidas").val((tecnologia_futura[newFont].custo_unit*tecnologia_futura[newFont].fator_conversao).toFixed(2));
         
         var begin = $("#custo-unit-medidas-label")[0].textContent.indexOf("(");
         var text = $("#custo-unit-medidas-label")[0].textContent.substring(0,begin) + " (€/" + tecnologia_futura[newFont].unidade + ")";
@@ -306,8 +317,10 @@ function buildPerfilSemanal(){
 function nextStep() {
     var id = $('.step:visible').data('id');
     var nextId = $('.step:visible').data('id') + 1;
-    $('[data-id="' + id + '"]').hide();
-    $('[data-id="' + nextId + '"]').show();
+    if(id<5){
+        $('[data-id="' + id + '"]').hide();
+        $('[data-id="' + nextId + '"]').show();
+    }
 
     if ($('.anterior:hidden').length > 1) {
         $('.anterior').show();
@@ -319,11 +332,12 @@ function nextStep() {
         $('.but-2').hide();
     }
     
-    if (nextId == 5) {
+    if (nextId == 5 || nextId == 6) {
         $('.perfil-consumo').hide();
         $('.end-step').show();
         $('.but-2').hide();
-
+        $('#reanalise-but').show();
+        $('#reload-but').show();
         $('#analise-but').hide();
     }
 
@@ -347,7 +361,8 @@ function prevStep() {
             $('.perfil-consumo').hide();
             $('.end-step').show();
             $('.but-2').hide();
-
+            $('#reanalise-but').hide();
+            $('#reload-but').hide();
             $('#analise-but').show();
 
         } else if (prevId == 3) {
@@ -374,7 +389,8 @@ function prevStep() {
         if (prevId == 4) {
             $('[data-id="' + id + '"]').hide();
             $('[data-id="' + prevId + '"]').show();
-
+            $('#reanalise-but').hide();
+            $('#reload-but').hide();
             $('.perfil-consumo').hide();
             $('#analise-but').show();
             $('.end-step').show();

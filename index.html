@@ -259,11 +259,11 @@
                                     </select>
                                 </div>
                                 <div class="dado rendimento-medidas">
-                                    <label for="rendimento-medidas">Rendimento (%) / COP</label>
+                                    <label id="rendimento-medidas-label"for="rendimento-medidas">Rendimento (%) / COP</label>
                                     <input id="rendimento-medidas" type="number" placeholder="0%" class="form-control xInput"/>
                                 </div>
                                 <div class="dado custo-unit-medidas">
-                                    <label id="custo-unit-medidas-label" for="custo-unit-medidas">Custo energético unitário</label>
+                                    <label id="custo-unit-medidas-label" for="custo-unit-medidas">Custo energético unitário (€)</label>
                                     <input id="custo-unit-medidas" type="number" placeholder="0€" class="form-control xInput"/>
                                 </div>
                                 <div class="dado acoplar-solar">
@@ -284,7 +284,8 @@
                                                         <option value="">Seleccionar opção</option>
 
                                                     </select>
-                                                    <label id="labelOtherOrientation" for="otherOrientation" style="display:none;">Insira a orientação</label><input id="otherOrientation" name="otherOrientation" placeholder="" style="display:none;">
+<!--                                                    <label id="labelOtherOrientation" for="otherOrientation" style="display:none;">Insira a orientação</label>
+                                                    <input type="number" id="otherOrientation" name="otherOrientation" placeholder="Inserir número de graus" style="display:none;">-->
                                                 </td>
                                             </tr>
                                             <tr class="textTR">
@@ -304,7 +305,7 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr class="textTR">
-                                            <td rowspan="2" class="in">Consumos e custos (cenário inicial) kWh</td>
+                                            <td rowspan="2" class="in">Consumos e custos (cenário inicial)</td>
                                             <td class="center" id="consumoCI"></td>
                                         </tr>
                                         <tr class="textTR">
@@ -337,26 +338,26 @@
                                             <td class="center" id="areaColetores"></td>
                                         </tr>
                                         <tr class="textTR solar-termico-results">
-                                            <td class="in">Volume de acumulação</td>
+                                            <td class="in">Volume de acumulação </td>
                                             <td class="center" id="vAcumulacao"></td>
                                         </tr>
                                         <tr class="textTR">
                                             <td class="in">Investimento</td>
                                             <td class="center" id="investimentoTotal"></td>
                                         </tr>
-                                        <tr class="textTR solar-termico-results">
+                                        <tr class="textTR sub solar-termico-results">
                                             <td class="in">Coletores</td>
                                             <td class="center" id="custosColectores"></td>
                                         </tr>
-                                        <tr class="textTR">
+                                        <tr class="textTR sub">
                                             <td class="in">Equipamento (tecnologia)</td>
                                             <td class="center" id="custosEquipamento"></td>
                                         </tr>
-                                        <tr class="textTR">
+                                        <tr class="textTR sub">
                                             <td class="in">Depósitos e acessórios</td>
                                             <td class="center" id="custosDepositos"></td>
                                         </tr>
-                                        <tr class="textTR">
+                                        <tr class="textTR sub">
                                             <td class="in">Instalação</td>
                                             <td class="center" id="custosInstalacao"></td>
                                         </tr>
@@ -372,7 +373,7 @@
                                 </table>
                                 <div class="dado corrige-coletores">
                                     <label for="corrige-coletores">Corrigir n° de coletores</label>
-                                    <input  disabled="disabled" id="corrige-coletores" type="number" placeholder="0" class="form-control xInput"/>
+                                    <input id="corrige-coletores" type="number" placeholder="0" class="form-control xInput"/>
                                 </div>
                             </div>
                         </div>
@@ -388,6 +389,8 @@
                     <div class="end-step step-but">
                         <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>
                         <button id="analise-but" type="button" onclick="totalNecessidadesEnergiaFunction()" class="but end-but">Analisar</button>
+                        <button id="reload-but" type="button" class="but reload-but" style="display:none;">Voltar ao início</button>
+                        <button id="reanalise-but" type="button" class="but reload-but" style="display:none;">Reanalisar</button>
                     </div>
                     <div class="perfil-consumo">
                         <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>

@@ -153,8 +153,8 @@ function media(el){
 }
 
 function energiaSolarCaptada2() {
-    var colectores_num = ($('#coletores-reanalise').val() == "" || $('#coletores-reanalise').val() == undefined ) ? ( new Number(totalRacio/area_coletor_solar)==0 ? 1 : new Number(totalRacio/area_coletor_solar).toFixed(0) ) : $('#coletores-reanalise').val();
-    var coletores_reanalise = $('#coletores-reanalise').val() != "" && $('#coletores-reanalise').val() != undefined ? $('#coletores-reanalise').val() : colectores_num;
+    var colectores_num = ($('#corrige-coletores').val() == "" || $('#corrige-coletores').val() == undefined ) ? ( new Number(totalRacio/area_coletor_solar)==0 ? 1 : new Number(totalRacio/area_coletor_solar).toFixed(0) ) : $('#corrige-coletores').val();
+    var coletores_reanalise = $('#corrige-coletores').val() != "" && $('#corrige-coletores').val() != undefined ? $('#corrige-coletores').val() : colectores_num;
 
     totalEnergiaArray2 = [];
     totalEnergia2 = 0;
@@ -261,10 +261,11 @@ function necessidadesEnergeticaskWh(){
 
 
 function cenarioI() {
-    var inputRendimento = ($("#rend").val()==2) ? $('#iRendMan').val() : $("#rend").val();
+    
     var sist_aqs = $("#sis-prod").val();
+    var inputRendimento = ($("#rend").val()==2) ? (sist_aqs==0 ? $('#iRendMan').val()*100 : $('#iRendMan').val()/100) : $("#rend").val();
     var age = $("#age").val();
-    var custosUnit = $("#custo-unit-input").val();
+    var custosUnit = tecnologia_atual[$("#sis-prod").val()].custo_unit;
     var conheceConsumos = $("#conhece-consumo").val();
     var consumoEngergia = $("#consumo-energia").val();
     var rendCenarioI=0;
@@ -301,11 +302,11 @@ function cenarioI() {
 
 function cenarioF() {    
 
-    var inputRendimento = new Number(($("#rend").val()==2) ? $('#iRendMan').val()/100 : 0);
     var sist_aqs = $("#sis-prod").val();
+    var inputRendimento = ($("#rend").val()==2) ? (sist_aqs==0 ? $('#iRendMan').val()*100 : $('#iRendMan').val()/100) : $("#rend").val();
     var novaFonte = $("#nova-fonte").val();
     var age = $("#age").val();
-    var custosUnit = $("#custo-unit-medidas").val();
+    var custosUnit = tecnologia_futura[novaFonte].custo_unit;
     var rendCenarioF = 0;
     cenarioF_mes = [];
     total_cenarioF_mes = 0;
@@ -364,7 +365,7 @@ function resume(){
     var periodo_retorno = 0;
 
     var novaFonte = $("#nova-fonte").val();
-    var inputColetores = $("#coletores-reanalise").val();
+    var inputColetores = $("#corrige-coletores").val();
     
     if($("#acoplar-solar").val()==1 && $("#acoplar-solar").val()!="" && $("#acoplar-solar").val()!=undefined){
         $(".solar-termico-results").attr("style","display:none");
@@ -383,8 +384,8 @@ function resume(){
     }
     reducaoPercent = reducaoEuro/total_cenarioI_custos;
     //if($("#acoplar-solar").val()==0){
-    n_colectores_final = (inputColetores != undefined && inputColetores != "") ? inputColetores : totalRacio/area_coletor_solar;
-    area_colectores_final = (inputColetores == undefined || inputColetores == "") ? n_colectores_final*area_coletor_solar : inputColetores*area_coletor_solar;
+    n_colectores_final = (inputColetores != undefined && inputColetores != "") ? new Number(inputColetores) : new Number((totalRacio/area_coletor_solar).toFixed(0));
+    area_colectores_final = (inputColetores == undefined || inputColetores == "") ? new Number((n_colectores_final*area_coletor_solar).toFixed(0)) : new Number((inputColetores*area_coletor_solar).toFixed(0));
     
     //ARRED(Resultados!$C$3/Info!$C$72/Info!$C$73/PROCV(MÁXIMO(Resultados!$C$3:$C$14);Resultados!$A$3:$C$14;1)/(Dados!$C$10-Info!$C$52);-2)
     var position = max(necessidades_mes_kWh);
@@ -415,9 +416,9 @@ function resume(){
     $('#contributoSolarTermico').html(new Number(contributoST*100).toFixed(0) + '%');
     $('#reducaoValor').html(reducaoEuro.toFixed(0) + ' €');
     $('#reducaoPercent').html(new Number(reducaoPercent*100).toFixed(0) + '%');
-    $('#numeroColetores').html(n_colectores_final.toFixed(0) + ' Unidades');
+    $('#numeroColetores').html(n_colectores_final.toFixed(0));
     $('#areaColetores').html(area_colectores_final.toFixed(0) + ' m2');
-    $('#vAcumulacao').html(new Number(volume_acumulacao_resume).toFixed(0));
+    $('#vAcumulacao').html(new Number(volume_acumulacao_resume).toFixed(0) + ' litros');
     $('#investimentoTotal').html(investimento_resume.toFixed(0) + ' €');
     $('#custosColectores').html(colectores.toFixed(0) + ' €');
     $('#custosEquipamento').html(equipamento.toFixed(0) + ' €');

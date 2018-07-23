@@ -557,3 +557,8 @@ footer {
       margin-right: 20px;
       text-decoration: none;
       color: #0083c4; }
+
+.main .main-content #resumo table tbody .textTR.sub td {
+    background-color: #eeeeff;
+    padding-left: 35px;
+}

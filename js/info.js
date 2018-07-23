@@ -348,11 +348,11 @@ var desvios = [
     {
         nome: "Sul",
         valor: 0
-    },
-    {
-        nome: "Outra orientação (desvio de Sul)",
-        valor: "preencher"
     }
+//    {
+//        nome: "Outra orientação (desvio de Sul)",
+//        valor: "preencher"
+//    }
 ];
 
 
