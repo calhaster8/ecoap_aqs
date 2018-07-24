@@ -419,6 +419,10 @@ body {
             .main .main-content .dados-child .tabela-diaria table tbody tr td.select-cell select .op,
             .main .main-content .dados-child .tabela-diaria table tbody .textTR td.select-cell select .op {
               text-align-last: center; }
+    .main .main-content .dados-child .nota-acoplar {
+      font-size: 1em;
+      color: #0099cc;
+      margin-top: 0; }
   .main .main-content #resumo table {
     background-color: #f2f2f2;
     width: 50%; }
@@ -474,10 +478,12 @@ body {
       .main .main-content #resumo table tbody tr td.sub,
       .main .main-content #resumo table tbody .textTR td.sub {
         background-color: #eeeeff;
-        padding-left: 30px; }
+        padding-left: 30px;
+        display: none; }
       .main .main-content #resumo table tbody tr td.sub-val,
       .main .main-content #resumo table tbody .textTR td.sub-val {
-        background-color: #eeeeff; }
+        background-color: #eeeeff;
+        display: none; }
   .main .main-content .step {
     display: none; }
 

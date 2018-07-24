@@ -318,7 +318,7 @@ function cenarioF() {
     var rendTmp = (inputRendimento!=0 && inputRendimento!="" && inputRendimento>0 && (age=="" || age==undefined) ? inputRendimento : tecnologia_atual[sist_aqs].rendimento[age].valor);
     
     for (i = 0; i < meses_numero_horas.length; i++) {
-        rendCenarioF = isNaN((($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/tecnologia_futura[novaFonte].rendimento : totalEnergiaBackupMes[i]*fatores_conversao[1]/tecnologia_futura[novaFonte].rendimento)) ? 0 : ($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*tecnologia_atual[sist_aqs].rendimento[age].valor/tecnologia_futura[novaFonte].rendimento : totalEnergiaBackupMes[i]*fatores_conversao[1];
+        rendCenarioF = isNaN((($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/tecnologia_futura[novaFonte].rendimento : totalEnergiaBackupMes[i]*fatores_conversao[1]/tecnologia_futura[novaFonte].rendimento)) ? 0 : ($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/tecnologia_futura[novaFonte].rendimento : totalEnergiaBackupMes[i]*fatores_conversao[1];
         cenarioF_mes[i] = rendCenarioF;
         total_cenarioF_mes += cenarioF_mes[i];
         cenarioF_custos[i] = cenarioF_mes[i] * custosUnit;
@@ -369,8 +369,10 @@ function resume(){
     
     if($("#acoplar-solar").val()==1 && $("#acoplar-solar").val()!="" && $("#acoplar-solar").val()!=undefined){
         $(".solar-termico-results").attr("style","display:none");
+        $('.nota-acoplar').html('*O investimento estimado incorpora os custos com equipamentos/tecnologia, com depósitos e/ou acessórios e os respetivos custos de instalação.').show();
     }else{
         $(".solar-termico-results").removeAttr("style");
+        $('.nota-acoplar').html('*O investimento estimado incorpora os custos com o sistema solar térmico, com equipamentos/tecnologia, com depósitos e/ou acessórios e os respetivos custos de instalação.').show();
     }
     consumosCI = total_cenarioI_mes;
     custosCI = total_cenarioI_custos;

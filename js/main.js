@@ -339,12 +339,16 @@ function nextStep() {
         $('#reanalise-but').show();
         $('#reload-but').show();
         $('#analise-but').hide();
+    
+        if ($("#acoplar-solar").val() == 1 && $("#acoplar-solar").val() != "" && $("#acoplar-solar").val() != undefined) {
+            $('.corrige-coletores').hide();
+            $('#reanalise-but').hide();
+        } else {
+            $('.corrige-coletores').show();
+            $('#reanalise-but').show();
+        }
     }
 
-    // ESCONDER ANALISAR ULTIMO STEP
-    /*if (id == 4) {
-        $('.end-but').hide();
-    }*/
 }
 
 //STEPS
