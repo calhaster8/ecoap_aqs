@@ -391,7 +391,7 @@ function resume(){
     
     //ARRED(Resultados!$C$3/Info!$C$72/Info!$C$73/PROCV(MÁXIMO(Resultados!$C$3:$C$14);Resultados!$A$3:$C$14;1)/(Dados!$C$10-Info!$C$52);-2)
     var position = max(necessidades_mes_kWh);
-    volume_acumulacao_resume = necessidades_mes_kWh[0]/fatores_conversao[0]/fatores_conversao[1]/meses_numero_horas[position].n_dias/($("#temp-req").val()-temperatura_media);
+    volume_acumulacao_resume = arred(necessidades_mes_kWh[0]/fatores_conversao[0]/fatores_conversao[1]/meses_numero_horas[position].n_dias/($("#temp-req").val()-temperatura_media),-2);
     
     //=SE(C11<Info!$B$90;Info!$C$90*C11;SE(C11>Info!$B$92;Info!$C$92*C11;Info!$C$91*C11))
     colectores = (area_colectores_final<10) ? area_colectores_final*investimento[0].info[0].valor : ((area_colectores_final>100) ? area_colectores_final*investimento[0].info[2].valor : investimento[0].info[1].valor*area_colectores_final); 
@@ -453,4 +453,20 @@ function maxValor(calculos) {
         }
     }
     return max;
+}
+
+function arred(valorArrendondar, comoArredondar) {
+    var valor = 0;
+
+    if (comoArredondar == (-1)) {
+        valor = Math.round(valorArrendondar / 10) * 10;
+    } else if (comoArredondar == (-2)) {
+        valor = Math.round(valorArrendondar / 100) * 100;
+    } else if (comoArredondar == (-3)) {
+        valor = Math.round(valorArrendondar / 1000) * 1000;
+    } else if (comoArredondar == (-4)) {
+        valor = Math.round(valorArrendondar / 10000) * 10000;
+    }
+
+    return valor;
 }

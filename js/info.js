@@ -38,7 +38,7 @@ var tecnologia_atual = [
     },
     {
         nome: "Caldeira (biomassa)",
-        custo_unit: 0.05, //euros
+        custo_unit: 0.043, //euros
         rendimento: [
             {
                 nome: "< 10 anos",
@@ -54,7 +54,7 @@ var tecnologia_atual = [
             }
         ],
         unidade: "kg",
-        fator_conversao: 3.61
+        fator_conversao: 4
     },
     {
         nome: "Caldeira (gás natural)",
@@ -138,7 +138,7 @@ var tecnologia_atual = [
     },
     {
         nome: "Esquentador (gás propano)",
-        custo_unit: 0.15, //euros
+        custo_unit: 0.12, //euros
         rendimento: [
             {
                 nome: "< 10 anos",
@@ -189,7 +189,7 @@ var tecnologia_futura = [
     },
     {
         nome: "Caldeira (biomassa)",
-        custo_unit: 0.05, // €/kWh
+        custo_unit: 0.043, // €/kWh
         rendimento: 0.9, // 90%
         investimento: 150.00, // €/kW
         unidade: "kg",
