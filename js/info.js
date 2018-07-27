@@ -316,12 +316,12 @@ var perfil_semanal = [
         nome: "Consumo similar em todos os dias",
         valor: 0, //0%
         consumo: 0.8 //80%
-    },
-    {
+    }
+    /*{
         nome: "Definir 'perfil'",
         valor: 0, //0%
         consumo: 0.8 //80%
-    }
+    }*/
 ];
 
 var temperatura_utilizacao = 50; //°C

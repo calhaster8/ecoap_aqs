@@ -1,5 +1,7 @@
 var rowId = 1;
 
+var perfilAqsRow = 2;
+
 var totalAnualConsumos = 0;
 var totalCorrecaoOrientacao = 0;
 

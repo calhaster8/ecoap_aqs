@@ -19,10 +19,11 @@ $(document).ready(function() {
     $('#rend').change(getCopRendValues);
     
     $("#consumo-energia").change(buildConsumos);
-    $("#tipo-consumo").change(setNumberOf);
+    //$("#tipo-consumo[1]").change(setNumberOf);
+    $('#tipo-consumo' + rowId).change(getTipoConsumo);
     
-    $("#add").click(addRowWaterUsage);
-    $("#remove").click(removeRowWaterUsage);
+    //$("#add").click(addRowWaterUsage);
+    //$("#remove").click(removeRowWaterUsage);
     $("#nova-fonte").change(setNovaFonteData);
     
     $("#acoplar-solar").change(function(){
@@ -65,9 +66,273 @@ $(document).ready(function() {
             $('#def-perfil-semanal input').val("");
         }
     });
-    
-    $("#reanalise-but").click(function(){
-        totalNecessidadesEnergiaFunction();
+
+    $('#add').on('click', function () {
+        rowId++;
+
+        var data = $("#tb tr:eq(1)").clone(true).appendTo("#tb").insertBefore('#add_row');
+        data.find("input").val('').attr("id", "tipo-consumo-value" + rowId);
+        data.find('select').attr("id", "tipo-consumo" + rowId);
+        data.find('td:eq(1)').attr('id', 'tipo-consumo-descricao' + rowId).html('');
+
+        $('#tipo-consumo-value' + rowId).rules("add", {
+            required: true,
+            min: 1,
+            step: 1,
+            digits: true,
+            messages: {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
+                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
+            }
+        });
+
+        $('#tipo-consumo' + rowId).rules("add", {
+            required: true,
+            messages: {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            }
+        });
+    });
+
+    $(document).on('click', '#remove', function () {
+        rowId--;
+
+        var trIndex = $(this).closest("tr").index();
+        if (trIndex > 1) {
+            $(this).closest("tr").remove();
+        } else {
+            alert("Não pode remover a última coluna.");
+        }
+    });
+
+    $('#aqs-form').validate({
+        rules: {
+            distrito: {
+                required: true
+            },
+            'distrito-latitude': {
+                required: true
+            },
+            'sis-prod': {
+                required: true
+            },
+            rend: {
+                required: true
+            },
+            iRendMan: {
+                required: function (element) {
+
+                    if ($("#rend").val() != "" && $("#rend").val() != undefined && $("#rend").val() == 2) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+                step: 1,
+                min: 0,
+                max: 1000,
+                digits: true
+            },
+            age: {
+                required: function (element) {
+                    if ($("#rend").val() != "" && $("#rend").val() != undefined && $("#rend").val() == 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+            'custo-unit-input': {
+                required: true,
+                number: true,
+                step: 0.00001,
+                min: 0.00001
+            },
+            'temp-req': {
+                required: true,
+                min: 0,
+                max: 100,
+                number: true,
+                step: 1,
+            },
+            'conhece-consumo': {
+                required: true
+            },
+            'consumo-energia': {
+                required: true
+            },
+            consumoAnualTotal: {
+                required: function (element) {
+                    if ($('#consumo-energia').val() != "" && $('#consumo-energia').val() != undefined && $('#consumo-energia').val() == 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+            'tipo-consumo1': {
+                required: true
+            },
+            'tipo-consumo-value1': {
+                required: true,
+                min: 1,
+                step: 1,
+                digits: true
+            },
+            'perfil-mensal': {
+                required: true
+            },
+            'perfil-semanal': {
+                required: true
+            },
+            'tipo-consumo': {
+                required: true
+            },
+            'tipoconsumoval': {
+                required: true,
+                min: 1,
+                step: 1,
+                digits: true
+            },
+            'nova-fonte': {
+                required: true
+            },
+            'rendimento-medidas': {
+                required: true
+            },
+            'custo-unit-medidas': {
+                required: true
+            },
+            'acoplar-solar': {
+                required: true
+            },
+            'orientacao-sel': {
+                required: function (element) {
+                    if ($('#acoplar-solar').val() != "" && $('#acoplar-solar').val() != undefined && $('#acoplar-solar').val() == 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+            'orientacao-input': {
+                required: true,
+                min: 0,
+                max: 70,
+                digits: true
+            }
+        },
+        messages: {
+            distrito: {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'distrito-latitude':  {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'sis-prod': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            rend: {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            iRendMan: {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
+                min: '<label style="font-size: 14px; color: red;">O rendimento mínimo é 0%.</label>',
+                max: '<label style="font-size: 14px; color: red;">O rendimento máximo é 1000%.</label>',
+                step: '<label style="font-size: 14px; color: red;">o incremento é de 1.</label>',
+                digits: '<label style="font-size: 14px; color: red;">Inserir uma percentagem sem casas decimais. Ex: 10</label>'
+            },
+            age: {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'custo-unit-input': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
+                number: '<label style="font-size: 14px; color: red;">Inserir um número válido. Ex: 0.10</label>',
+                step: '<label style="font-size: 14px; color: red;">o passo de incremento é de 0.00001 .</label>',
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 0.00001 .</label>'
+            },
+            'temp-req': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 1 ºC.</label>',
+                max: '<label style="font-size: 14px; color: red;">O máximo é 100 ºC.</label>',
+                number: '<label style="font-size: 14px; color: red;">Insira um número válido.</label>',
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1 </label>',
+            },
+            'conhece-consumo': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'consumo-energia': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            consumoAnualTotal: {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'tipo-consumo1': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'tipo-consumo-value1': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
+                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
+            },
+            'perfil-mensal': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'perfil-semanal': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'nova-fonte': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'rendimento-medidas': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'custo-unit-medidas': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'acoplar-solar': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'orientacao-sel': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            },
+            'orientacao-input': {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 0 º.</label>',
+                max: '<label style="font-size: 14px; color: red;">O máximo é 70 º.</label>',
+                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
+            }
+        }
+    });
+
+    $(".seguinte").click(function () {
+        var id = $('.step:visible').data('id');
+        var nextId = $('.step:visible').data('id') + 1;
+
+        if(id == 3) {
+            if ($("#aqs-form").valid()) {
+                nextStep();
+            }
+        } else if(id == 1 || id == 2) {
+            if ($("#aqs-form").valid()) {
+                perfilConsumo();
+            }
+        }
+    });
+
+    $(".end-but").click(function(){
+        if ($("#aqs-form").valid()) {
+            totalNecessidadesEnergiaFunction();
+        }
+    });
+
+    $(".reanalise-but").click(function () {
+        if ($("#aqs-form").valid()) {
+            totalNecessidadesEnergiaFunction();
+        }
     });
     
     $('#reload-but').click(function(){
@@ -187,37 +452,85 @@ function buildConsumoEnergia(){
     }
 }
 
-function buildTipoConsumo(){    
-     for(var i = 0; i < consumo_diario_agua.length; i++) {
-        $('#tipo-consumo').append($('<option class="op"></option>').val(i).html(consumo_diario_agua[i].nome));
+/*function buildTipoConsumo(){    
+    for(var i = 0; i < consumo_diario_agua.length; i++) {
+        $('#tipo-consumo[1]').append($('<option class="op"></option>').val(i).html(consumo_diario_agua[i].nome));
+    }
+}*/
+function buildTipoConsumo() {
+    for (var i = 0; i < consumo_diario_agua.length; i++) {
+        $('.tipo-consumo').append($('<option class="op"></option>').val(i).html(consumo_diario_agua[i].nome));
     }
 }
 
-function setNumberOf(){    
-     var parentRow = $(this).parent().parent().find("#desctipoconsumo");
+function getTipoConsumo() {
+    var id = new Number($('#tipo-consumo' + rowId).val());
+    $('#tipo-consumo-descricao' + rowId).html(consumo_diario_agua[id].numero_de);
+}
+
+/*function setNumberOf(){
+    var indexOf = $(this).attr('id').indexOf("]");
+    var firstIndex = $(this).attr('id').indexOf("[");
+    var id = $(this).attr('id').substring(firstIndex, indexOf);
+    var parentRow = $(this).parent().parent().find("#desctipoconsumo[" + id + "]");
     if($(this).val()== "" || $(this).val()== undefined || $(this).val()<0){
         parentRow.html("");
     }else{
         parentRow.html(consumo_diario_agua[$(this).val()].numero_de);
     }
-}
+}*/
 
-function addRowWaterUsage(){    
+/*function addRowWaterUsage(){    
     if($('#copy-row').css('display') == 'none'){
         
-        $('#copy-row').find("#desctipoconsumo").html("");
-        $('#copy-row').find("#tipo-consumo").val("");
-        $('#copy-row').find("#tipoconsumoval").val("");
+        $('#copy-row').find("#desctipoconsumo[1]").html("");
+        $('#copy-row').find("#tipo-consumo[1]").val("");
+        $('#copy-row').find("#tipoconsumoval[1]").val("");
         $('#copy-row').show();
     }else{
         var firstRow = $("#copy-row");
         var copy = firstRow.clone(true);
+        
+        // TODO - 
         //insertBefore("#water-usage tbody>tr:last");
-        copy.find("#desctipoconsumo").html("");
-        copy.find("#tipo-consumo").val("");
-        copy.find("#tipoconsumoval").val("");
+        copy.find("#desctipoconsumo[1]").html("");
+        copy.find("#desctipoconsumo[1]").attr("id", "desctipoconsumo[" + perfilAqsRow + "]");
+        copy.find("#desctipoconsumo[" + perfilAqsRow + "]").attr("name", "desctipoconsumo[" + perfilAqsRow + "]");
+        
+        copy.find("#tipo-consumo[1]").val("");
+        copy.find("#tipo-consumo[1]").attr("id", "tipo-consumo[" + perfilAqsRow + "]");
+        copy.find("#tipo-consumo[" + perfilAqsRow + "]").attr("name", "tipo-consumo[" + perfilAqsRow + "]");
+        
+        copy.find("#tipoconsumoval[1]").val("");
+        copy.find("#tipoconsumoval[1]").attr("id", "tipoconsumoval[" + perfilAqsRow + "]");
+        copy.find("#tipoconsumoval[" + perfilAqsRow + "]").attr("name", "tipoconsumoval[" + perfilAqsRow + "]");
+        
         copy.insertBefore("#water-usage tbody>tr:last");
         copy.removeAttr("id");
+        $("#tipo-consumo[" + perfilAqsRow + "]").change(setNumberOf);
+    
+        $("#desctipoconsumo[" + perfilAqsRow + "]").rules('add', {
+            required: true,
+            messages: {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            }
+        });
+
+        $("#tipo-consumo[" + perfilAqsRow + "]").rules('add', {
+            required: true,
+            messages: {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            }
+        });
+
+        $("#tipoconsumoval[" + perfilAqsRow + "]").rules('add', {
+            required: true,
+            messages: {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            }
+        });
+
+        perfilAqsRow++;
     }
 }
 
@@ -228,11 +541,12 @@ function removeRowWaterUsage(){
         //alert(r);
         if (r == true) {
             parentRow.remove();
+            perfilAqsRow--;
         }
     }else{
         parentRow.hide();
     }
-}
+}*/
 
 /**
  * this function should build consumos dependent of the selected option in $("#consumo-energia")
@@ -250,7 +564,7 @@ function buildConsumos(){
         //mensal
         html += '<tr class="textTR"><td class="in">MESES</td><td class="in">Unidade (' + tecnologia_atual[tecnologia].unidade + ')</td></tr>'; 
         for(i=0;i<meses_numero_horas.length;i++){
-            html += '<tr class="textTR"><td class="in">' + meses_numero_horas[i].mes + '</td><td class="in"><input name="consumosMeses[]" type="number" placeholder="0" class="form-control xInput"/></td></tr>'; 
+            html += '<tr class="textTR"><td class="in">' + meses_numero_horas[i].mes + '</td><td class="in"><input name="consumosMeses[' + i + ']" id="consumoMeses[' + i + ']" type="number" placeholder="0" class="form-control xInput"/></td></tr>'; 
         }
         html += '<tr class="textTR"><td class="in">TOTAL ANUAL</td><td class="in"><input type="number" id="total_consumo_somatorio" disabled="disabled" placeholder="0"  class="form-control xInput"/></label></td></tr>';
     }
@@ -266,6 +580,15 @@ function buildConsumos(){
         }
         $("#total_consumo_somatorio").val(totalAnualConsumos);
     });
+
+    for (i = 0; i < meses_numero_horas.length; i++) {
+        $("input[name='consumosMeses[" + i + "]']").rules('add', {
+            required: true,
+            messages: {
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+            }
+        });
+    }
 }
 
 function buildNovaFonte(){

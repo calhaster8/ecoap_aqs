@@ -54,9 +54,14 @@ function totalNecessidadesEnergiaFunction() {
         }
     }else if(conheceConsumos!="" && conheceConsumos!= undefined && conheceConsumos==1){
         var calculos = 0;
-        for(j=0;j<$("select[name='tipo-consumo[]']").length;j++){
+        /*for(j=0;j<$("select[name='tipo-consumo[]']").length;j++){
             var inputValue = new Number($("input[name='tipoconsumoval[]']")[j].value);
             var idLocal = $("select[name='tipo-consumo[]']")[j].value;
+            calculos += inputValue * consumo_diario_agua[idLocal].valor;
+        }*/
+        for(j=1; j < rowId + 1; j++) {
+            var inputValue = new Number($('#tipo-consumo-value' + j).val());
+            var idLocal = $('#tipo-consumo' + j).val();
             calculos += inputValue * consumo_diario_agua[idLocal].valor;
         }
        for(i=0;i<meses_numero_horas.length; i++){

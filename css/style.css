@@ -529,3 +529,9 @@ body {
 
 .step-but {
   display: none; }
+
+.print_pdf .print_text .print_link {
+  border: none;
+  background-color: transparent;
+  color: #0099cc;
+  text-decoration: underline; }
