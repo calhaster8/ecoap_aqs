@@ -330,6 +330,7 @@ function nextStep() {
         $('.perfil-consumo').hide();
         $('.end-step').show();
         $('.but-2').hide();
+        
     }
     
     if (nextId == 5 || nextId == 6) {
@@ -339,7 +340,7 @@ function nextStep() {
         $('#reanalise-but').show();
         $('#reload-but').show();
         $('#analise-but').hide();
-    
+        $('.print_pdf').show();
         if ($("#acoplar-solar").val() == 1 && $("#acoplar-solar").val() != "" && $("#acoplar-solar").val() != undefined) {
             $('.corrige-coletores').hide();
             $('#reanalise-but').hide();
@@ -372,7 +373,7 @@ function prevStep() {
         } else if (prevId == 3) {
             $('[data-id="' + id + '"]').hide();
             $('[data-id="' + prevId + '"]').show();
-
+            $('.print_pdf').hide();
             $('.perfil-consumo').hide();
             $('.end-step').hide();
             $('.but-2').show();
@@ -402,7 +403,7 @@ function prevStep() {
         } else if (prevId == 3) {
             $('[data-id="' + id + '"]').hide();
             $('[data-id="2"]').show();
-
+            $('.print_pdf').hide();
             $('.perfil-consumo').show();
             $('.end-step').hide();
             $('.but-2').hide();

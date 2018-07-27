@@ -293,12 +293,12 @@ var perfil_mensal = [
         nome: "Maior consumo no Semestre de Verão",
         latitude: -15,
         consumo: 0.6 //60%
-    },
-    {
-        nome: "Definir 'perfil'",
-        latitude: -5,
-        consumo: 0.6 //60%
     }
+//    {
+//        nome: "Definir 'perfil'",
+//        latitude: -5,
+//        consumo: 0.6 //60%
+//    }
 ];
 
 var perfil_semanal = [

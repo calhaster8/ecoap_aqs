@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" crossorigin="anonymous"/>
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400|Open+Sans:300,400|Roboto:100,300,400" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400|Open+Sans:300,400|Roboto:100,300,400" rel="stylesheet"/>        
+        <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css"/>
         <!--BOOTSTRAP CDN-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="shortcut icon" href="img/logo-head-small.png" type="image/png"/>
@@ -18,7 +19,9 @@
         <script src="js/main.js"></script>
         <script src="js/info.js"></script>
         <script src="js/calculos.js"></script>
-        <script src="js/globals.js"></script>
+        <script src="js/globals.js"></script>        
+        <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
         <title>Calculadora - AQS</title>
     </head>
     <body>
@@ -83,7 +86,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <div id="perfil-aqs" data-id="2" class="step">
                             <div class="dados-titulo"><span>Perfil AQS</span></div>
@@ -259,7 +262,7 @@
                                     </select>
                                 </div>
                                 <div class="dado rendimento-medidas">
-                                    <label id="rendimento-medidas-label"for="rendimento-medidas">Rendimento (%) / COP</label>
+                                    <label id="rendimento-medidas-label" for="rendimento-medidas">Rendimento (%) / COP</label>
                                     <input id="rendimento-medidas" type="number" placeholder="0%" class="form-control xInput"/>
                                 </div>
                                 <div class="dado custo-unit-medidas">
@@ -284,8 +287,8 @@
                                                         <option value="">Seleccionar opção</option>
 
                                                     </select>
-<!--                                                    <label id="labelOtherOrientation" for="otherOrientation" style="display:none;">Insira a orientação</label>
-                                                    <input type="number" id="otherOrientation" name="otherOrientation" placeholder="Inserir número de graus" style="display:none;">-->
+                                                    <!--                                                    <label id="labelOtherOrientation" for="otherOrientation" style="display:none;">Insira a orientação</label>
+                                                                                                        <input type="number" id="otherOrientation" name="otherOrientation" placeholder="Inserir número de graus" style="display:none;">-->
                                                 </td>
                                             </tr>
                                             <tr class="textTR">
@@ -305,7 +308,7 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr class="textTR">
-                                            <td rowspan="2" class="in">Consumos e custos (cenário inicial)</td>
+                                            <td rowspan="2" class="in">Consumos e custos energéticos (cenário inicial)</td>
                                             <td class="center" id="consumoCI"></td>
                                         </tr>
                                         <tr class="textTR">
@@ -316,7 +319,7 @@
                                             <td class="center" id="contributoSolarTermico"></td>
                                         </tr>
                                         <tr class="textTR">
-                                            <td rowspan="2" class="in">Consumos e custos energéticos finais (sistema de apoio)</td>
+                                            <td rowspan="2" class="in">Consumos e custos energéticos (cenário final - sistema de apoio)</td>
                                             <td class="center" id="consumosCF"></td>
                                         </tr>
                                         <tr class="textTR">
@@ -330,7 +333,7 @@
                                             <td class="center" id="reducaoPercent"></td>
                                         </tr>
                                         <tr class="textTR solar-termico-results">
-                                            <td class="in">N° de coletores</td>
+                                            <td class="in">N° de coletores solares</td>
                                             <td class="center" id="numeroColetores"></td>
                                         </tr>
                                         <tr class="textTR solar-termico-results">
@@ -338,7 +341,7 @@
                                             <td class="center" id="areaColetores"></td>
                                         </tr>
                                         <tr class="textTR solar-termico-results">
-                                            <td class="in">Volume de acumulação </td>
+                                            <td class="in">Volume dos depósitos de acumulação</td>
                                             <td class="center" id="vAcumulacao"></td>
                                         </tr>
                                         <tr class="textTR">
@@ -362,7 +365,7 @@
                                             <td class="center sub-val" id="custosInstalacao"></td>
                                         </tr>
                                         <tr class="textTR">
-                                            <td class="in">Operação e manutenção</td>
+                                            <td class="in">Custos anuais com operação e manutenção</td>
                                             <td class="center" id="custosOpManutencao"></td>
                                         </tr>
                                         <tr class="textTR">
@@ -398,6 +401,12 @@
                     <div class="perfil-consumo">
                         <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>
                         <button type="button" onclick="perfilConsumo()" class="but seguinte">Próximo</button>
+                    </div>
+
+                    <div class="print_pdf step-but">
+                        <span class="print_text">Deseja imprimir?
+                            <button type="button" onclick="printJS('resumo', 'html')" class="print_link">Clique aqui</button>
+                        </span>
                     </div>
                 </div>
             </div>
