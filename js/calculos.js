@@ -49,7 +49,7 @@ function totalNecessidadesEnergiaFunction() {
     }else if(conheceConsumos!="" && conheceConsumos!= undefined && conheceConsumos==0 && consumoTipo==1){
         
         for(i=0;i<meses_numero_horas.length; i++){
-            necessidades_mes[i] = new Number($("input[name='consumosMeses[]']")[i].value*tecnologia_atual[tecnologiaActual].fator_conversao);
+            necessidades_mes[i] = new Number($("input[name='consumosMeses[" + i + "]']").val() * tecnologia_atual[tecnologiaActual].fator_conversao);
             totalNecessidadesEnergia += new Number(necessidades_mes[i]);
         }
     }else if(conheceConsumos!="" && conheceConsumos!= undefined && conheceConsumos==1){
@@ -258,7 +258,7 @@ function necessidadesEnergeticaskWh(){
     var consumoEngergia = $("#consumo-energia").val();
     
     for (i = 0; i < meses_numero_horas.length; i++) {
-        necessidades_mes_kWh[i] = (conheceConsumos==0 && consumoEngergia==1) ? $("input[name='consumosMeses[]']")[i].value*tecnologia_atual[$("#sis-prod").val()].fator_conversao : ( (conheceConsumos==0 && consumoEngergia==0) ? $("input[name='consumoAnualTotal']").val()*tecnologia_atual[$("#sis-prod").val()].fator_conversao*meses_numero_horas[i].aqs_mensal : necessidades_mes[i]*fatores_conversao[1]);
+        necessidades_mes_kWh[i] = (conheceConsumos==0 && consumoEngergia==1) ? $("input[name='consumosMeses["+i+"]']").val()*tecnologia_atual[$("#sis-prod").val()].fator_conversao : ( (conheceConsumos==0 && consumoEngergia==0) ? $("input[name='consumoAnualTotal']").val()*tecnologia_atual[$("#sis-prod").val()].fator_conversao*meses_numero_horas[i].aqs_mensal : necessidades_mes[i]*fatores_conversao[1]);
         total_mes_kWh += necessidades_mes_kWh[i];
     }
     
@@ -287,7 +287,7 @@ function cenarioI() {
     for (i = 0; i < meses_numero_horas.length; i++) {
         
         if(conheceConsumos==0 && consumoEngergia==1){
-            rendCenarioI = $("input[name='consumosMeses[]']")[i].value*tecnologia_atual[$("#sis-prod").val()].fator_conversao;
+            rendCenarioI = $("input[name='consumosMeses["+i+"]']").val()*tecnologia_atual[$("#sis-prod").val()].fator_conversao;
         }else if (conheceConsumos==0 && consumoEngergia==0){
             rendCenarioI = $("input[name='consumoAnualTotal']").val()*tecnologia_atual[$("#sis-prod").val()].fator_conversao*meses_numero_horas[i].aqs_mensal
         }else if (inputRendimento == 0 && tecnologia_atual[sist_aqs].rendimento[age].nome == idades[age]){

@@ -531,6 +531,16 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"\/js\/globals-min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/globals-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"\/js\/globals.js": {
 		"ft": 64,
 		"ma": 0,

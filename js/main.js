@@ -573,13 +573,21 @@ function buildConsumos(){
     
     $("#tabela-consumo").html(html);
     
-    $("input[name='consumosMeses[]']").change(function(){
+    $('#tabela-consumo').find('td.in').find('input').change(function () {
+        totalAnualConsumos = 0;
+        for (i = 0; i < meses_numero_horas.length; i++) {
+            totalAnualConsumos += new Number($("input[name='consumosMeses[" + i + "]']").val());
+        }
+        $("#total_consumo_somatorio").val(totalAnualConsumos);
+    });
+
+    /*$("input[name='consumosMeses[]']").change(function(){
         totalAnualConsumos = 0;
         for(i=0;i<$("input[name='consumosMeses[]']").length;i++){
             totalAnualConsumos += new Number($("input[name='consumosMeses[]']")[i].value);
         }
         $("#total_consumo_somatorio").val(totalAnualConsumos);
-    });
+    });*/
 
     for (i = 0; i < meses_numero_horas.length; i++) {
         $("input[name='consumosMeses[" + i + "]']").rules('add', {
