@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -65,7 +65,7 @@
                                             <option value="2">Inserir rendimento</option>
                                         </select>
                                         <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento</label>
-                                        <input id="iRendMan" name="iRendMan" placeholder="" style="display:none;">
+                                        <input id="iRendMan" type="number" name="iRendMan" placeholder="" min="0" step="0.1" style="display:none;">
                                     </div>
                                     <div class="dado age">
                                         <label for="age">Idade (aprox.)</label>
@@ -97,37 +97,7 @@
                                     <span>Perfil AQS</span>
                                 </div>
                                 <div class="dados-child">
-                                    <!--<div class="tabela-diaria">
-                                        <table id="water-usage" class="table table-bordered">
-                                            <tbody>
-                                                <tr class="titulo_row">
-                                                    <th colspan="3" class="tituloTH">Utilização diária de águas quentes sanitárias (média representativa do período de maior
-                                                        consumo)</th>
-                                                    <th class="tituloTH">&nbsp</th>
-                                                </tr>
-                                                <tr id="copy-row" class="textTR">
-                                                    <td class="select-cell">
-                                                        <select id="tipo-consumo[1]" name="tipo-consumo[1]">
-                                                            <option value="">Seleccionar opção</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="in" id="desctipoconsumo[1]">auto</td>
-                                                    <td class="in">
-                                                        <input id="tipoconsumoval[1]" name="tipoconsumoval[1]" type="number" placeholder="0" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in" id="removetipoconsumo">
-                                                        <button id="remove" type="button" class="but-dados">Remover</button>
-                                                    </td>
-                                                </tr>
-                                                <tr class="textTR">
-                                                    <td colspan="3" class="in"></td>
-                                                    <td class="in">
-                                                        <button id="add" type="button" class="but-dados">Adicionar</button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>-->
+                                   
                                     <div class="tabela-diaria">
                                         <table id="tb" class="table table-bordered">
                                             <tbody>
@@ -165,108 +135,13 @@
                                             <option value="">Seleccionar opção</option>
                                         </select>
                                     </div>
-                                    <!--<div id="def-perfil-mensal" class="tabelas" style="display:none;">
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                                <tr class="titulo_row">
-                                                    <th class="tituloTH">Jan</th>
-                                                    <th class="tituloTH">Fev</th>
-                                                    <th class="tituloTH">Mar</th>
-                                                    <th class="tituloTH">Abr</th>
-                                                    <th class="tituloTH">Mai</th>
-                                                    <th class="tituloTH">Jun</th>
-                                                    <th class="tituloTH">Jul</th>
-                                                    <th class="tituloTH">Ago</th>
-                                                    <th class="tituloTH">Set</th>
-                                                    <th class="tituloTH">Out</th>
-                                                    <th class="tituloTH">Nov</th>
-                                                    <th class="tituloTH">Dez</th>
-                                                </tr>
-                                                <tr class="textTR">
-                                                    <td class="input-table">
-                                                        <input id="perfil-mensal-input1" name="perfil-mensal-input1" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-mensal-input2" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-mensal-input3" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-mensal-input4" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-mensal-input5" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-mensal-input6" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-mensal-input7" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-mensal-input8" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-mensal-input9" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-mensal-input10" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-mensal-input11" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-mensal-input12" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>-->
+                                    
                                     <div class="dado perfil-semanal">
                                         <label for="perfil-semanal">Perfil de utilização semanal</label>
                                         <select id="perfil-semanal" name="perfil-semanal" class="sel">
                                             <option value="">Seleccionar opção</option>
                                         </select>
                                     </div>
-                                    <!--<div id="def-perfil-semanal" class="tabelas" style="display:none;">
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                                <tr class="titulo_row">
-                                                    <th class="tituloTH">Seg</th>
-                                                    <th class="tituloTH">Ter</th>
-                                                    <th class="tituloTH">Qua</th>
-                                                    <th class="tituloTH">Qui</th>
-                                                    <th class="tituloTH">Sex</th>
-                                                    <th class="tituloTH">Sáb</th>
-                                                    <th class="tituloTH">Dom</th>
-                                                </tr>
-                                                <tr class="textTR">
-                                                    <td class="in">
-                                                        <input id="perfil-semanal-input1" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-semanal-input2" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-semanal-input3" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-semanal-input4" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-semanal-input5" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-semanal-input6" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                    <td class="in">
-                                                        <input id="perfil-semanal-input7" type="number" placeholder="0%" class="form-control xInput" />
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>-->
                                 </div>
                             </div>
                             <div id="consumos" data-id="3" class="step">
@@ -329,13 +204,12 @@
                                                             <option value="">Seleccionar opção</option>
                 
                                                         </select>
-                                                        <!--                                                    <label id="labelOtherOrientation" for="otherOrientation" style="display:none;">Insira a orientação</label>
-                                                                                                                        <input type="number" id="otherOrientation" name="otherOrientation" placeholder="Inserir número de graus" style="display:none;">-->
+                                                       
                                                     </td>
                                                 </tr>
                                                 <tr class="textTR">
                                                     <td class="input-table">
-                                                        <input id="orientacao-solar" max="70" min="0" type="number" placeholder="Valor será introduzindo automaticamente" disabled="disabled"
+                                                        <input id="orientacao-solar" name="orientacao-solar" required type="number"  min="0" max="70" step="1" placeholder="Valor será introduzindo automaticamente" disabled="disabled"
                                                             class="form-control xInput" />
                                                     </td>
                                                 </tr>

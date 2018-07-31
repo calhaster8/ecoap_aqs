@@ -348,11 +348,11 @@ var desvios = [
     {
         nome: "Sul",
         valor: 0
+    },
+    {
+        nome: "Outra orientação (desvio de Sul)",
+        valor: "preencher"
     }
-//    {
-//        nome: "Outra orientação (desvio de Sul)",
-//        valor: "preencher"
-//    }
 ];
 
 
@@ -405,6 +405,11 @@ var avisos = [
         nome: "Aviso de inclinação",
         valor: 15, //15°
         mensagem: "Um desvio superior em 15º relativamente ao ângulo considerado ideal poderá influenciar a rentabilidade energética do sistema solar."
+    },
+    {
+        nome: "Aviso de colectores menor que 0.5",
+        valor: 0.5, //15°
+        mensagem: "O solar térmico a aplicar não é viável. Por favor reveja os dados inseridos e tente novamente."
     }
 ];
 

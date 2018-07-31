@@ -139,8 +139,10 @@ function energiaSolarCaptada() {
     cenarioI();
     cenarioF();
     reduction();
-    resume();
-    nextStep();
+    var result = resume();
+    if(result==1){
+        nextStep();
+    }
 }
 
 function racio() {
@@ -268,7 +270,7 @@ function necessidadesEnergeticaskWh(){
 function cenarioI() {
     
     var sist_aqs = $("#sis-prod").val();
-    var inputRendimento = ($("#rend").val()==2) ? (sist_aqs==0 ? $('#iRendMan').val()*100 : $('#iRendMan').val()/100) : $("#rend").val();
+    var inputRendimento = ($("#rend").val()==2) ? (sist_aqs==0 ? $('#iRendMan').val() : $('#iRendMan').val()/100) : $("#rend").val();
     var age = $("#age").val();
     var custosUnit = tecnologia_atual[$("#sis-prod").val()].custo_unit;
     var conheceConsumos = $("#conhece-consumo").val();
@@ -289,7 +291,7 @@ function cenarioI() {
         if(conheceConsumos==0 && consumoEngergia==1){
             rendCenarioI = $("input[name='consumosMeses["+i+"]']").val()*tecnologia_atual[$("#sis-prod").val()].fator_conversao;
         }else if (conheceConsumos==0 && consumoEngergia==0){
-            rendCenarioI = $("input[name='consumoAnualTotal']").val()*tecnologia_atual[$("#sis-prod").val()].fator_conversao*meses_numero_horas[i].aqs_mensal
+            rendCenarioI = $("input[name='consumoAnualTotal']").val()*tecnologia_atual[$("#sis-prod").val()].fator_conversao*meses_numero_horas[i].aqs_mensal;
         }else if (inputRendimento == 0 && tecnologia_atual[sist_aqs].rendimento[age].nome == idades[age]){
             rendCenarioI = necessidades_mes_kWh[i] / tecnologia_atual[sist_aqs].rendimento[age].valor;        
         }else{
@@ -308,7 +310,7 @@ function cenarioI() {
 function cenarioF() {    
 
     var sist_aqs = $("#sis-prod").val();
-    var inputRendimento = ($("#rend").val()==2) ? (sist_aqs==0 ? $('#iRendMan').val()*100 : $('#iRendMan').val()/100) : $("#rend").val();
+    var inputRendimento = ($("#rend").val()==2) ? (sist_aqs==0 ? $('#iRendMan').val() : $('#iRendMan').val()/100) : $("#rend").val();
     var novaFonte = $("#nova-fonte").val();
     var age = $("#age").val();
     var custosUnit = tecnologia_futura[novaFonte].custo_unit;
@@ -392,6 +394,11 @@ function resume(){
     reducaoPercent = reducaoEuro/total_cenarioI_custos;
     //if($("#acoplar-solar").val()==0){
     n_colectores_final = (inputColetores != undefined && inputColetores != "") ? new Number(inputColetores) : new Number((totalRacio/area_coletor_solar).toFixed(0));
+    if(n_colectores<avisos[4].valor){
+        alert(avisos[4].mensagem);
+        return 0;
+    }
+    
     area_colectores_final = (inputColetores == undefined || inputColetores == "") ? new Number((n_colectores_final*area_coletor_solar).toFixed(0)) : new Number((inputColetores*area_coletor_solar).toFixed(0));
     
     //ARRED(Resultados!$C$3/Info!$C$72/Info!$C$73/PROCV(MÁXIMO(Resultados!$C$3:$C$14);Resultados!$A$3:$C$14;1)/(Dados!$C$10-Info!$C$52);-2)
@@ -434,6 +441,7 @@ function resume(){
     $('#custosOpManutencao').html(op_manutencao.toFixed(0) + ' €');
     $('#periodoRetorno').html(periodo_retorno.toFixed(1) + ' anos');
 
+    return 1;
 }
 
 function max(calculos) {

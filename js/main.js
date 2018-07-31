@@ -37,7 +37,7 @@ $(document).ready(function() {
     });
     
     $("#orientacao-sel").change(function(){
-        if($("#orientacao-sel").val()!="" && $("#orientacao-sel").val()!= undefined && $("#orientacao-sel").val()==5){
+        if($("#orientacao-sel").val()!="" && $("#orientacao-sel").val()!= undefined && $("#orientacao-sel").val()==3){
             $("#orientacao-solar").removeAttr("disabled");
             $("#orientacao-solar").val("");
         }else if($("#orientacao-sel").val()!="" && $("#orientacao-sel").val()!= undefined && $("#orientacao-sel").val()>=0){            
@@ -130,10 +130,16 @@ $(document).ready(function() {
                         return false;
                     }
                 },
-                step: 1,
+                step: 0.1,
                 min: 0,
-                max: 1000,
-                digits: true
+                max: function (element) {
+
+                    if ($("#sis_prod").val() != "" && $("#sis_prod").val() != undefined && $("#sis_prod").val() == 0) {
+                        return 7;
+                    } else {
+                        return 110;
+                    }
+                },
             },
             age: {
                 required: function (element) {
@@ -147,8 +153,8 @@ $(document).ready(function() {
             'custo-unit-input': {
                 required: true,
                 number: true,
-                step: 0.00001,
-                min: 0.00001
+                step: 0.01,
+                min: 0
             },
             'temp-req': {
                 required: true,
@@ -217,11 +223,14 @@ $(document).ready(function() {
                     }
                 }
             },
-            'orientacao-input': {
+            'orientacao-solar': {
+                step: 1,
                 required: true,
+                number: true,
                 min: 0,
                 max: 70,
                 digits: true
+                
             }
         },
         messages: {
@@ -240,9 +249,15 @@ $(document).ready(function() {
             iRendMan: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                 min: '<label style="font-size: 14px; color: red;">O rendimento mínimo é 0%.</label>',
-                max: '<label style="font-size: 14px; color: red;">O rendimento máximo é 1000%.</label>',
-                step: '<label style="font-size: 14px; color: red;">o incremento é de 1.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Inserir uma percentagem sem casas decimais. Ex: 10</label>'
+                max: function (element) {
+
+                    if ($("#sis_prod").val() != "" && $("#sis_prod").val() != undefined && $("#sis_prod").val() == 0) {
+                        return '<label style="font-size: 14px; color: red;">O rendimento máximo é 7.</label>';
+                    } else {
+                        return '<label style="font-size: 14px; color: red;">O rendimento máximo é 110%.</label>';
+                    }
+                },
+                step: '<label style="font-size: 14px; color: red;">o incremento é de 0.1.</label>'
             },
             age: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
@@ -299,11 +314,13 @@ $(document).ready(function() {
             'orientacao-sel': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
-            'orientacao-input': {
+            'orientacao-solar': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                 min: '<label style="font-size: 14px; color: red;">O mínimo é 0 º.</label>',
                 max: '<label style="font-size: 14px; color: red;">O máximo é 70 º.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
+                step: '<label style="font-size: 14px; color: red;">O passo é 1.</label>',
+                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>',
+                number: '<label style="font-size: 14px; color: red;">Insera um número válido.Ex: 10</label>'
             }
         }
     });
@@ -410,12 +427,14 @@ function getCopRendValues() {
     if (selectedRend!="" && selectedRend!=undefined && selectedRend == 2 && idLocal==0 && idLocal!="" && idLocal!=undefined) {
         $('#rend').find("option[value='2']").html("Inserir COP");
         $('#iRendMan').show();
+        $('#iRendMan').attr('max','7');
         $('#labelIRendman').hide();
         $('.age').hide();
         $('#age').val("");
     } else if(selectedRend!="" && selectedRend!=undefined && selectedRend == 2 && idLocal>0 && idLocal!="" && idLocal!=undefined){
         $('#rend').find("option[value='2']").html("Inserir rendimento");
         $('#iRendMan').show();
+        $('#iRendMan').attr('max','100');
         $('#labelIRendman').hide();
         $('.age').hide();
         $('#age').val("");
@@ -642,8 +661,6 @@ function buildPerfilSemanal(){
 
 
 
-
-
 // BUTTONS STEPS
 function nextStep() {
     var id = $('.step:visible').data('id');
@@ -698,6 +715,7 @@ function prevStep() {
             $('.end-step').show();
             $('.but-2').hide();
             $('#reanalise-but').hide();
+            $("#corrige-coletores").val("");
             $('#reload-but').hide();
             $('#analise-but').show();
 
@@ -728,6 +746,7 @@ function prevStep() {
             $('#reanalise-but').hide();
             $('#reload-but').hide();
             $('.perfil-consumo').hide();
+            $("#corrige-coletores").val("");
             $('#analise-but').show();
             $('.end-step').show();
             $('.but-2').hide();
