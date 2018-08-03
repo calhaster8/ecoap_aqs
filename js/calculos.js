@@ -394,7 +394,7 @@ function resume(){
     reducaoPercent = reducaoEuro/total_cenarioI_custos;
     //if($("#acoplar-solar").val()==0){
     n_colectores_final = (inputColetores != undefined && inputColetores != "") ? new Number(inputColetores) : new Number((totalRacio/area_coletor_solar).toFixed(0));
-    if(n_colectores<avisos[4].valor){
+    if(n_colectores_final<avisos[4].valor){
         alert(avisos[4].mensagem);
         return 0;
     }
