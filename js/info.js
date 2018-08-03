@@ -54,7 +54,7 @@ var tecnologia_atual = [
             }
         ],
         unidade: "kg",
-        fator_conversao: 4
+        fator_conversao: 4.67
     },
     {
         nome: "Caldeira (gás natural)",
