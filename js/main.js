@@ -140,6 +140,7 @@ $(document).ready(function() {
                         return 110;
                     }
                 },
+                number: true
             },
             age: {
                 required: function (element) {
@@ -206,10 +207,12 @@ $(document).ready(function() {
                 required: true
             },
             'rendimento-medidas': {
-                required: true
+                required: true,
+                number: true
             },
             'custo-unit-medidas': {
-                required: true
+                required: true,
+                number: true
             },
             'acoplar-solar': {
                 required: true
@@ -257,7 +260,8 @@ $(document).ready(function() {
                         return '<label style="font-size: 14px; color: red;">O rendimento máximo é 110%.</label>';
                     }
                 },
-                step: '<label style="font-size: 14px; color: red;">o incremento é de 0.1.</label>'
+                step: '<label style="font-size: 14px; color: red;">o incremento é de 0.1.</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
             },
             age: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
@@ -272,8 +276,8 @@ $(document).ready(function() {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                 min: '<label style="font-size: 14px; color: red;">O mínimo é 1 ºC.</label>',
                 max: '<label style="font-size: 14px; color: red;">O máximo é 100 ºC.</label>',
-                number: '<label style="font-size: 14px; color: red;">Insira um número válido.</label>',
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1 </label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>',
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1 </label>'
             },
             'conhece-consumo': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
@@ -303,10 +307,12 @@ $(document).ready(function() {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
             'rendimento-medidas': {
-                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
             },
             'custo-unit-medidas': {
-                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
             },
             'acoplar-solar': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
