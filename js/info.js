@@ -229,12 +229,6 @@ var consumo_diario_agua = [
         numero_de: "n° de pessoas"
     },
     {
-        nome: "Escola",
-        valor: 3,
-        litros_por: "litro/aluno",
-        numero_de: "n° de alunos"
-    },
-    {
         nome: "Escritório",
         valor: 3,
         litros_por: "litro/pessoa",
@@ -260,7 +254,7 @@ var consumo_diario_agua = [
     },
     {
         nome: "Quartel",
-        valor: 20,
+        valor: 40,
         litros_por: "litro/pessoa",
         numero_de: "n° de pessoas"
     },

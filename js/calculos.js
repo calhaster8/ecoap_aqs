@@ -299,7 +299,7 @@ function cenarioI() {
         }
 
         cenarioI_mes[i] = rendCenarioI;
-        cenarioI_custos[i] = cenarioI_mes[i] * custosUnit;
+        cenarioI_custos[i] = cenarioI_mes[i] * custosUnit / tecnologia_atual[sist_aqs].fator_conversao;
         total_cenarioI_mes += cenarioI_mes[i];
         total_cenarioI_custos += cenarioI_custos[i];
     }
@@ -328,7 +328,7 @@ function cenarioF() {
         rendCenarioF = isNaN((($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/tecnologia_futura[novaFonte].rendimento : totalEnergiaBackupMes[i]*fatores_conversao[1]/tecnologia_futura[novaFonte].rendimento)) ? 0 : ($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/tecnologia_futura[novaFonte].rendimento : totalEnergiaBackupMes[i]*fatores_conversao[1];
         cenarioF_mes[i] = rendCenarioF;
         total_cenarioF_mes += cenarioF_mes[i];
-        cenarioF_custos[i] = cenarioF_mes[i] * custosUnit;
+        cenarioF_custos[i] = cenarioF_mes[i] * custosUnit / tecnologia_futura[novaFonte].fator_conversao;
         total_cenarioF_custos += cenarioF_custos[i];
     }
     total_cenarioF_custos = total_cenarioF_custos;   
