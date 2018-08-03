@@ -439,7 +439,12 @@ function resume(){
     $('#custosDepositos').html(depositos_acessorios.toFixed(0) + ' €');
     $('#custosInstalacao').html(instalacao.toFixed(0) + ' €');
     $('#custosOpManutencao').html(op_manutencao.toFixed(0) + ' €');
-    $('#periodoRetorno').html(periodo_retorno.toFixed(1) + ' anos');
+
+    if (periodo_retorno < 0) {
+        $('#periodoRetorno').html('-');
+    } else {
+        $('#periodoRetorno').html(periodo_retorno.toFixed(1) + ' anos');
+    }
 
     return 1;
 }

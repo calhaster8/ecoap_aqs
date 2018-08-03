@@ -177,7 +177,8 @@ $(document).ready(function() {
                     } else {
                         return false;
                     }
-                }
+                },
+                number: true
             },
             'tipo-consumo1': {
                 required: true
@@ -286,7 +287,8 @@ $(document).ready(function() {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
             consumoAnualTotal: {
-                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
             },
             'tipo-consumo1': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
@@ -617,8 +619,10 @@ function buildConsumos(){
     for (i = 0; i < meses_numero_horas.length; i++) {
         $("input[name='consumosMeses[" + i + "]']").rules('add', {
             required: true,
+            number: true,
             messages: {
-                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
+                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
             }
         });
     }
