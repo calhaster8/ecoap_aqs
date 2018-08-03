@@ -272,7 +272,7 @@ function cenarioI() {
     var sist_aqs = $("#sis-prod").val();
     var inputRendimento = ($("#rend").val()==2) ? (sist_aqs==0 ? $('#iRendMan').val() : $('#iRendMan').val()/100) : $("#rend").val();
     var age = $("#age").val();
-    var custosUnit = tecnologia_atual[$("#sis-prod").val()].custo_unit;
+    var custosUnit = $('#custo-unit-input').val();
     var conheceConsumos = $("#conhece-consumo").val();
     var consumoEngergia = $("#consumo-energia").val();
     var rendCenarioI=0;
@@ -313,7 +313,7 @@ function cenarioF() {
     var inputRendimento = ($("#rend").val()==2) ? (sist_aqs==0 ? $('#iRendMan').val() : $('#iRendMan').val()/100) : $("#rend").val();
     var novaFonte = $("#nova-fonte").val();
     var age = $("#age").val();
-    var custosUnit = tecnologia_futura[novaFonte].custo_unit;
+    var custosUnit = $('#custo-unit-medidas').val();
     var rendCenarioF = 0;
     cenarioF_mes = [];
     total_cenarioF_mes = 0;
