@@ -370,6 +370,8 @@ function resume(){
     var instalacao = 0;
     var op_manutencao = 0;
     var periodo_retorno = 0;
+    var excedente_verao_resume = 0;
+    var excedente_final_resume = 0;
 
     var novaFonte = $("#nova-fonte").val();
     var inputColetores = $("#corrige-coletores").val();
@@ -421,6 +423,9 @@ function resume(){
     op_manutencao = investimento_resume*investimento[3].valor_direto;
     //=C17/C7
     periodo_retorno = investimento_resume/reducaoEuro;
+
+    excedente_verao_resume = (max(totalExcedenteSolarArrayPerc) > avisos[0].valor) ? max(totalExcedenteSolarArrayPerc) : "";
+    excedente_final_resume = excedente_verao_resume * 100;
     
     
     $('#consumoCI').html(consumosCI.toFixed(0) + ' kWh');
@@ -445,6 +450,15 @@ function resume(){
     } else {
         $('#periodoRetorno').html(periodo_retorno.toFixed(1) + ' anos');
     }
+
+    if (excedente_final_resume > 40 && excedente_final_resume != undefined && excedente_final_resume != '' && n_colectores_final >= 1.5) {
+        $('.excedente-note').html(avisos[0].mensagem);
+        $('.excedente-note').show();
+    } else {
+        $('.excedente-note').html('');
+        $('.excedente-note').hide();
+    }
+
 
     return 1;
 }

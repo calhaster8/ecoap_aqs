@@ -79,6 +79,8 @@ body {
   .main .main-content .dados-child {
     display: flex;
     flex-direction: column; }
+    .main .main-content .dados-child .excedente-note {
+      color: red; }
     .main .main-content .dados-child .dado {
       margin: 20px 0;
       display: flex;
