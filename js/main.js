@@ -268,7 +268,7 @@ $(document).ready(function() {
             },
             'custo-unit-input': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Inserir um número válido. Ex: 0.10</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>',
                 step: '<label style="font-size: 14px; color: red;">o passo de incremento é de 0.00001 .</label>',
                 min: '<label style="font-size: 14px; color: red;">O mínimo é 0.00001 .</label>'
             },
