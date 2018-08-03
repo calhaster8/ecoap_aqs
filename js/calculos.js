@@ -424,7 +424,7 @@ function resume(){
     //=C17/C7
     periodo_retorno = investimento_resume/reducaoEuro;
 
-    excedente_verao_resume = (max(totalExcedenteSolarArrayPerc) > avisos[0].valor) ? max(totalExcedenteSolarArrayPerc) : "";
+    excedente_verao_resume = (maxValor(totalExcedenteSolarArrayPerc) > avisos[0].valor) ? maxValor(totalExcedenteSolarArrayPerc) : "";
     excedente_final_resume = excedente_verao_resume * 100;
     
     
