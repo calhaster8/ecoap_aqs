@@ -19,11 +19,10 @@ $(document).ready(function() {
     $('#rend').change(getCopRendValues);
     
     $("#consumo-energia").change(buildConsumos);
-    //$("#tipo-consumo[1]").change(setNumberOf);
+    
     $('#tipo-consumo' + rowId).change(getTipoConsumo);
     
-    //$("#add").click(addRowWaterUsage);
-    //$("#remove").click(removeRowWaterUsage);
+    
     $("#nova-fonte").change(setNovaFonteData);
     
     $("#acoplar-solar").change(function(){
@@ -256,12 +255,12 @@ $(document).ready(function() {
                 max: function (element) {
 
                     if ($("#sis_prod").val() != "" && $("#sis_prod").val() != undefined && $("#sis_prod").val() == 0) {
-                        return '<label style="font-size: 14px; color: red;">O rendimento máximo é 7.</label>';
+                        return '<label style="font-size: 14px; color: red;">O COP máximo é 7.</label>';
                     } else {
                         return '<label style="font-size: 14px; color: red;">O rendimento máximo é 110%.</label>';
                     }
                 },
-                step: '<label style="font-size: 14px; color: red;">o incremento é de 0.1.</label>',
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.1.</label>',
                 number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
             },
             age: {
@@ -270,8 +269,8 @@ $(document).ready(function() {
             'custo-unit-input': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                 number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>',
-                step: '<label style="font-size: 14px; color: red;">o passo de incremento é de 0.00001 .</label>',
-                min: '<label style="font-size: 14px; color: red;">O mínimo é 0.00001 .</label>'
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.00001 .</label>',
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 0.00001€ .</label>'
             },
             'temp-req': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
@@ -297,7 +296,7 @@ $(document).ready(function() {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                 min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
                 step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
+                digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais.Ex: 10</label>'
             },
             'perfil-mensal': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
@@ -326,9 +325,9 @@ $(document).ready(function() {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                 min: '<label style="font-size: 14px; color: red;">O mínimo é 0 º.</label>',
                 max: '<label style="font-size: 14px; color: red;">O máximo é 70 º.</label>',
-                step: '<label style="font-size: 14px; color: red;">O passo é 1.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>',
-                number: '<label style="font-size: 14px; color: red;">Insera um número válido.Ex: 10</label>'
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
+                digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais. Ex: 10</label>',
+                number: '<label style="font-size: 14px; color: red;">Insira um número válido.Ex: 10</label>'
             }
         }
     });
@@ -419,7 +418,7 @@ function getSistemasProdAQSValues() {
 
     if (id!="" && id!= undefined && id >= 0) {
         $('#custo-unit-input').val((tecnologia_atual[id].custo_unit*tecnologia_atual[id].fator_conversao).toFixed(2));
-       // $("#custo-unit-input").attr("value", tecnologia_atual[id].custo_unit);
+        
         var begin = $("#custo-unit-label")[0].textContent.indexOf("(");
         var text = $("#custo-unit-label")[0].textContent.substring(0,begin) + " (€/" + tecnologia_atual[id].unidade + ")";
         
@@ -479,11 +478,7 @@ function buildConsumoEnergia(){
     }
 }
 
-/*function buildTipoConsumo(){    
-    for(var i = 0; i < consumo_diario_agua.length; i++) {
-        $('#tipo-consumo[1]').append($('<option class="op"></option>').val(i).html(consumo_diario_agua[i].nome));
-    }
-}*/
+
 function buildTipoConsumo() {
     for (var i = 0; i < consumo_diario_agua.length; i++) {
         $('.tipo-consumo').append($('<option class="op"></option>').val(i).html(consumo_diario_agua[i].nome));
@@ -495,85 +490,7 @@ function getTipoConsumo() {
     $('#tipo-consumo-descricao' + rowId).html(consumo_diario_agua[id].numero_de);
 }
 
-/*function setNumberOf(){
-    var indexOf = $(this).attr('id').indexOf("]");
-    var firstIndex = $(this).attr('id').indexOf("[");
-    var id = $(this).attr('id').substring(firstIndex, indexOf);
-    var parentRow = $(this).parent().parent().find("#desctipoconsumo[" + id + "]");
-    if($(this).val()== "" || $(this).val()== undefined || $(this).val()<0){
-        parentRow.html("");
-    }else{
-        parentRow.html(consumo_diario_agua[$(this).val()].numero_de);
-    }
-}*/
 
-/*function addRowWaterUsage(){    
-    if($('#copy-row').css('display') == 'none'){
-        
-        $('#copy-row').find("#desctipoconsumo[1]").html("");
-        $('#copy-row').find("#tipo-consumo[1]").val("");
-        $('#copy-row').find("#tipoconsumoval[1]").val("");
-        $('#copy-row').show();
-    }else{
-        var firstRow = $("#copy-row");
-        var copy = firstRow.clone(true);
-        
-        // TODO - 
-        //insertBefore("#water-usage tbody>tr:last");
-        copy.find("#desctipoconsumo[1]").html("");
-        copy.find("#desctipoconsumo[1]").attr("id", "desctipoconsumo[" + perfilAqsRow + "]");
-        copy.find("#desctipoconsumo[" + perfilAqsRow + "]").attr("name", "desctipoconsumo[" + perfilAqsRow + "]");
-        
-        copy.find("#tipo-consumo[1]").val("");
-        copy.find("#tipo-consumo[1]").attr("id", "tipo-consumo[" + perfilAqsRow + "]");
-        copy.find("#tipo-consumo[" + perfilAqsRow + "]").attr("name", "tipo-consumo[" + perfilAqsRow + "]");
-        
-        copy.find("#tipoconsumoval[1]").val("");
-        copy.find("#tipoconsumoval[1]").attr("id", "tipoconsumoval[" + perfilAqsRow + "]");
-        copy.find("#tipoconsumoval[" + perfilAqsRow + "]").attr("name", "tipoconsumoval[" + perfilAqsRow + "]");
-        
-        copy.insertBefore("#water-usage tbody>tr:last");
-        copy.removeAttr("id");
-        $("#tipo-consumo[" + perfilAqsRow + "]").change(setNumberOf);
-    
-        $("#desctipoconsumo[" + perfilAqsRow + "]").rules('add', {
-            required: true,
-            messages: {
-                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
-            }
-        });
-
-        $("#tipo-consumo[" + perfilAqsRow + "]").rules('add', {
-            required: true,
-            messages: {
-                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
-            }
-        });
-
-        $("#tipoconsumoval[" + perfilAqsRow + "]").rules('add', {
-            required: true,
-            messages: {
-                required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
-            }
-        });
-
-        perfilAqsRow++;
-    }
-}
-
-function removeRowWaterUsage(){    
-    var parentRow = $(this).parent().parent();
-    if(parentRow.attr("id")!="copy-row"){
-         var r = confirm("Tem a certeza que pretende remover?");
-        //alert(r);
-        if (r == true) {
-            parentRow.remove();
-            perfilAqsRow--;
-        }
-    }else{
-        parentRow.hide();
-    }
-}*/
 
 /**
  * this function should build consumos dependent of the selected option in $("#consumo-energia")
@@ -607,14 +524,7 @@ function buildConsumos(){
         }
         $("#total_consumo_somatorio").val(totalAnualConsumos);
     });
-
-    /*$("input[name='consumosMeses[]']").change(function(){
-        totalAnualConsumos = 0;
-        for(i=0;i<$("input[name='consumosMeses[]']").length;i++){
-            totalAnualConsumos += new Number($("input[name='consumosMeses[]']")[i].value);
-        }
-        $("#total_consumo_somatorio").val(totalAnualConsumos);
-    });*/
+    
 
     for (i = 0; i < meses_numero_horas.length; i++) {
         $("input[name='consumosMeses[" + i + "]']").rules('add', {
@@ -739,7 +649,7 @@ function prevStep() {
         } else if (prevId == 2) {
             $('[data-id="' + id + '"]').hide();
             $('[data-id="1"]').show();
-
+			 $('.print_pdf').hide();
             $('.perfil-consumo').show();
             $('.end-step').hide();
             $('.but-2').hide();
@@ -759,6 +669,7 @@ function prevStep() {
             $("#corrige-coletores").val("");
             $('#analise-but').show();
             $('.end-step').show();
+ 			$('.print_pdf').show();
             $('.but-2').hide();
         } else if (prevId == 3) {
             $('[data-id="' + id + '"]').hide();
@@ -770,7 +681,7 @@ function prevStep() {
         } else if (prevId == 1) {
             $('[data-id="' + id + '"]').hide();
             $('[data-id="' + prevId + '"]').show();
-
+			$('.print_pdf').hide();
             $('.perfil-consumo').show();
             $('.end-step').hide();
             $('.but-2').hide();
@@ -793,7 +704,7 @@ function perfilConsumo() {
     if ($('#conhece-consumo').val() == 0) {
         $('[data-id="' + id + '"]').hide();
         $('[data-id="3"]').show();
-
+		$('.print_pdf').hide();
         $('.perfil-consumo').hide();
         $('.end-step').hide();
         $('.but-2').show();
@@ -803,6 +714,7 @@ function perfilConsumo() {
         $('[data-id="' + nextId + '"]').show();
 
         $('.perfil-consumo').show();
+		$('.print_pdf').hide();
         $('.end-step').hide();
         $('.but-2').hide();
 

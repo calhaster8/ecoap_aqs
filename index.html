@@ -3,31 +3,29 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" crossorigin="anonymous"/>
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400|Open+Sans:300,400|Roboto:100,300,400" rel="stylesheet"/>        
-        <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>        
+        <link rel="stylesheet" href="include/css/print.min.css"/>
         <!--BOOTSTRAP CDN-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <link rel="shortcut icon" href="img/logo-head-small.png" type="image/png"/>
+        <link rel="stylesheet" href="include/css/bootstrap.min.css"/>
+        <link rel="shortcut icon" href="include/img/logo-head-small.png" type="image/png"/>
         <!--CUSTOM CSS-->
-        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="include/css/style.css"/>
         <!--BOOTSTRAP + JQUERY CDN-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="include/js/jquery.min.js" ></script>
+        <script src="include/js/bootstrap.min.js"></script>
         <!--CUSTOM JS-->
-        <script src="js/main.js"></script>
-        <script src="js/info.js"></script>
-        <script src="js/calculos.js"></script>
-        <script src="js/globals.js"></script>        
-        <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-        <title>Calculadora - AQS</title>
+        <script src="include/js/main.js"></script>
+        <script src="include/js/info.js"></script>
+        <script src="include/js/calculos.js"></script>
+        <script src="include/js/globals.js"></script>        
+        <script src="include/js/print.min.js"></script>
+        <script src="include/js/jquery.validate.min.js"></script>
+        <title>ECO.AP - Calculadora - AQS</title>
     </head>
     <body>
         <header class="header">
             <!--span Eco.AP Calculator-->
-            <!--.logo--><span class="header-title">Calculadora - AQS</span>
+            <!--.logo--><span class="header-title">Calculadora - Águas Quentes Sanitárias (AQS)</span>
             <!--<img src="img/logo.png" alt="logo" class="logo-img"/>-->
         </header>
         <main class="main container">
@@ -64,7 +62,7 @@
                                             <option value="0">Não conhece</option>
                                             <option value="2">Inserir rendimento</option>
                                         </select>
-                                        <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento</label>
+                                        <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento (%)</label>
                                         <input id="iRendMan" type="number" name="iRendMan" placeholder="" min="0" step="0.1" style="display:none;">
                                     </div>
                                     <div class="dado age">
@@ -94,7 +92,7 @@
                             </div>
                             <div id="perfil-aqs" data-id="2" class="step">
                                 <div class="dados-titulo">
-                                    <span>Perfil AQS</span>
+                                    <span>Perfil de Consumo de AQS</span>
                                 </div>
                                 <div class="dados-child">
                                    
@@ -146,7 +144,7 @@
                             </div>
                             <div id="consumos" data-id="3" class="step">
                                 <div class="dados-titulo">
-                                    <span>Consumos</span>
+                                    <span>Consumos Energéticos</span>
                                 </div>
                                 <div class="dados-child">
                                     <div class="tabelas">
@@ -187,7 +185,7 @@
                                         <input id="custo-unit-medidas" name="custo-unit-medidas" type="number" placeholder="0€" class="form-control xInput" step="0.01" min="0" />
                                     </div>
                                     <div class="dado acoplar-solar">
-                                        <label for="acoplar-solar">Acoplar solar térmico</label>
+                                        <label for="acoplar-solar">Pretende acoplar um sistema solar térmico?</label>
                                         <select id="acoplar-solar" name="acoplar-solar" class="sel">
                                             <option value="">Seleccionar opção</option>
                                             <option value="0">Sim</option>
@@ -198,7 +196,7 @@
                                         <table class="table table-bordered">
                                             <tbody>
                                                 <tr class="textTR">
-                                                    <td rowspan="2" class="in">Orientação solar</td>
+                                                    <td rowspan="2" class="in">Orientação solar (aprox.)</td>
                                                     <td class="select-cell">
                                                         <select id="orientacao-sel" name="orientacao-sel">
                                                             <option value="">Seleccionar opção</option>

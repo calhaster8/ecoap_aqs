@@ -1,8 +1,7 @@
 function getCustomizedPerfilMensal(idPerfilMensal, i){
     
     if(idPerfilMensal>=0 && idPerfilMensal<3){
-        //SE($D$8=Info!$B$40;1;SE($D$8=Info!$B$43;Info!$D$40;SE($D$8=Info!$B$42;1;0)))
-        // idPerfilMensal==0 ? 1 : (idPerfilMensal==2 ? perfil_mensal[idPerfilMensal].consumo : (idPerfilMensal==1 ? 1 : 0))
+        
         if(i>=4 && i<9){
             return idPerfilMensal==0 ? 1 : (idPerfilMensal==2 ? 1 : (idPerfilMensal==1 ? perfil_mensal[idPerfilMensal].consumo : 0 ));            
         }else{
@@ -54,11 +53,7 @@ function totalNecessidadesEnergiaFunction() {
         }
     }else if(conheceConsumos!="" && conheceConsumos!= undefined && conheceConsumos==1){
         var calculos = 0;
-        /*for(j=0;j<$("select[name='tipo-consumo[]']").length;j++){
-            var inputValue = new Number($("input[name='tipoconsumoval[]']")[j].value);
-            var idLocal = $("select[name='tipo-consumo[]']")[j].value;
-            calculos += inputValue * consumo_diario_agua[idLocal].valor;
-        }*/
+        
         for(j=1; j < rowId + 1; j++) {
             var inputValue = new Number($('#tipo-consumo-value' + j).val());
             var idLocal = $('#tipo-consumo' + j).val();
@@ -74,14 +69,10 @@ function totalNecessidadesEnergiaFunction() {
     correcaoOrientacao();
     energiaSolarCaptada();
     
-    
-//    n_colectores = $("#corrige-coletores").val()=="" ? ((totalRacio/area_coletor_solar).toFixed(0)==0 ? 1 : (totalRacio/area_coletor_solar).toFixed(0)) : $("#corrige-coletores").val();
-//    area_colectores = n_colectores*area_coletor_solar;
-//    volume_acumulacao_colectores =(area_colectores*volume_acumulacao).toFixed(0);
 }
 
 function correcaoOrientacao() {
-//=SE(ABS(Medidas!$C$9)>70;0;SE(ABS(Medidas!$C$9)>Info!C59;1,14-0,0085*Medidas!$C$9;1))
+    
     var orientacaoInput = $('#orientacao-solar').val();
     var correcaoOrientacao = 0;
 
@@ -282,10 +273,6 @@ function cenarioI() {
     total_cenarioI_mes = 0;
     total_cenarioI_custos = 0;
     
-    //=SE(E(Dados!$C$12=Info!$C$2;Consumos!$C$2=Info!$C$18);Consumos!C5*PROCV(Dados!$C$5;Info!$B$8:$H$15;7);SE(E(Dados!$C$12=Info!$C$2;Consumos!$C$2=Info!$C$17);Consumos!$C$4*PROCV(Dados!$C$5;Info!$B$8:$H$15;7)*Info!E101;                                                                                                                   C3/SE(Dados!$C$6=Info!$C$4;SE(Dados!$C$7=Info!$D$7;PROCV(Dados!$C$5;Info!$B$8:$H$15;3);SE(Dados!$C$7=Info!$E$7;PROCV(Dados!$C$5;Info!$B$8:$H$15;4);PROCV(Dados!$C$5;Info!$B$8:$H$15;5)));Dados!$C$6)))
-    // se (conheceConsumos==0 && consumoEngergia==0) ? $("input[name='consumosMeses[]']")[i].value*tecnologia_atual[$("#sis-prod").val()].fator_conversao : ( (conhece_consumos==0 && consumoEngergia==1) ? $("input[name='consumoAnualTotal']").value*tecnologia_atual[$("#sis-prod").val()].fator_conversao*meses_numero_horas[i].aqs_mensal : (necessidades_mes_kWh[i]/ ( inpuinputRendimento==0) ? ()) 
-   
-    
     for (i = 0; i < meses_numero_horas.length; i++) {
         
         if(conheceConsumos==0 && consumoEngergia==1){
@@ -319,9 +306,7 @@ function cenarioF() {
     total_cenarioF_mes = 0;
     cenarioF_custos = [];
     total_cenarioF_custos = 0;
-    //=SE(OU(Medidas!$C$6=Info!$C$3;Medidas!$C$6="");D3*SE(Dados!$C$7=Info!$D$7;PROCV(Dados!$C$5;Info!$B$8:$H$15;3);SE(Dados!$C$7=Info!$E$7;PROCV(Dados!$C$5;Info!$B$8:$H$15;4);PROCV(Dados!$C$5;Info!$B$8:$H$15;5)))/PROCV(Medidas!$C$2;Info!$B$22:$G$25;3);Cálculos_Solar!H3*Info!$C$73/PROCV(Medidas!$C$2;Info!$B$22:$G$25;3))
-    // se  ($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*tecnologia_atual[sist_aqs].rendimento[age].valor/tecnologia_futura[novaFonte].rendimento : totalEnergiaBackupMes[i]*fatores_conversao[1]/tecnologia_futura[novaFonte].rendimento;
-  
+    
     var rendTmp = (inputRendimento!=0 && inputRendimento!="" && inputRendimento>0 && (age=="" || age==undefined) ? inputRendimento : tecnologia_atual[sist_aqs].rendimento[age].valor);
     
     for (i = 0; i < meses_numero_horas.length; i++) {
@@ -394,7 +379,7 @@ function resume(){
         $("#errorAQS").html("A implementação da medida seleccionada resultará num aumento de custos face à situação actual.");
     }
     reducaoPercent = reducaoEuro/total_cenarioI_custos;
-    //if($("#acoplar-solar").val()==0){
+    
     n_colectores_final = (inputColetores != undefined && inputColetores != "") ? new Number(inputColetores) : new Number((totalRacio/area_coletor_solar).toFixed(0));
     if(n_colectores_final<avisos[4].valor){
         alert(avisos[4].mensagem);
@@ -403,25 +388,24 @@ function resume(){
     
     area_colectores_final = (inputColetores == undefined || inputColetores == "") ? new Number((n_colectores_final*area_coletor_solar).toFixed(0)) : new Number((inputColetores*area_coletor_solar).toFixed(0));
     
-    //ARRED(Resultados!$C$3/Info!$C$72/Info!$C$73/PROCV(MÁXIMO(Resultados!$C$3:$C$14);Resultados!$A$3:$C$14;1)/(Dados!$C$10-Info!$C$52);-2)
+    
     var position = max(necessidades_mes_kWh);
     volume_acumulacao_resume = arred(necessidades_mes_kWh[0]/fatores_conversao[0]/fatores_conversao[1]/meses_numero_horas[position].n_dias/($("#temp-req").val()-temperatura_media),-2);
     
-    //=SE(C11<Info!$B$90;Info!$C$90*C11;SE(C11>Info!$B$92;Info!$C$92*C11;Info!$C$91*C11))
+    
     colectores = (area_colectores_final<10) ? area_colectores_final*investimento[0].info[0].valor : ((area_colectores_final>100) ? area_colectores_final*investimento[0].info[2].valor : investimento[0].info[1].valor*area_colectores_final); 
-    //}
-    //=MÁXIMO(Resultados!$F$3:$F$14)/PROCV(Medidas!$C$2;Info!$B$22:$D$25;3)/PROCV(MÁXIMO(Resultados!$F$3:$F$14);Resultados!$A$3:$F$14;1)/2*PROCV(Medidas!$C$2;Info!$B$22:$E$25;4)1
+    
     equipamento =  maxValor(cenarioF_mes)/tecnologia_futura[novaFonte].rendimento/meses_numero_horas[max(cenarioF_mes)].n_dias/2*tecnologia_futura[novaFonte].investimento;
-    //=SE(OU(Dados!$C$5=Info!$B$13;Dados!$C$5=Info!$B$14;Dados!$C$5=Info!$B$15);SE(C15<Info!$B$94;Info!$C$94*C15;SE(C15>Info!$B$96;Info!$C$96*C15;Info!$C$95*C15));SE(C15<Info!$B$94;Info!$C$94*C15;SE(C15>Info!$B$96;Info!$C$96*C15;Info!$C$95*C15))/2)
+    
     var dep_tem = (volume_acumulacao_resume<500 ? volume_acumulacao_resume*investimento[1].info[0].valor : (volume_acumulacao_resume>2000 ? volume_acumulacao_resume*investimento[1].info[2].valor : volume_acumulacao_resume*investimento[1].info[1].valor ) );
     depositos_acessorios = ($("#sis-prod").val()>=5 && $("#sis-prod").val()<8) ? dep_tem : dep_tem/2;
-    //=SE(Medidas!$C$6=Info!$C$2;SOMA($C$18:$C$20)*Info!$C$97;SOMA($C$19:$C$20)*Info!$C$97)
+    
     instalacao = ($("#acoplar-solar").val()==0) ?  (colectores + equipamento + depositos_acessorios)*investimento[2].valor_direto : (equipamento + depositos_acessorios)*investimento[2].valor_direto;
-    //=SE(Medidas!$C$6=Info!$C$2;SOMA($C$18:$C$21);SOMA($C$19:$C$21))
+    
     investimento_resume = ($("#acoplar-solar").val()==0 && $("#acoplar-solar").val()!="" && $("#acoplar-solar").val()!=undefined) ? (colectores + equipamento + depositos_acessorios + instalacao) : (equipamento + depositos_acessorios + instalacao);
-    //=C17*Info!$C$98
+    
     op_manutencao = investimento_resume*investimento[3].valor_direto;
-    //=C17/C7
+    
     periodo_retorno = investimento_resume/reducaoEuro;
 
     excedente_verao_resume = (maxValor(totalExcedenteSolarArrayPerc) > avisos[0].valor) ? maxValor(totalExcedenteSolarArrayPerc) : "";
