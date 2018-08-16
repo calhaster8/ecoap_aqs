@@ -81,9 +81,9 @@ $(document).ready(function () {
             digits: true,
             messages: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
+                min: '<label style="font-size: 14px; color: red;">O valor mínimo é 1</label>',
+                step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+                digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             }
         });
 
@@ -130,7 +130,7 @@ $(document).ready(function () {
                     }
                 },
                 step: 0.1,
-                min: 0,
+                min: 1,
                 max: function () {
 
                     if ($("#sis-prod").val() != "" && $("#sis-prod").val() != undefined && $("#sis-prod").val() == 0) {
@@ -154,11 +154,11 @@ $(document).ready(function () {
                 required: true,
                 number: true,
                 step: 0.01,
-                min: 0
+                min: 0.01
             },
             'temp-req': {
                 required: true,
-                min: 0,
+                min: 1,
                 max: 100,
                 number: true,
                 step: 1,
@@ -186,7 +186,8 @@ $(document).ready(function () {
                 required: true,
                 min: 1,
                 step: 1,
-                digits: true
+                digits: true,
+				number: true
             },
             'perfil-mensal': {
                 required: true
@@ -208,11 +209,15 @@ $(document).ready(function () {
             },
             'rendimento-medidas': {
                 required: true,
-                number: true
+                number: true,
+				step: 0.1,
+                min: 1
             },
             'custo-unit-medidas': {
                 required: true,
-                number: true
+                number: true,
+				step: 0.01,
+                min: 0.01
             },
             'acoplar-solar': {
                 required: true
@@ -251,33 +256,33 @@ $(document).ready(function () {
             },
             iRendMan: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                min: '<label style="font-size: 14px; color: red;">O rendimento mínimo é 0%.</label>',
+                min: '<label style="font-size: 14px; color: red;">O valor mínimo é 1</label>',
                 max: function (element) {
 
                     if ($("#sis-prod").val() != "" && $("#sis-prod").val() != undefined && $("#sis-prod").val() == 0) {
-                        return '<label style="font-size: 14px; color: red;">O COP máximo é 7.</label>';
+                        return '<label style="font-size: 14px; color: red;">O COP máximo é 7</label>';
                     } else {
-                        return '<label style="font-size: 14px; color: red;">O rendimento máximo é 110%.</label>';
+                        return '<label style="font-size: 14px; color: red;">O rendimento máximo é 110%</label>';
                     }
                 },
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.1.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.1</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>'
             },
             age: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
             'custo-unit-input': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>',
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.00001 .</label>',
-                min: '<label style="font-size: 14px; color: red;">O mínimo é 0.00001€ .</label>'
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>',
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.01</label>',
+                min: '<label style="font-size: 14px; color: red;">O custo mínimo é de 0.01€</label>'
             },
             'temp-req': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                min: '<label style="font-size: 14px; color: red;">O mínimo é 1 ºC.</label>',
-                max: '<label style="font-size: 14px; color: red;">O máximo é 100 ºC.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>',
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1 </label>'
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 1 ºC</label>',
+                max: '<label style="font-size: 14px; color: red;">O máximo é 100 ºC</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+                step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             },
             'conhece-consumo': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
@@ -287,16 +292,17 @@ $(document).ready(function () {
             },
             consumoAnualTotal: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>'
             },
             'tipo-consumo1': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
             'tipo-consumo-value1': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais.Ex: 10</label>'
+                min: '<label style="font-size: 14px; color: red;">O valor mínimo é 1</label>',
+                step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+                digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+				number: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             },
             'perfil-mensal': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
@@ -309,11 +315,13 @@ $(document).ready(function () {
             },
             'rendimento-medidas': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>'
             },
             'custo-unit-medidas': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>',
+				step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.01</label>',
+                min: '<label style="font-size: 14px; color: red;">O custo mínimo é de 0.01€</label>'
             },
             'acoplar-solar': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
@@ -323,11 +331,11 @@ $(document).ready(function () {
             },
             'orientacao-solar': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                min: '<label style="font-size: 14px; color: red;">O mínimo é 0 º.</label>',
-                max: '<label style="font-size: 14px; color: red;">O máximo é 70 º.</label>',
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais. Ex: 10</label>',
-                number: '<label style="font-size: 14px; color: red;">Insira um número válido.Ex: 10</label>'
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 0 º</label>',
+                max: '<label style="font-size: 14px; color: red;">O máximo é 70 º</label>',
+                step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+                digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             }
         }
     });
@@ -532,7 +540,7 @@ function buildConsumos() {
             number: true,
             messages: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>'
             }
         });
     }
