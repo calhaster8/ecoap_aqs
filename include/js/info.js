@@ -4,7 +4,6 @@ var escolhas = [
     "Não"
 ];
 
-
 var idades = [
     "< 10 anos",
     "> 20 anos",
@@ -18,19 +17,19 @@ var consumo_energia = ["Total anual","Mensal"];
 var tecnologia_atual = [
     {
         nome: "Bomba de calor",
-        custo_unit: 0.2, //euros
+        custo_unit: 0.2,
         rendimento: [
             {
                 nome: "< 10 anos",
-                valor: 2.75 //275%
+                valor: 2.75
             },
             {
                 nome: "> 20 anos",
-                valor: 2.00 //200%
+                valor: 2.00
             },
             {
                 nome: "10 a 20 anos",
-                valor: 2.50 //250%
+                valor: 2.50
             }
         ],
         unidade: "kWh",
@@ -38,19 +37,19 @@ var tecnologia_atual = [
     },
     {
         nome: "Caldeira (biomassa)",
-        custo_unit: 0.043, //euros
+        custo_unit: 0.043,
         rendimento: [
             {
                 nome: "< 10 anos",
-                valor: 0.6 //60%
+                valor: 0.6
             },
             {
                 nome: "> 20 anos",
-                valor: 0.6 //60%
+                valor: 0.6
             },
             {
                 nome: "10 a 20 anos",
-                valor: 0.6 //60%
+                valor: 0.6
             }
         ],
         unidade: "kg",
@@ -58,19 +57,19 @@ var tecnologia_atual = [
     },
     {
         nome: "Caldeira (gás natural)",
-        custo_unit: 0.10, //euros
+        custo_unit: 0.10,
         rendimento: [
             {
                 nome: "< 10 anos",
-                valor: 0.87 //87%
+                valor: 0.87
             },
             {
                 nome: "> 20 anos",
-                valor: 0.79 //79%
+                valor: 0.79
             },
             {
                 nome: "10 a 20 anos",
-                valor: 0.83 //83%
+                valor: 0.83
             }
         ],
         unidade: "m3",
@@ -78,19 +77,19 @@ var tecnologia_atual = [
     },
     {
         nome: "Caldeira (gás propano)",
-        custo_unit: 0.12, //euros
+        custo_unit: 0.12,
         rendimento: [
             {
                 nome: "< 10 anos",
-                valor: 0.87 //87%
+                valor: 0.87
             },
             {
                 nome: "> 20 anos",
-                valor: 0.79 //79%
+                valor: 0.79
             },
             {
                 nome: "10 a 20 anos",
-                valor: 0.83 //83%
+                valor: 0.83
             }
         ],
         unidade: "kg",
@@ -98,19 +97,19 @@ var tecnologia_atual = [
     },
     {
         nome: "Caldeira (gasóleo)",
-        custo_unit: 0.12, //euros
+        custo_unit: 0.12,
         rendimento: [
             {
                 nome: "< 10 anos",
-                valor: 0.8 //80%
+                valor: 0.8
             },
             {
                 nome: "> 20 anos",
-                valor: 0.72 //72%
+                valor: 0.72
             },
             {
                 nome: "10 a 20 anos",
-                valor: 0.76 //76%
+                valor: 0.76
             }
         ],
         unidade: "litro",
@@ -118,19 +117,19 @@ var tecnologia_atual = [
     },
     {
         nome: "Esquentador (gás natural)",
-        custo_unit: 0.10, //euros
+        custo_unit: 0.10,
         rendimento: [
             {
                 nome: "< 10 anos",
-                valor: 0.85 //85%
+                valor: 0.85
             },
             {
                 nome: "> 20 anos",
-                valor: 0.75 //75%
+                valor: 0.75
             },
             {
                 nome: "10 a 20 anos",
-                valor: 0.8 //80%
+                valor: 0.8
             }
         ],
         unidade: "m3",
@@ -138,19 +137,19 @@ var tecnologia_atual = [
     },
     {
         nome: "Esquentador (gás propano)",
-        custo_unit: 0.12, //euros
+        custo_unit: 0.12,
         rendimento: [
             {
                 nome: "< 10 anos",
-                valor: 0.85 //85%
+                valor: 0.85
             },
             {
                 nome: "> 20 anos",
-                valor: 0.75 //75%
+                valor: 0.75
             },
             {
                 nome: "10 a 20 anos",
-                valor: 0.8 //80%
+                valor: 0.8
             }
         ],
         unidade: "kg",
@@ -158,19 +157,19 @@ var tecnologia_atual = [
     },
     {
         nome: "Termoacumulador elétrico",
-        custo_unit: 0.20, //euros
+        custo_unit: 0.20,
         rendimento: [
             {
                 nome: "< 10 anos",
-                valor: 0.95 //95%
+                valor: 0.95
             },
             {
                 nome: "> 20 anos",
-                valor: 0.85 //85%
+                valor: 0.85
             },
             {
                 nome: "10 a 20 anos",
-                valor: 0.9 //90%
+                valor: 0.9
             }
         ],
         unidade: "kWh",
@@ -181,33 +180,33 @@ var tecnologia_atual = [
 var tecnologia_futura = [
     {
         nome: "Bomba de calor",
-        custo_unit: 0.20, // €/kWh
-        rendimento: 3.60, // 360%
-        investimento: 500.00, // €/kW
+        custo_unit: 0.20,
+        rendimento: 3.60,
+        investimento: 500.00,
         unidade: "kWh",
         fator_conversao: 1
     },
     {
         nome: "Caldeira (biomassa)",
-        custo_unit: 0.043, // €/kWh
-        rendimento: 0.9, // 90%
-        investimento: 150.00, // €/kW
+        custo_unit: 0.043,
+        rendimento: 0.9,
+        investimento: 150.00,
         unidade: "kg",
         fator_conversao: 4.67
     },
     {
         nome: "Caldeira de condensação (gás natural)",
-        custo_unit: 0.10, // €/kWh
-        rendimento: 1.10, // 110%
-        investimento: 100.00, // €/kW
+        custo_unit: 0.10,
+        rendimento: 1.10,
+        investimento: 100.00,
         unidade: "m3",
         fator_conversao: 10.53
     },
     {
         nome: "Caldeira de condensação (gás propano)",
-        custo_unit: 0.12, // €/kWh
-        rendimento: 1.10, // 360%
-        investimento: 100.00, // €/kW
+        custo_unit: 0.12,
+        rendimento: 1.10,
+        investimento: 100.00,
         unidade: "kg",
         fator_conversao: 12.96
     }
@@ -276,17 +275,17 @@ var perfil_mensal = [
     {
         nome: "Consumo similar em todos os meses do ano",
         latitude: -5,
-        consumo: 0.6 //60%
+        consumo: 0.6
     },
     {
         nome: "Maior consumo no Semeste de Inverno",
         latitude: 15,
-        consumo: 0.6 //60%
+        consumo: 0.6
     },
     {
         nome: "Maior consumo no Semestre de Verão",
         latitude: -15,
-        consumo: 0.6 //60%
+        consumo: 0.6
     }
 //    {
 //        nome: "Definir 'perfil'",
@@ -298,18 +297,18 @@ var perfil_mensal = [
 var perfil_semanal = [
     {
         nome: "Consumo predominantemente durante o fim de semana",
-        valor: 0.3, //30%
-        consumo: 0.8 //80%
+        valor: 0.3,
+        consumo: 0.8
     },
     {
         nome: "Consumo durante os dias úteis",
-        valor: 0.75, //75%
-        consumo: 0.8 //80%
+        valor: 0.75,
+        consumo: 0.8
     },
     {
         nome: "Consumo similar em todos os dias",
-        valor: 0, //0%
-        consumo: 0.8 //80%
+        valor: 0,
+        consumo: 0.8
     }
     /*{
         nome: "Definir 'perfil'",
@@ -318,9 +317,9 @@ var perfil_semanal = [
     }*/
 ];
 
-var temperatura_utilizacao = 50; //°C
+var temperatura_utilizacao = 50;
 
-var temperatura_media = 12; //°C
+var temperatura_media = 12;
 
 var desvios = [
     {
@@ -349,18 +348,16 @@ var desvios = [
     }
 ];
 
+var area_coletor_solar = 2.25;
 
-var area_coletor_solar = 2.25; //m²
+var rendimento_otico = 0.75;
 
-var rendimento_otico = 0.75; //75%
-
-
-var coeficient_perdas = 4.2; //N/S
+var coeficient_perdas = 4.2;
 
 var perdas = [
     {
         nome: "Perdas gerais",
-        valor: 0.15 //%
+        valor: 0.15
     },
     {
         nome: "Perdas por sujidade",
@@ -372,37 +369,37 @@ var perdas = [
     }
 ];
 
-var volume_acumulacao = 65; //l/m²
+var volume_acumulacao = 65;
 
 var fatores_conversao = [
-    0.0041855, //kcal --> MJ
-    0.2777 //MJ --> kWh
+    0.0041855,
+    0.2777
 ];
 
 var avisos = [
     {
         nome: "Aviso de produção excedentária",
-        valor: 0.4, //40%
+        valor: 0.4,
         mensagem: "Demasiada energia excedentária no Verão. Considere reduzir o n.º de colectores solares de modo a não ter muita energia excedentária ou salvaguarde a instalação de sistemas de proteção e/ou o escoamento da energia excedente."
     },
     {
         nome: "Aviso de projeto",
-        valor: 20, //20m²
+        valor: 20,
         mensagem: "OBS: requer projeto de execução (Portaria 701-H/2008) e sistema de monitorização com registo de produção."
     },
     {
         nome: "Aviso de orientação",
-        valor: 20, //20°
+        valor: 20,
         mensagem: "Desvio superior a 20º relativamente a Sul influencia a rentabilidade energética do sistema solar."
     },
     {
         nome: "Aviso de inclinação",
-        valor: 15, //15°
+        valor: 15,
         mensagem: "Um desvio superior em 15º relativamente ao ângulo considerado ideal poderá influenciar a rentabilidade energética do sistema solar."
     },
     {
         nome: "Aviso de colectores menor que 0.5",
-        valor: 0.5, //15°
+        valor: 0.5,
         mensagem: "O solar térmico a aplicar não é viável. Por favor reveja os dados inseridos e tente novamente."
     }
 ];
@@ -413,17 +410,17 @@ var investimento = [
         info: [
             {
                 tipo: "até 10 m²",
-                valor: 250, //250.00€
+                valor: 250,
                 unidade: "€/m²"
             },
             {
                 tipo: "10 a 100 m²",
-                valor: 200, //200.00€
+                valor: 200,
                 unidade: "€/m²"
             },
             {
                 tipo: "mais de 100 m²",
-                valor: 150, //150.00€
+                valor: 150,
                 unidade: "€/m²"
             }
         ]
@@ -433,28 +430,28 @@ var investimento = [
         info: [
             {
                 tipo: "até 500 litros",
-                valor: 5, //5.00€
+                valor: 5,
                 unidade: "€/litro"
             },
             {
                 tipo: "500 a 2000 litros",
-                valor: 4, //4.00€
+                valor: 4,
                 unidade: "€/litro"
             },
             {
                 tipo: "mais de 2000 litros",
-                valor: 3, //3.00€
+                valor: 3,
                 unidade: "€/litro"
             }
         ]
     },
     {
         nome: "Instalação",
-        valor_direto: 0.2 //20%
+        valor_direto: 0.2
     },
     {
         nome: "Manutenção",
-        valor_direto: 0.05 //5%
+        valor_direto: 0.05
     }
 ];
 
@@ -463,79 +460,78 @@ var meses_numero_horas = [
         mes: "Janeiro",
         n_dias: 31,
         n_horas_sol: 8.0,
-        aqs_mensal: 0.092 // 9.2%
+        aqs_mensal: 0.092
     },
     {
         mes: "Fevereiro",
         n_dias: 28,
         n_horas_sol: 9.0,
-        aqs_mensal: 0.082 // 8.2%
+        aqs_mensal: 0.082
     },
     {
         mes: "Março",
         n_dias: 31,
         n_horas_sol: 9.0,
-        aqs_mensal: 0.082 // 8.2%
+        aqs_mensal: 0.082
     },
     {
         mes: "Abril",
         n_dias: 30,
         n_horas_sol: 9.5,
-        aqs_mensal: 0.078 // 7.8%
+        aqs_mensal: 0.078
     },
     {
         mes: "Maio",
         n_dias: 31,
         n_horas_sol: 9.5,
-        aqs_mensal: 0.078 // 7.8%
+        aqs_mensal: 0.078
     },
     {
         mes: "Junho",
         n_dias: 30,
         n_horas_sol: 9.5,
-        aqs_mensal: 0.078 // 7.8%
+        aqs_mensal: 0.078
     },
     {
         mes: "Julho",
         n_dias: 31,
         n_horas_sol: 9.5,
-        aqs_mensal: 0.078 // 7.8%
+        aqs_mensal: 0.078
     },
     {
         mes: "Agosto",
         n_dias: 31,
         n_horas_sol: 9.5,
-        aqs_mensal: 0.078 // 7.8%
+        aqs_mensal: 0.078
     },
     {
         mes: "Setembro",
         n_dias: 30,
         n_horas_sol: 9.0,
-        aqs_mensal: 0.082 // 8.2%
+        aqs_mensal: 0.082
     },
     {
         mes: "Outubro",
         n_dias: 31,
         n_horas_sol: 9.0,
-        aqs_mensal: 0.082 // 8.2%
+        aqs_mensal: 0.082
     },
     {
         mes: "Novembro",
         n_dias: 30,
         n_horas_sol: 8.0,
-        aqs_mensal: 0.092 // 9.2%
+        aqs_mensal: 0.092
     },
     {
         mes: "Dezembro",
         n_dias: 31,
         n_horas_sol: 7.5,
-        aqs_mensal: 0.098 // 9.8%
+        aqs_mensal: 0.098
     }
 ];
 
 var irradiacao_temp_amb_temp_agua = [
     {
-        //dados em MJ/m²
         distritoI: "Açores",
         latitude: 38,
         mesI:  [
@@ -614,7 +610,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Aveiro",
         latitude: 40,
         mesI:  [
@@ -693,7 +688,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Beja",
         latitude: 38,
         mesI:  [
@@ -772,7 +766,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Braga",
         latitude: 41,
         mesI:  [
@@ -852,7 +845,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Bragança",
         latitude: 41,
         mesI:  [
@@ -931,7 +923,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Castelo Branco",
         latitude: 40,
         mesI:  [
@@ -1010,7 +1001,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Coimbra",
         latitude: 40,
         mesI:  [
@@ -1089,7 +1079,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Évora",
         latitude: 39,
         mesI:  [
@@ -1168,7 +1157,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Faro",
         latitude: 38,
         mesI:  [
@@ -1247,7 +1235,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Guarda",
         latitude: 40,
         mesI:  [
@@ -1326,7 +1313,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Leiria",
         latitude: 40,
         mesI: [
@@ -1405,7 +1391,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Lisboa",
         latitude: 39,
         mesI: [
@@ -1484,7 +1469,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Madeira",
         latitude: 32,
         mesI: [
@@ -1563,7 +1547,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Portalegre",
         latitude: 39,
         mesI: [
@@ -1642,7 +1625,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Porto",
         latitude: 41,
         mesI: [
@@ -1721,7 +1703,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Santarém",
         latitude: 39,
         mesI: [
@@ -1800,7 +1781,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Setúbal",
         latitude: 39,
         mesI: [
@@ -1879,7 +1859,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Viana do Castelo",
         latitude: 41,
         mesI: [
@@ -1898,7 +1877,7 @@ var irradiacao_temp_amb_temp_agua = [
             {
                 nomeI: "Março",
                 valorIrr: 12.6,
-                valorTempAmb: 12.3,
+                valorTempAmb: 11.3,
                 valorTempAgua: 12.8
             },
             {
@@ -1958,7 +1937,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Vila Real",
         latitude: 41,
         mesI: [
@@ -2037,7 +2015,6 @@ var irradiacao_temp_amb_temp_agua = [
         ]
     },
     {
-        //dados em MJ/m²
         distritoI: "Viseu",
         latitude: 40,
         mesI: [

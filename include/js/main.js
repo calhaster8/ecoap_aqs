@@ -22,7 +22,6 @@ $(document).ready(function () {
 
     $('#tipo-consumo' + rowId).change(getTipoConsumo);
 
-
     $("#nova-fonte").change(setNovaFonteData);
 
     $("#acoplar-solar").change(function () {
@@ -232,14 +231,19 @@ $(document).ready(function () {
                 }
             },
             'orientacao-solar': {
-                step: 1,
                 required: true,
-                number: true,
                 min: 0,
                 max: 70,
+				step: 1,
+                number: true,
+				digits: true
+            },
+            'corrige-coletores': {
+                min: 1,
+                step: 1,
+				number: true,
                 digits: true
-
-            }
+            } 
         },
         messages: {
             distrito: {
@@ -266,14 +270,14 @@ $(document).ready(function () {
                     }
                 },
                 step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.1</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>'
+                number: '<label style="font-size: 14px; color: red;">Introduza números com (.) em vez de (,)</label>'
             },
             age: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
             'custo-unit-input': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza números com (.) em vez de (,)</label>',
                 step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.01</label>',
                 min: '<label style="font-size: 14px; color: red;">O custo mínimo é de 0.01€</label>'
             },
@@ -315,11 +319,14 @@ $(document).ready(function () {
             },
             'rendimento-medidas': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>'
+				min: '<label style="font-size: 14px; color: red;">O valor mínimo é 1</label>',
+				step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.1</label>',
+				digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza números com (.) em vez de (,)</label>'
             },
             'custo-unit-medidas': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza números com (.) em vez de (,)</label>',
 				step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.01</label>',
                 min: '<label style="font-size: 14px; color: red;">O custo mínimo é de 0.01€</label>'
             },
@@ -336,7 +343,13 @@ $(document).ready(function () {
                 step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
                 digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
                 number: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
-            }
+            },
+			 'corrige-coletores': {
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 1 coletor</label>',
+                step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+                digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+				number: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
+			}
         }
     });
 
@@ -372,7 +385,6 @@ $(document).ready(function () {
     });
 });
 
-
 function buildDistrito() {
     for (var i = 0; i < irradiacao_temp_amb_temp_agua.length; i++) {
         $('#distrito').append($('<option class="op"></option>').val(i).html(irradiacao_temp_amb_temp_agua[i].distritoI));
@@ -402,7 +414,8 @@ function getSistemasProdAQSValues() {
         $("#iRendMan").hide();
         $("#iRendMan").val("");
         $("#iRendMan").removeAttr("disabled");
-        $('#rend').find("option[value='2']").html("Inserir COP");
+		$("#iRendMan").attr("placeholder", "0.0");
+        $('#rend').find("option[value='2']").html("Inserir COP (Ex: 3.2)");
     } else if (id != "" && id != undefined && id > 0) {
         $("#labelRendimento").html("Rendimento (%)");
         $("#rend").val("");
@@ -411,7 +424,8 @@ function getSistemasProdAQSValues() {
         $("#iRendMan").hide();
         $("#iRendMan").val("");
         $("#iRendMan").removeAttr("disabled");
-        $('#rend').find("option[value='2']").html("Inserir rendimento");
+		$("#iRendMan").attr("placeholder", "0%");
+        $('#rend').find("option[value='2']").html("Inserir rendimento (%)");
     } else {
         $("#labelRendimento").html("Rendimento (%) / COP");
         $("#rend").val("");
@@ -421,12 +435,11 @@ function getSistemasProdAQSValues() {
         $("#iRendMan").hide();
         $("#iRendMan").val("");
         $("#iRendMan").removeAttr("disabled");
-        $('#rend').find("option[value='2']").html("Inserir rendimento");
+        $('#rend').find("option[value='2']").html("Inserir rendimento (%) / COP");
     }
 
     if (id != "" && id != undefined && id >= 0) {
         $('#custo-unit-input').val((tecnologia_atual[id].custo_unit * tecnologia_atual[id].fator_conversao).toFixed(2));
-
         var begin = $("#custo-unit-label")[0].textContent.indexOf("(");
         var text = $("#custo-unit-label")[0].textContent.substring(0, begin) + " (€/" + tecnologia_atual[id].unidade + ")";
 
@@ -440,16 +453,16 @@ function getCopRendValues() {
     var idLocal = $('#sis-prod').val();
     var selectedRend = $('#rend').val();
     if (selectedRend != "" && selectedRend != undefined && selectedRend == 2 && idLocal == 0 && idLocal != "" && idLocal != undefined) {
-        $('#rend').find("option[value='2']").html("Inserir COP");
+        $('#rend').find("option[value='2']").html("Inserir COP (Ex: 3.2)");
         $('#iRendMan').show();
-        $('#iRendMan').attr('max', '7');
+        //$('#iRendMan').attr('max', '7');
         $('#labelIRendman').hide();
         $('.age').hide();
         $('#age').val("");
     } else if (selectedRend != "" && selectedRend != undefined && selectedRend == 2 && idLocal > 0 && idLocal != "" && idLocal != undefined) {
-        $('#rend').find("option[value='2']").html("Inserir rendimento");
+        $('#rend').find("option[value='2']").html("Inserir rendimento (%)");
         $('#iRendMan').show();
-        $('#iRendMan').attr('max', '100');
+        //$('#iRendMan').attr('max', '100');
         $('#labelIRendman').hide();
         $('.age').hide();
         $('#age').val("");
@@ -486,7 +499,6 @@ function buildConsumoEnergia() {
     }
 }
 
-
 function buildTipoConsumo() {
     for (var i = 0; i < consumo_diario_agua.length; i++) {
         $('.tipo-consumo').append($('<option class="op"></option>').val(i).html(consumo_diario_agua[i].nome));
@@ -498,22 +510,16 @@ function getTipoConsumo() {
     $('#tipo-consumo-descricao' + rowId).html(consumo_diario_agua[id].numero_de);
 }
 
-
-
-/**
- * this function should build consumos dependent of the selected option in $("#consumo-energia")
- * @returns {undefined}
- */
 function buildConsumos() {
     var consumoTipo = $("#consumo-energia").val();
     var tecnologia = $("#sis-prod").val();
     var html = '<table class="table table-bordered"><tbody>';
 
     if (consumoTipo != "" && consumoTipo != undefined && consumoTipo == 0) {
-        //anual
+
         html += '<tr class="textTR"><td class="in">TOTAL ANUAL (' + tecnologia_atual[tecnologia].unidade + ')</td><td class="in"><input name="consumoAnualTotal" type="number" placeholder="0" class="form-control xInput"/></td></tr>';
     } else if (consumoTipo != "" && consumoTipo != undefined && consumoTipo == 1) {
-        //mensal
+
         html += '<tr class="textTR"><td class="in">MESES</td><td class="in">Unidade (' + tecnologia_atual[tecnologia].unidade + ')</td></tr>';
         for (i = 0; i < meses_numero_horas.length; i++) {
             html += '<tr class="textTR"><td class="in">' + meses_numero_horas[i].mes + '</td><td class="in"><input name="consumosMeses[' + i + ']" id="consumoMeses[' + i + ']" type="number" placeholder="0" class="form-control xInput"/></td></tr>';
@@ -533,14 +539,13 @@ function buildConsumos() {
         $("#total_consumo_somatorio").val(totalAnualConsumos);
     });
 
-
     for (i = 0; i < meses_numero_horas.length; i++) {
         $("input[name='consumosMeses[" + i + "]']").rules('add', {
             required: true,
             number: true,
             messages: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>'
+                number: '<label style="font-size: 14px; color: red;">Introduza números com (.) em vez de (,)</label>'
             }
         });
     }
@@ -587,9 +592,6 @@ function buildPerfilSemanal() {
     }
 }
 
-
-
-// BUTTONS STEPS
 function nextStep() {
     var id = $('.step:visible').data('id');
     var nextId = $('.step:visible').data('id') + 1;
@@ -606,7 +608,6 @@ function nextStep() {
         $('.perfil-consumo').hide();
         $('.end-step').show();
         $('.but-2').hide();
-
     }
 
     if (nextId == 5 || nextId == 6) {
@@ -625,15 +626,12 @@ function nextStep() {
             $('#reanalise-but').show();
         }
     }
-
 }
 
-//STEPS
 function prevStep() {
     var id = $('.step:visible').data('id');
     var prevId = $('.step:visible').data('id') - 1;
 
-    //CONHECE
     if ($('#conhece-consumo').val() == 0) {
         if (prevId == 4) {
             $('[data-id="' + id + '"]').hide();
@@ -661,12 +659,9 @@ function prevStep() {
             $('.perfil-consumo').show();
             $('.end-step').hide();
             $('.but-2').hide();
-
-
             $('.anterior').hide();
-
         }
-        //NAO CONHECE
+
     } else if ($('#conhece-consumo').val() == 1) {
         if (prevId == 4) {
             $('[data-id="' + id + '"]').hide();
@@ -693,12 +688,9 @@ function prevStep() {
             $('.perfil-consumo').show();
             $('.end-step').hide();
             $('.but-2').hide();
-
             $('.anterior').hide();
         }
     }
-
-
 }
 
 function perfilConsumo() {
@@ -741,7 +733,6 @@ function perfilConsumo() {
         }
     }
 
-    //ESCONDER ANALISAR ULTIMO STEP
     if (id == 4) {
         $('.end-but').hide();
     }

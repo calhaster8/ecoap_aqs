@@ -194,6 +194,7 @@ function energiaSolarUtilizadaPercent() {
 
 function energiaBackup() {
     var novaFonte = $("#nova-fonte").val();
+    var rendimentoNovaFonte = $("#rendimento-medidas").val()!="" && $("#rendimento-medidas").val()>0 ? $("#rendimento-medidas").val() : tecnologia_futura[novaFonte].rendimento ;
     totalEnergiaBackupMes = [];
     totalEnergiaBackup = 0;
 
@@ -201,7 +202,7 @@ function energiaBackup() {
         if (necessidades_mes[i]-totalEnergiaArray2[i] < 0) {
             totalEnergiaBackupMes[i] = 0;
         } else {
-            totalEnergiaBackupMes[i] = (necessidades_mes[i] - totalEnergiaArray2[i])/tecnologia_futura[novaFonte].rendimento;
+            totalEnergiaBackupMes[i] = (necessidades_mes[i] - totalEnergiaArray2[i])/rendimentoNovaFonte;
         }
 
         totalEnergiaBackup += totalEnergiaBackupMes[i];
@@ -299,6 +300,7 @@ function cenarioF() {
     var sist_aqs = $("#sis-prod").val();
     var inputRendimento = ($("#rend").val()==2) ? (sist_aqs==0 ? $('#iRendMan').val() : $('#iRendMan').val()/100) : $("#rend").val();
     var novaFonte = $("#nova-fonte").val();
+    var rendimentoNovaFonte = $("#rendimento-medidas").val()!="" && $("#rendimento-medidas").val()>0 ? $("#rendimento-medidas").val() : tecnologia_futura[novaFonte].rendimento ;
     var age = $("#age").val();
     var custosUnit = $('#custo-unit-medidas').val();
     var rendCenarioF = 0;
@@ -310,7 +312,7 @@ function cenarioF() {
     var rendTmp = (inputRendimento!=0 && inputRendimento!="" && inputRendimento>0 && (age=="" || age==undefined) ? inputRendimento : tecnologia_atual[sist_aqs].rendimento[age].valor);
     
     for (i = 0; i < meses_numero_horas.length; i++) {
-        rendCenarioF = isNaN((($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/tecnologia_futura[novaFonte].rendimento : totalEnergiaBackupMes[i]*fatores_conversao[1]/tecnologia_futura[novaFonte].rendimento)) ? 0 : ($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/tecnologia_futura[novaFonte].rendimento : totalEnergiaBackupMes[i]*fatores_conversao[1];
+        rendCenarioF = isNaN((($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/rendimentoNovaFonte : totalEnergiaBackupMes[i]*fatores_conversao[1]/rendimentoNovaFonte)) ? 0 : ($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/rendimentoNovaFonte : totalEnergiaBackupMes[i]*fatores_conversao[1];
         cenarioF_mes[i] = rendCenarioF;
         total_cenarioF_mes += cenarioF_mes[i];
         cenarioF_custos[i] = cenarioF_mes[i] * custosUnit / tecnologia_futura[novaFonte].fator_conversao;
@@ -360,6 +362,7 @@ function resume(){
 
     var novaFonte = $("#nova-fonte").val();
     var inputColetores = $("#corrige-coletores").val();
+    var rendimentoNovaFonte = $("#rendimento-medidas").val()!="" && $("#rendimento-medidas").val()>0 ? $("#rendimento-medidas").val() : tecnologia_futura[novaFonte].rendimento ; 
     
     if($("#acoplar-solar").val()==1 && $("#acoplar-solar").val()!="" && $("#acoplar-solar").val()!=undefined){
         $(".solar-termico-results").attr("style","display:none");
@@ -395,7 +398,7 @@ function resume(){
     
     colectores = (area_colectores_final<10) ? area_colectores_final*investimento[0].info[0].valor : ((area_colectores_final>100) ? area_colectores_final*investimento[0].info[2].valor : investimento[0].info[1].valor*area_colectores_final); 
     
-    equipamento =  maxValor(cenarioF_mes)/tecnologia_futura[novaFonte].rendimento/meses_numero_horas[max(cenarioF_mes)].n_dias/2*tecnologia_futura[novaFonte].investimento;
+    equipamento =  maxValor(cenarioF_mes)/rendimentoNovaFonte/meses_numero_horas[max(cenarioF_mes)].n_dias/2*tecnologia_futura[novaFonte].investimento;
     
     var dep_tem = (volume_acumulacao_resume<500 ? volume_acumulacao_resume*investimento[1].info[0].valor : (volume_acumulacao_resume>2000 ? volume_acumulacao_resume*investimento[1].info[2].valor : volume_acumulacao_resume*investimento[1].info[1].valor ) );
     depositos_acessorios = ($("#sis-prod").val()>=5 && $("#sis-prod").val()<8) ? dep_tem : dep_tem/2;

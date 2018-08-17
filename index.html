@@ -62,8 +62,8 @@
                                             <option value="0">Não conhece</option>
                                             <option value="2">Inserir rendimento</option>
                                         </select>
-                                        <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento (%)</label>
-                                        <input id="iRendMan" type="number" name="iRendMan" placeholder="0%" min="0" step="0.1" style="display:none;">
+                                        <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento (%) / COP</label>
+                                        <input id="iRendMan" type="number" name="iRendMan" placeholder="0" min="0" step="0.1" style="display:none;">
                                     </div>
                                     <div class="dado age">
                                         <label for="age">Idade (aprox.)</label>
@@ -72,8 +72,8 @@
                                         </select>
                                     </div>
                                     <div class="dado custo-unit">
-                                        <label id="custo-unit-label" for="custo-unit">Custo energético unitário(€)</label>
-                                        <input id="custo-unit-input" name="custo-unit-input" type="number" placeholder="0.10€" min="0" step="0.01" class="form-control xInput" />
+                                        <label id="custo-unit-label" for="custo-unit">Custo energético unitário (€)</label>
+                                        <input id="custo-unit-input" name="custo-unit-input" type="number" placeholder="0.10€" min="0.01" step="0.01" class="form-control xInput" />
                                     </div>
                                     <div class="dado temp-requerida">
                                         <label for="temp-req">Temperatura (ºC) *</label>
@@ -88,14 +88,12 @@
                                         </select>
                                     </div>
                                 </div>
-                
                             </div>
                             <div id="perfil-aqs" data-id="2" class="step">
                                 <div class="dados-titulo">
                                     <span>Perfil de Consumo de AQS</span>
                                 </div>
                                 <div class="dados-child">
-                                   
                                     <div class="tabela-diaria">
                                         <table id="tb" class="table table-bordered">
                                             <tbody>
@@ -126,14 +124,12 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    
                                     <div class="dado perfil-mensal">
                                         <label for="perfil-mensal">Perfil de utilização mensal</label>
                                         <select id="perfil-mensal" name="perfil-mensal" class="sel">
                                             <option value="">Selecionar opção</option>
                                         </select>
                                     </div>
-                                    
                                     <div class="dado perfil-semanal">
                                         <label for="perfil-semanal">Perfil de utilização semanal</label>
                                         <select id="perfil-semanal" name="perfil-semanal" class="sel">
@@ -163,7 +159,6 @@
                                     </div>
                                     <div id="tabela-consumo" class="tabelas"></div>
                                 </div>
-                
                             </div>
                             <div id="medidas" data-id="4" class="step">
                                 <div class="dados-titulo">
@@ -178,7 +173,7 @@
                                     </div>
                                     <div class="dado rendimento-medidas">
                                         <label id="rendimento-medidas-label" for="rendimento-medidas">Rendimento (%) / COP</label>
-                                        <input id="rendimento-medidas" name="rendimento-medidas" type="number" placeholder="0%" class="form-control xInput" disabeled />
+                                        <input id="rendimento-medidas" name="rendimento-medidas" type="number" placeholder="0%" class="form-control xInput" />
                                     </div>
                                     <div class="dado custo-unit-medidas">
                                         <label id="custo-unit-medidas-label" for="custo-unit-medidas">Custo energético unitário (€)</label>
@@ -200,9 +195,7 @@
                                                     <td class="select-cell">
                                                         <select id="orientacao-sel" name="orientacao-sel">
                                                             <option value="">Selecionar opção</option>
-                
                                                         </select>
-                                                       
                                                     </td>
                                                 </tr>
                                                 <tr class="textTR">
@@ -291,11 +284,14 @@
                                             </tr>
                                         </tbody>
                                     </table>
+									
+									<div class="pop-temp">* O investimento estimado incorpora os custos com os coletores solares, com depósitos e/ou acessórios e os respetivos custos de instalação.</div>
+									
                                     <div class="dado nota-acoplar"></div>
                                     <div class="excedente-note"></div>
                                     <div class="dado corrige-coletores">
                                         <label for="corrige-coletores">Redimensionar solar térmico: corrigir n.° de coletores</label>
-                                        <input id="corrige-coletores" type="number" placeholder="0" class="form-control xInput" />
+                                        <input id="corrige-coletores" name="corrige-coletores" type="number" placeholder="0" class="form-control xInput" />
                                     </div>
                                 </div>
                             </div>
@@ -320,7 +316,6 @@
                             <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>
                             <button type="button" class="but seguinte">Próximo</button>
                         </div>
-                
                         <div class="print_pdf step-but">
                             <span class="print_text">Deseja imprimir?
                                 <button type="button" onclick="printJS('resumo', 'html')" class="print_link">Clique aqui</button>

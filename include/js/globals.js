@@ -57,7 +57,6 @@ var total_reducao_mes = 0;
 var reducao_consumos=[];
 var total_reducao_consumos = 0;
 
-// resume vars
 var n_colectores = 0;
 var area_colectores = 0;
 var volume_acumulacao_colectores =0;
