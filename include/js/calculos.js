@@ -312,8 +312,14 @@ function cenarioF() {
     var rendTmp = (inputRendimento!=0 && inputRendimento!="" && inputRendimento>0 && (age=="" || age==undefined) ? inputRendimento : tecnologia_atual[sist_aqs].rendimento[age].valor);
     
     for (i = 0; i < meses_numero_horas.length; i++) {
-        rendCenarioF = isNaN((($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/rendimentoNovaFonte : totalEnergiaBackupMes[i]*fatores_conversao[1]/rendimentoNovaFonte)) ? 0 : ($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/rendimentoNovaFonte : totalEnergiaBackupMes[i]*fatores_conversao[1];
-        cenarioF_mes[i] = rendCenarioF;
+        
+		if($("#nova-fonte").val()==0){
+			rendCenarioF = isNaN((($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/rendimentoNovaFonte : totalEnergiaBackupMes[i]*fatores_conversao[1]/rendimentoNovaFonte)) ? 0 : ($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/rendimentoNovaFonte : totalEnergiaBackupMes[i]*fatores_conversao[1];
+        }else{
+			rendCenarioF = isNaN((($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/rendimentoNovaFonte*100 : totalEnergiaBackupMes[i]*fatores_conversao[1]/rendimentoNovaFonte*100)) ? 0 : ($("#acoplar-solar").val()==1 || $("#acoplar-solar").val()=="" || $("#acoplar-solar").val()== undefined ) ? cenarioI_mes[i]*rendTmp/rendimentoNovaFonte*100 : totalEnergiaBackupMes[i]*fatores_conversao[1];
+		}
+		
+		cenarioF_mes[i] = rendCenarioF;
         total_cenarioF_mes += cenarioF_mes[i];
         cenarioF_custos[i] = cenarioF_mes[i] * custosUnit / tecnologia_futura[novaFonte].fator_conversao;
         total_cenarioF_custos += cenarioF_custos[i];
@@ -378,10 +384,18 @@ function resume(){
     custosCF = total_cenarioF_custos;
     reducaoEuro = total_cenarioI_custos - total_cenarioF_custos;
     
-    if(reducaoEuro<=0){
-        $("#errorAQS").html("A implementação da medida seleccionada resultará num aumento de custos face à situação actual.");
-    }
-    reducaoPercent = reducaoEuro/total_cenarioI_custos;
+    if(reducaoEuro<0){
+        $("#errorAQS").html("A implementação da medida selecionada resultará num aumento da fatura energética face à situação actual.");
+		$("#errorAQS").show();
+    }else if (reducaoEuro==0){
+		$("#errorAQS").html("A implementação da medida selecionada não resultará em nenhuma alteração na fatura energética atual.");
+		$("#errorAQS").show();
+	} else {
+        $("#errorAQS").html('');
+        $("#errorAQS").hide();
+   	}
+    
+	reducaoPercent = reducaoEuro/total_cenarioI_custos;
     
     n_colectores_final = (inputColetores != undefined && inputColetores != "") ? new Number(inputColetores) : new Number((totalRacio/area_coletor_solar).toFixed(0));
     if(n_colectores_final<avisos[4].valor){
@@ -411,7 +425,7 @@ function resume(){
     
     periodo_retorno = investimento_resume/reducaoEuro;
 
-    excedente_verao_resume = (maxValor(totalExcedenteSolarArrayPerc) > avisos[0].valor) ? maxValor(totalExcedenteSolarArrayPerc) : "";
+    excedente_verao_resume = maxValor(totalExcedenteSolarArrayPerc);
     excedente_final_resume = excedente_verao_resume * 100;
     
     
@@ -422,9 +436,12 @@ function resume(){
     $('#contributoSolarTermico').html(new Number(contributoST*100).toFixed(0) + '%');
     $('#reducaoValor').html(reducaoEuro.toFixed(0) + ' €');
     $('#reducaoPercent').html(new Number(reducaoPercent*100).toFixed(0) + '%');
-    $('#numeroColetores').html(n_colectores_final.toFixed(0));
+	
+	$('#totalExcedenteSolarPerc').html(excedente_final_resume.toFixed(0) + '%');
+    
+	$('#numeroColetores').html(n_colectores_final.toFixed(0));
     $('#areaColetores').html(area_colectores_final.toFixed(0) + ' m2');
-    $('#vAcumulacao').html(new Number(volume_acumulacao_resume).toFixed(0) + ' litros');
+	$('#vAcumulacao').html(new Number(volume_acumulacao_resume).toFixed(0) + ' litros');
     $('#investimentoTotal').html(investimento_resume.toFixed(0) + ' €');
     $('#custosColectores').html(colectores.toFixed(0) + ' €');
     $('#custosEquipamento').html(equipamento.toFixed(0) + ' €');
