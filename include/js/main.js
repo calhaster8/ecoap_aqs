@@ -608,6 +608,7 @@ function nextStep() {
         $('.perfil-consumo').hide();
         $('.end-step').show();
         $('.but-2').hide();
+        $('#disclaimer').hide();
     }
 
     if (nextId == 5 || nextId == 6) {
@@ -625,7 +626,10 @@ function nextStep() {
             $('.corrige-coletores').show();
             $('#reanalise-but').show();
         }
+        $('#disclaimer').show();
     }
+    
+    location.hash = "html";
 }
 
 function prevStep() {
@@ -644,6 +648,7 @@ function prevStep() {
             $("#corrige-coletores").val("");
             $('#reload-but').hide();
             $('#analise-but').show();
+            $('#disclaimer').hide();
 
         } else if (prevId == 3) {
             $('[data-id="' + id + '"]').hide();
@@ -652,6 +657,7 @@ function prevStep() {
             $('.perfil-consumo').hide();
             $('.end-step').hide();
             $('.but-2').show();
+            $('#disclaimer').hide();
         } else if (prevId == 2) {
             $('[data-id="' + id + '"]').hide();
             $('[data-id="1"]').show();
@@ -660,6 +666,7 @@ function prevStep() {
             $('.end-step').hide();
             $('.but-2').hide();
             $('.anterior').hide();
+            $('#disclaimer').hide();
         }
 
     } else if ($('#conhece-consumo').val() == 1) {
@@ -674,6 +681,7 @@ function prevStep() {
             $('.end-step').show();
             $('.print_pdf').hide();
             $('.but-2').hide();
+            $('#disclaimer').hide();
         } else if (prevId == 3) {
             $('[data-id="' + id + '"]').hide();
             $('[data-id="2"]').show();
@@ -681,6 +689,7 @@ function prevStep() {
             $('.perfil-consumo').show();
             $('.end-step').hide();
             $('.but-2').hide();
+            $('#disclaimer').hide();
         } else if (prevId == 1) {
             $('[data-id="' + id + '"]').hide();
             $('[data-id="' + prevId + '"]').show();
@@ -689,8 +698,11 @@ function prevStep() {
             $('.end-step').hide();
             $('.but-2').hide();
             $('.anterior').hide();
+            $('#disclaimer').hide();
         }
     }
+    
+    location.hash = "html";
 }
 
 function perfilConsumo() {
@@ -736,4 +748,6 @@ function perfilConsumo() {
     if (id == 4) {
         $('.end-but').hide();
     }
+    
+    location.hash = "html";
 } 

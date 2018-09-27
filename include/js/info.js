@@ -622,68 +622,68 @@ var irradiacao_temp_amb_temp_agua = [
             {
                 nomeI: "Fevereiro",
                 valorIrr: 9.1,
-                valorTempAmb: 12.9,
-                valorTempAgua: 14.1
+                valorTempAmb: 9.2,
+                valorTempAgua: 11.4
             },
             {
                 nomeI: "Março",
                 valorIrr: 12.2,
-                valorTempAmb: 13.4,
-                valorTempAgua: 14.6
+                valorTempAmb: 10.8,
+                valorTempAgua: 11.9
             },
             {
                 nomeI: "Abril",
                 valorIrr: 17.6,
-                valorTempAmb: 14.1,
-                valorTempAgua: 15.1
+                valorTempAmb: 12.4,
+                valorTempAgua: 12.9
             },
             {
                 nomeI: "Maio",
                 valorIrr: 20.7,
-                valorTempAmb: 15.7,
-                valorTempAgua: 15.5
+                valorTempAmb: 14.9,
+                valorTempAgua: 13.8
             },
             {
                 nomeI: "Junho",
                 valorIrr: 22.1,
                 valorTempAmb: 17.6,
-                valorTempAgua: 16.5
+                valorTempAgua: 15.3
             },
             {
                 nomeI: "Julho",
                 valorIrr: 23.9,
                 valorTempAmb: 19.7,
-                valorTempAgua: 17.5
+                valorTempAgua: 16.3
             },
             {
                 nomeI: "Agosto",
                 valorIrr: 21.7,
-                valorTempAmb: 20.8,
-                valorTempAgua: 18.0
+                valorTempAmb: 19.5,
+                valorTempAgua: 16.2
             },
             {
                 nomeI: "Setembro",
                 valorIrr: 15.8,
-                valorTempAmb: 19.8,
-                valorTempAgua: 17.4
+                valorTempAmb: 18.3,
+                valorTempAgua: 15.7
             },
             {
                 nomeI: "Outubro",
                 valorIrr: 11.4,
-                valorTempAmb: 18.0,
-                valorTempAgua: 16.9
+                valorTempAmb: 15.4,
+                valorTempAgua: 14.2
             },
             {
                 nomeI: "Novembro",
                 valorIrr: 7.6,
-                valorTempAmb: 15.8,
-                valorTempAgua: 15.4
+                valorTempAmb: 11.2,
+                valorTempAgua: 12.2
             },
             {
                 nomeI: "Dezembro",
                 valorIrr: 5.9,
-                valorTempAmb: 14.4,
-                valorTempAgua: 14.9
+                valorTempAmb: 8.8,
+                valorTempAgua: 10.7
             }
         ]
     },
@@ -1128,7 +1128,7 @@ var irradiacao_temp_amb_temp_agua = [
                 nomeI: "Agosto",
                 valorIrr: 25.2,
                 valorTempAmb: 23.9,
-                valorTempAgua: 18.4
+                valorTempAgua: 19.4
             },
             {
                 nomeI: "Setembro",

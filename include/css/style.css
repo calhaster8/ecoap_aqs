@@ -21,8 +21,8 @@ html {
 
 body {
   font-family: 'Amelia-Basic', sans-serif;
-  background-image: url("../img/fundo.png");
-  background-repeat: no-repeat;
+/*  background-image: url("../img/fundo.png");
+  background-repeat: no-repeat;*/
   width: 100%;
   height: 100vh;
   min-height: 100vh; }
