@@ -20,6 +20,7 @@
         <script src="include/js/globals.js"></script>        
         <script src="include/js/print.min.js"></script>
         <script src="include/js/jquery.validate.min.js"></script>
+        <script src="./node_modules/chart.js/dist/Chart.bundle.js"></script>
         <title>ECO.AP - Calculadora - AQS</title>
     </head>
     <body>
@@ -215,92 +216,111 @@
                                 </div>
                                 <div class="dados-child">
                                     <p id="errorAQS" style="color: red;"></p>
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <tr class="textTR">
-                                                <td rowspan="2" class="in">Consumos e custos energéticos (cenário inicial)</td>
-                                                <td class="center" id="consumoCI"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="center" id="custosCI"></td>
-                                            </tr>
-                                            <tr class="textTR solar-termico-results">
-                                                <td class="in">Contributo do solar térmico</td>
-                                                <td class="center" id="contributoSolarTermico"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td rowspan="2" class="in">Consumos e custos energéticos (cenário final - sistema de apoio)</td>
-                                                <td class="center" id="consumosCF"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="center" id="custosCF"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td rowspan="2" class="in">Redução anual da fatura energética</td>
-                                                <td class="center" id="reducaoValor"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="center" id="reducaoPercent"></td>
-                                            </tr>
-											<tr class="textTR solar-termico-results">
-                                                <td class="in">Excedente de energia (no verão)</td>
-                                                <td class="center" id="totalExcedenteSolarPerc"></td>
-                                            </tr>
-                                            <tr class="textTR solar-termico-results">
-                                                <td class="in">N.° de coletores solares</td>
-                                                <td class="center" id="numeroColetores"></td>
-                                            </tr>
-                                            <tr class="textTR solar-termico-results">
-                                                <td class="in">Área ocupada pelo solar térmico</td>
-                                                <td class="center" id="areaColetores"></td>
-                                            </tr>
-                                            <tr class="textTR solar-termico-results">
-                                                <td class="in">Volume dos depósitos de acumulação</td>
-                                                <td class="center" id="vAcumulacao"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Investimento estimado *</td>
-                                                <td class="center" id="investimentoTotal"></td>
-                                            </tr>
-                                            <tr class="textTR solar-termico-results">
-                                                <td class="in sub">Coletores</td>
-                                                <td class="center sub-val" id="custosColectores"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in sub">Equipamento (tecnologia)</td>
-                                                <td class="center sub-val" id="custosEquipamento"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in sub">Depósitos e acessórios</td>
-                                                <td class="center sub-val" id="custosDepositos"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in sub">Instalação</td>
-                                                <td class="center sub-val" id="custosInstalacao"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Custos anuais com operação e manutenção</td>
-                                                <td class="center" id="custosOpManutencao"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Período de retorno</td>
-                                                <td class="center" id="periodoRetorno"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-									
-                                    <div class="dado nota-acoplar"></div>
-                                    <div class="excedente-note"></div>
-                                    <div class="dado corrige-coletores">
-                                        <label for="corrige-coletores">Redimensionar solar térmico: corrigir n.° de coletores</label>
-                                        <input id="corrige-coletores" name="corrige-coletores" type="number" placeholder="0" class="form-control xInput" />
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr class="textTR">
+                                                    <td rowspan="2" class="in">Consumos e custos energéticos (cenário inicial)</td>
+                                                    <td class="center" id="consumoCI"></td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="center" id="custosCI"></td>
+                                                </tr>
+                                                <tr class="textTR solar-termico-results">
+                                                    <td class="in">Contributo do solar térmico</td>
+                                                    <td class="center" id="contributoSolarTermico"></td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td rowspan="2" class="in">Consumos e custos energéticos (cenário final - sistema de apoio)</td>
+                                                    <td class="center" id="consumosCF"></td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="center" id="custosCF"></td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td rowspan="2" class="in">Redução anual da fatura energética</td>
+                                                    <td class="center" id="reducaoValor"></td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="center" id="reducaoPercent"></td>
+                                                </tr>
+                                                <tr class="textTR solar-termico-results">
+                                                    <td class="in">Excedente de energia (no verão)</td>
+                                                    <td class="center" id="totalExcedenteSolarPerc"></td>
+                                                </tr>
+                                                <tr class="textTR solar-termico-results">
+                                                    <td class="in">N.° de coletores solares</td>
+                                                    <td class="center" id="numeroColetores"></td>
+                                                </tr>
+                                                <tr class="textTR solar-termico-results">
+                                                    <td class="in">Área ocupada pelo solar térmico</td>
+                                                    <td class="center" id="areaColetores"></td>
+                                                </tr>
+                                                <tr class="textTR solar-termico-results">
+                                                    <td class="in">Volume dos depósitos de acumulação</td>
+                                                    <td class="center" id="vAcumulacao"></td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="in">Investimento estimado *</td>
+                                                    <td class="center" id="investimentoTotal"></td>
+                                                </tr>
+                                                <tr class="textTR solar-termico-results">
+                                                    <td class="in sub">Coletores</td>
+                                                    <td class="center sub-val" id="custosColectores"></td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="in sub">Equipamento (tecnologia)</td>
+                                                    <td class="center sub-val" id="custosEquipamento"></td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="in sub">Depósitos e acessórios</td>
+                                                    <td class="center sub-val" id="custosDepositos"></td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="in sub">Instalação</td>
+                                                    <td class="center sub-val" id="custosInstalacao"></td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="in">Custos anuais com operação e manutenção</td>
+                                                    <td class="center" id="custosOpManutencao"></td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="in">Período de retorno</td>
+                                                    <td class="center" id="periodoRetorno"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="row">
+                                                <div class="final-graph-container">
+                                                    <canvas id="varCustos" class="final-graph" height="400" width="400"
+                                                        responsive="true"></canvas>
+                                                    <canvas id="solarTermC" class="final-graph" height="400" width="400"
+                                                        responsive="true"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    <div class="resumeHide">
+                                        <div class="dado nota-acoplar"></div>
+                                        <div class="excedente-note"></div>
+                                        <div class="dado corrige-coletores">
+                                            <label for="corrige-coletores">Redimensionar solar térmico: corrigir n.° de coletores</label>
+                                            <input id="corrige-coletores" name="corrige-coletores" type="number" placeholder="0" class="form-control xInput" />
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row resumeHide">
                     <div class="col-md-4">
                         <div class="but-2 step-but">
                             <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>

@@ -628,6 +628,8 @@ function nextStep() {
         }
         $('#disclaimer').show();
     }
+
+    // DO NOT ADD NEXTID == 5 FROM BRUNOS CHANGES
     
     location.hash = "html";
 }

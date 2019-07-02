@@ -465,6 +465,7 @@ function resume() {
         $('.excedente-note').hide();
     }
 
+    chartData();
 
     return 1;
 }
@@ -507,4 +508,102 @@ function arred(valorArrendondar, comoArredondar) {
     }
 
     return valor;
+}
+
+function maxChart(array) {
+    var max = 0;
+    if (array.length > 0) {
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] > max || max == 0) {
+                max = array[i];
+            }
+        }
+    }
+    return max;
+}
+
+function chartData() {
+    var varCustosVar = document.getElementById("varCustos").getContext('2d');
+    var solarTermVar = document.getElementById("solarTermC").getContext('2d');
+
+    var maxCustos = maxChart(cenarioI_custos) > maxChart(cenarioF_custos) ? maxChart(cenarioI_custos) : maxChart(cenarioF_custos);
+
+    var maxSolarTerm = maxChart(necessidades_mes) > maxChart(totalExcedenteSolarArray) ? maxChart(necessidades_mes) : maxChart(totalExcedenteSolarArray) > maxChart(energiaSolarUtilizada) ? maxChart(totalExcedenteSolarArray) : maxChart(energiaSolarUtilizada);
+
+    var varCustosChart = new Chart(varCustos, {
+        type: 'bar',
+        data: {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            datasets: [{
+                label: 'Antes',
+                data: cenarioI_custos,
+                backgroundColor: 'rgba(75, 135, 203, 1)',
+                borderColor: 'rgba(75, 135, 203, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Depois',
+                data: cenarioF_custos,
+                backgroundColor: 'rgba(95, 160, 55, 1)',
+                borderColor: 'rgba(95, 160, 55, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        max: maxCustos + 40
+                    }
+                }]
+            }
+        }
+    });
+
+    var solarTermChart = new Chart(solarTermVar, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                    label: 'Energia Solar',
+                    data: totalEnergiaSolarUtilizada,
+                    backgroundColor: 'rgba(95, 160, 55, 1)',
+                    borderColor: 'rgba(95, 160, 55, 1)'
+                },
+                {
+                    label: 'Energia de Apoio',
+                    data: totalEnergiaBackupMes,
+                    backgroundColor: 'rgba(209, 95, 35, 1)',
+                    borderColor: 'rgba(209, 95, 35, 1)'
+                },
+                {
+                    label: 'Excedente',
+                    data: totalExcedenteSolarArray,
+                    backgroundColor: 'rgba(252, 203, 61, 1)',
+                    borderColor: 'rgba(252, 203, 61, 1)'
+                },
+                {
+                    label: 'Necessidades',
+                    data: necessidades_mes,
+                    backgroundColor: 'rgba(0,0,0,0)',
+                    borderColor: 'rgba(75, 135, 203, 1)',
+                    pointBackgroundColor: 'rgba(0,0,0,0)',
+                    pointBorderColor: 'rgba(0,0,0,0)',
+
+                    // Changes this dataset to become a line
+                    type: 'line'
+                }
+            ],
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        max: maxSolarTerm + 50
+                    }
+                }]
+            }
+        }
+    });
 }
