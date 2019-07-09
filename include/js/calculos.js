@@ -519,6 +519,9 @@ function maxChart(array) {
             }
         }
     }
+
+    max += (max * 0.10);
+
     return max;
 }
 
@@ -528,7 +531,15 @@ function chartData() {
 
     var maxCustos = maxChart(cenarioI_custos) > maxChart(cenarioF_custos) ? maxChart(cenarioI_custos) : maxChart(cenarioF_custos);
 
-    var maxSolarTerm = maxChart(necessidades_mes) > maxChart(totalExcedenteSolarArray) ? maxChart(necessidades_mes) : maxChart(totalExcedenteSolarArray) > maxChart(energiaSolarUtilizada) ? maxChart(totalExcedenteSolarArray) : maxChart(energiaSolarUtilizada);
+    if ((maxChart(totalEnergiaSolarUtilizada) > maxChart(totalEnergiaBackupMes)) && (maxChart(totalEnergiaSolarUtilizada) > maxChart(totalExcedenteSolarArray)) && (maxChart(totalEnergiaSolarUtilizada) > maxChart(necessidades_mes))) {
+        var maxSolarTerm = maxChart(totalEnergiaSolarUtilizada);
+    } else if ((maxChart(totalEnergiaBackupMes) > maxChart(totalEnergiaSolarUtilizada)) && (maxChart(totalEnergiaBackupMes) > maxChart(totalExcedenteSolarArray)) && (maxChart(totalEnergiaBackupMes) > maxChart(necessidades_mes))) {
+        var maxSolarTerm = maxChart(totalEnergiaBackupMes);
+    } else if ((maxChart(totalExcedenteSolarArray) > maxChart(totalEnergiaSolarUtilizada)) && (maxChart(totalExcedenteSolarArray) > maxChart(totalEnergiaBackupMes)) && (maxChart(totalExcedenteSolarArray) > maxChart(necessidades_mes))) {
+        var maxSolarTerm = maxChart(totalExcedenteSolarArray);
+    } else {
+        var maxSolarTerm = maxChart(necessidades_mes);
+    }
 
     var varCustosChart = new Chart(varCustos, {
         type: 'bar',
@@ -553,7 +564,7 @@ function chartData() {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        max: maxCustos + 40
+                        max: maxCustos
                     }
                 }]
             }
@@ -600,7 +611,7 @@ function chartData() {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        max: maxSolarTerm + 50
+                        max: maxSolarTerm
                     }
                 }]
             }

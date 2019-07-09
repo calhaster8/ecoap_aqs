@@ -307,6 +307,17 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"/include/js/calculos-min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/include/js/calculos-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"/include/js/calculos.js": {
 		"bF": 0,
 		"ft": 64,
@@ -358,6 +369,17 @@
 		"mi": 1,
 		"oA": 0,
 		"oAP": "/include/js/jquery.validate.min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/include/js/main-min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/include/js/main-min-min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
