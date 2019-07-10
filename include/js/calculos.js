@@ -529,6 +529,10 @@ function chartData() {
     var varCustosVar = document.getElementById("varCustos").getContext('2d');
     var solarTermVar = document.getElementById("solarTermC").getContext('2d');
 
+    // Condition
+    var acoplarSolarTerm = ($('#acoplar-solar').val() == 0) ? true : false;
+
+    // MAX
     var maxCustos = maxChart(cenarioI_custos) > maxChart(cenarioF_custos) ? maxChart(cenarioI_custos) : maxChart(cenarioF_custos);
 
     if ((maxChart(totalEnergiaSolarUtilizada) > maxChart(totalEnergiaBackupMes)) && (maxChart(totalEnergiaSolarUtilizada) > maxChart(totalExcedenteSolarArray)) && (maxChart(totalEnergiaSolarUtilizada) > maxChart(necessidades_mes))) {
@@ -571,10 +575,11 @@ function chartData() {
         }
     });
 
-    var solarTermChart = new Chart(solarTermVar, {
-        type: 'bar',
-        data: {
-            datasets: [{
+    if (acoplarSolarTerm) {
+        var solarTermChart = new Chart(solarTermVar, {
+            type: 'bar',
+            data: {
+                datasets: [{
                     label: 'Energia Solar',
                     data: totalEnergiaSolarUtilizada,
                     backgroundColor: 'rgba(95, 160, 55, 1)',
@@ -603,18 +608,19 @@ function chartData() {
                     // Changes this dataset to become a line
                     type: 'line'
                 }
-            ],
-            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        max: maxSolarTerm
-                    }
-                }]
+                ],
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            max: maxSolarTerm
+                        }
+                    }]
+                }
             }
-        }
-    });
+        });
+    }
 }
