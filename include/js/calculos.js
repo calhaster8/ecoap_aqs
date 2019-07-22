@@ -528,6 +528,38 @@ function maxChart(array) {
 function chartData() {
     var varCustosVar = document.getElementById("varCustos").getContext('2d');
     var solarTermVar = document.getElementById("solarTermC").getContext('2d');
+    
+    // To fix arrays
+    var cenarioI_custos_fixed = [];
+    var cenarioF_custos_fixed = [];
+    var totalEnergiaSolarUtilizada_fixed = [];
+    var totalEnergiaBackupMes_fixed = [];
+    var totalEnergiaArray2_fixed = [];
+    var necessidades_mes_fixed = [];
+
+    for (let i = 0; i < cenarioI_custos.length; i++) {
+        cenarioI_custos_fixed[i] = cenarioI_custos[i].toFixed(0);
+    }
+
+    for (let i = 0; i < cenarioF_custos.length; i++) {
+        cenarioF_custos_fixed[i] = cenarioF_custos[i].toFixed(0);
+    }
+
+    for (let i = 0; i < totalEnergiaSolarUtilizada.length; i++) {
+        totalEnergiaSolarUtilizada_fixed[i] = totalEnergiaSolarUtilizada[i].toFixed(0);
+    }
+
+    for (let i = 0; i < totalEnergiaBackupMes.length; i++) {
+        totalEnergiaBackupMes_fixed[i] = totalEnergiaBackupMes[i].toFixed(0);
+    }
+
+    for (let i = 0; i < totalEnergiaArray2.length; i++) {
+        totalEnergiaArray2_fixed[i] = totalEnergiaArray2[i].toFixed(0);
+    }
+
+    for (let i = 0; i < necessidades_mes.length; i++) {
+        necessidades_mes_fixed[i] = necessidades_mes[i].toFixed(0);
+    }
 
     // Condition
     var acoplarSolarTerm = ($('#acoplar-solar').val() == 0) ? true : false;
@@ -535,29 +567,29 @@ function chartData() {
     // MAX
     var maxCustos = maxChart(cenarioI_custos) > maxChart(cenarioF_custos) ? maxChart(cenarioI_custos) : maxChart(cenarioF_custos);
 
-    if ((maxChart(totalEnergiaSolarUtilizada) > maxChart(totalEnergiaBackupMes)) && (maxChart(totalEnergiaSolarUtilizada) > maxChart(totalExcedenteSolarArray)) && (maxChart(totalEnergiaSolarUtilizada) > maxChart(necessidades_mes))) {
+    if ((maxChart(totalEnergiaSolarUtilizada) > maxChart(totalEnergiaBackupMes)) && (maxChart(totalEnergiaSolarUtilizada) > maxChart(totalEnergiaArray2)) && (maxChart(totalEnergiaSolarUtilizada) > maxChart(necessidades_mes))) {
         var maxSolarTerm = maxChart(totalEnergiaSolarUtilizada);
-    } else if ((maxChart(totalEnergiaBackupMes) > maxChart(totalEnergiaSolarUtilizada)) && (maxChart(totalEnergiaBackupMes) > maxChart(totalExcedenteSolarArray)) && (maxChart(totalEnergiaBackupMes) > maxChart(necessidades_mes))) {
+    } else if ((maxChart(totalEnergiaBackupMes) > maxChart(totalEnergiaSolarUtilizada)) && (maxChart(totalEnergiaBackupMes) > maxChart(totalEnergiaArray2)) && (maxChart(totalEnergiaBackupMes) > maxChart(necessidades_mes))) {
         var maxSolarTerm = maxChart(totalEnergiaBackupMes);
-    } else if ((maxChart(totalExcedenteSolarArray) > maxChart(totalEnergiaSolarUtilizada)) && (maxChart(totalExcedenteSolarArray) > maxChart(totalEnergiaBackupMes)) && (maxChart(totalExcedenteSolarArray) > maxChart(necessidades_mes))) {
-        var maxSolarTerm = maxChart(totalExcedenteSolarArray);
+    } else if ((maxChart(totalEnergiaArray2) > maxChart(totalEnergiaSolarUtilizada)) && (maxChart(totalEnergiaArray2) > maxChart(totalEnergiaBackupMes)) && (maxChart(totalEnergiaArray2) > maxChart(necessidades_mes))) {
+        var maxSolarTerm = maxChart(totalEnergiaArray2);
     } else {
         var maxSolarTerm = maxChart(necessidades_mes);
     }
-
-    var varCustosChart = new Chart(varCustos, {
+    
+    var varCustosChart = new Chart(varCustosVar, {
         type: 'bar',
         data: {
             labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
             datasets: [{
                 label: 'Antes',
-                data: cenarioI_custos,
+                data: cenarioI_custos_fixed,
                 backgroundColor: 'rgba(75, 135, 203, 1)',
                 borderColor: 'rgba(75, 135, 203, 1)',
                 borderWidth: 1
             }, {
                 label: 'Depois',
-                data: cenarioF_custos,
+                data: cenarioF_custos_fixed,
                 backgroundColor: 'rgba(95, 160, 55, 1)',
                 borderColor: 'rgba(95, 160, 55, 1)',
                 borderWidth: 1
@@ -568,10 +600,26 @@ function chartData() {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        max: maxCustos
+                        max: maxCustos,
+                        callback: function (value, index, values) {
+                            return value.toFixed(0) + ' €';
+                        }
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 90,
+                        minRotation: 90
                     }
                 }]
-            }
+            },
+            title: {
+                display: true,
+                text: 'Custo anual de energia',
+                fontSize: 16,
+                fontColor: '#0099cc'
+            },
         }
     });
 
@@ -581,25 +629,25 @@ function chartData() {
             data: {
                 datasets: [{
                     label: 'Energia Solar',
-                    data: totalEnergiaSolarUtilizada,
+                    data: totalEnergiaSolarUtilizada_fixed,
                     backgroundColor: 'rgba(95, 160, 55, 1)',
                     borderColor: 'rgba(95, 160, 55, 1)'
                 },
                 {
                     label: 'Energia de Apoio',
-                    data: totalEnergiaBackupMes,
+                    data: totalEnergiaBackupMes_fixed,
                     backgroundColor: 'rgba(209, 95, 35, 1)',
                     borderColor: 'rgba(209, 95, 35, 1)'
                 },
                 {
                     label: 'Excedente',
-                    data: totalExcedenteSolarArray,
+                    data: totalEnergiaArray2_fixed,
                     backgroundColor: 'rgba(252, 203, 61, 1)',
                     borderColor: 'rgba(252, 203, 61, 1)'
                 },
                 {
                     label: 'Necessidades',
-                    data: necessidades_mes,
+                    data: necessidades_mes_fixed,
                     backgroundColor: 'rgba(0,0,0,0)',
                     borderColor: 'rgba(75, 135, 203, 1)',
                     pointBackgroundColor: 'rgba(0,0,0,0)',
@@ -616,9 +664,31 @@ function chartData() {
                     yAxes: [{
                         ticks: {
                             beginAtZero: true,
-                            max: maxSolarTerm
+                            max: maxSolarTerm,
+                            callback: function (value, index, values) {
+                                return value.toFixed(0) + ' MJ';
+                            }
                         }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 90,
+                            minRotation: 90
+                        },
+                        stacked: true
                     }]
+                },
+                title: {
+                    display: true,
+                    text: 'Balanço Energético - Solar Térmico (MJ)',
+                    fontSize: 16,
+                    fontColor: '#0099cc'
+                },
+                legend: {
+                    labels: {
+                        useLineStyle: true
+                    }
                 }
             }
         });

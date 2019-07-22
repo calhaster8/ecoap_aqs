@@ -375,6 +375,11 @@ $(document).ready(function () {
     });
 
     $(".reanalise-but").click(function () {
+        $('.final-graph-container #varCustos').remove();
+        $('.final-graph-container #solarTermC').remove();
+        $(".final-graph-container").append('<canvas id="varCustos" class="final-graph" height="400" width="400" responsive="true"></canvas>');
+        $(".final-graph-container").append('<canvas id="solarTermC" class="final-graph" height="400" width="400" responsive="true"></canvas>');
+
         if ($("#aqs-form").valid()) {
             totalNecessidadesEnergiaFunction();
         }
