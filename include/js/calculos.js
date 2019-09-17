@@ -552,7 +552,7 @@ function chartData() {
     }
 
     for (let i = 0; i < totalEnergiaBackupMes.length; i++) {
-        totalEnergiaBackupMes_fixed[i] = totalEnergiaBackupMes[i] / 3.6;
+        totalEnergiaBackupMes_fixed[i] = (totalEnergiaBackupMes[i] / 3.6) + (totalEnergiaSolarUtilizada[i] / 3.6);
         totalEnergiaBackupMes_fixed[i] = new Number(totalEnergiaBackupMes_fixed[i].toFixed(0));
     }
 
