@@ -218,7 +218,7 @@
                                     <p id="errorAQS" style="color: red;"></p>
                                     <div class="row">
                                         <div class="col-md-7">
-                                            <table class="table table-bordered">
+                                            <table class="table table-bordered" id="resumo-table-graphic">
                                                 <tbody>
                                                     <tr class="textTR">
                                                         <td rowspan="2" class="in">Consumos e custos energéticos (cenário inicial)</td>
@@ -338,7 +338,8 @@
                         </div>
                         <div class="print_pdf step-but">
                             <span class="print_text">Deseja imprimir?
-                                <button type="button" onclick="printJS('resumo', 'html')" class="print_link">Clique aqui</button>
+                                <!--<button type="button" onclick="printJS('resumo', 'html')" class="print_link">Clique aqui</button>-->
+                                <button type="button" onclick="printCanvas()" class="print_link">Clique aqui</button>
                             </span>
                         </div>
                     </div>

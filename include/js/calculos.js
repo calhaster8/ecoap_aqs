@@ -703,3 +703,62 @@ function chartData() {
         });
     }
 }
+
+function printCanvas() {
+    const error = document.getElementById('errorAQS').outerHTML;
+    const resumo_table = document.getElementById('resumo-table-graphic').outerHTML;
+    const dataUrlCustos = document.getElementById('varCustos').toDataURL();
+    const dataUrlSolar = document.getElementById('solarTermC').toDataURL();
+
+    let windowContent = '<!DOCTYPE html>';
+    windowContent += '<html>';
+    windowContent += '<head><title>ECO.AP - Calculadora - AQS</title></head>';
+    windowContent += '<body>';
+    windowContent += '<main class="main container">';
+    windowContent += '<form id="aqs-form">';
+    windowContent += '<div class="row">';
+    windowContent += '<div class="col-md-12">';
+    windowContent += '<div class="main-content">';
+    windowContent += '<div class="dados">';
+    windowContent += '<div class="dados-child">';
+    windowContent += '<div id="resumo" class="step">';
+    windowContent += '<div class="dados-titulo"><span>Resumo - Resultados</span></div>';
+    windowContent += error;
+
+    // Tabela
+    windowContent += '<div class="col-md-12">';
+    windowContent += resumo_table;
+    windowContent += '</div>';
+
+    // Grafico 1
+    windowContent += '<div class="col-md-12 final-graph" style="width:50%;">';
+    windowContent += '<img src="' + dataUrlCustos + '">';
+    windowContent += '</div>';
+
+    // Grafico 2
+    windowContent += '<div class="col-md-12 final-graph" style="width:50%;">';
+    windowContent += '<img src="' + dataUrlSolar + '">';
+    windowContent += '</div>';
+
+    windowContent += '</div>';
+    windowContent += '</div>';
+    windowContent += '</div>';
+    windowContent += '</div>';
+    windowContent += '</div>';
+    windowContent += '</div>';
+    windowContent += '</form>';
+    windowContent += '</main>';
+    windowContent += '</body>';
+    windowContent += '</html>';
+
+    const printWin = window.open('', '', 'width=' + screen.availWidth + ',height=' + screen.availHeight);
+    printWin.document.open();
+    printWin.document.write(windowContent);
+
+    printWin.document.addEventListener('load', function () {
+        printWin.focus();
+        printWin.print();
+        printWin.document.close();
+        printWin.close();
+    }, true);
+}
